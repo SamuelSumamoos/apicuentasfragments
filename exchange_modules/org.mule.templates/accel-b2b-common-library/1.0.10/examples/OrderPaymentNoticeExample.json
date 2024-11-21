@@ -1,0 +1,58 @@
+{
+  "id": "af3d5c80-f237-11ec-9d38-02b65bc9fbca",
+  "orderNoticeType": "OrderPaymentNotice",
+  "purchaseOrderNumber": "ORD-02338301",
+  "purchaseOrderDate": "2024-03-02",
+  "purchasingOrganizationCode": "ORANGE",
+  "payments": [
+    {
+      "id": null,
+      "name": "P-000000014",
+      "paymentInstance": "Payment",
+      "paymentNumber": "P-000000014",
+      "paymentType": "Credit",
+      "paymentStatus": "Paid",
+      "customerId": "a0193244-4aca-4dde-a5ab-b00b3e479b1f",
+      "customerEmailAddress": "johnf@example.net",
+      "customerPhoneNumber": "888-555-01234",
+      "purchaseOrderNumber": "ORD-02338301",
+      "salesOrderPaymentSummaryId": "81ef887a-916c-41fc-a995-666698bdda1c",
+      "paymentMethodId": "b4c2d39e-36a5-416e-b580-b61dfde1e465",
+      "paymentTreatment": "3c5238d1-a3bf-4001-8c9f-4da17e1f7e4e",
+      "paymentEffectiveDate": "2024-04-03",
+      "paymentCancellationDate": null,
+      "authorizationProcessingMode": "Internal",
+      "paymentGateway": "7cffa532-02a6-11ed-b939-0242ac120002",
+      "latestGatewayDate": "2024-04-03",
+      "latestGatewayReferenceNumber": "1564628",
+      "latestGatewayResultCode": "Processed",
+      "latestGatewayInternalReferenceNumber": "675763",
+      "latestGatewayInternalResultCode": "100",
+      "ipAddress": "116.161.101.202",
+      "macAddress": "68-53-41-11-D3-25",
+      "paymentAmount": 636.0,
+      "balanceAmount": 0.0,
+      "totalAppliedAmount": 636.0,
+      "totalUnappliedAmount": 0.0,
+      "netAppliedAmount": 0.0,
+      "commentText": "Paid in full via credit card on file",
+      "paymentApplications": [
+        {
+          "id": "303453d8-c517-4dfc-8d97-83152a1f9a6b",
+          "paymentApplicationInstance": "PaymentInvoiceApplication",
+          "appliedDate": "2024-04-03",
+          "effectiveDate": "2024-04-03",
+          "appliedAmount": 636.0,
+          "invoiceNumber": "DOC-000000006"
+        }
+      ]
+    }
+  ],
+  "auditInfo": {
+    "createdDate": "2024-02-15T15:03:01Z",
+    "createdBy": "autoproc",
+    "updatedDate": "2024-02-15T15:03:01Z",
+    "updatedBy": "autoproc",
+    "isDeleted": false
+  }
+}

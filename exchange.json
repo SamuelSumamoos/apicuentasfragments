@@ -1,0 +1,29 @@
+{
+  "dependencies": [
+    {
+      "version": "1.0.10",
+      "assetId": "accel-b2b-common-library",
+      "groupId": "org.mule.templates",
+      "provided": false
+    },
+    {
+      "version": "1.0.2",
+      "assetId": "fhir-r4-relatedperson-library",
+      "groupId": "org.mule.templates",
+      "provided": false
+    },
+    {
+      "version": "1.0.0",
+      "assetId": "fhir-r4-us-core-location-library",
+      "groupId": "org.mule.templates",
+      "provided": false
+    }
+  ],
+  "version": "1.0.0",
+  "descriptorVersion": "1.0.0",
+  "classifier": "raml",
+  "main": "apicuentasfragments.raml",
+  "assetId": "apicuentasfragments",
+  "groupId": "49639555-335c-43bf-9697-856c374176c4",
+  "name": "apicuentasfragments"
+}

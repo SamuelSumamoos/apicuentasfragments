@@ -1,0 +1,665 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/OrderInvoicedEvent",
+  "definitions": {
+    "OrderInvoicedEvent": {
+      "discriminator": "orderEventType",
+      "description": "Represents an order that has been invoiced by the order management system",
+      "type": "object",
+      "discriminatorValue": "OrderInvoicedEvent",
+      "additionalProperties": true,
+      "required": [
+        "orderEventType",
+        "id",
+        "purchaseOrderNumber",
+        "purchaseOrderDate"
+      ],
+      "properties": {
+        "id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Unique identifier for the entity, can be null on create if auto-generated"
+        },
+        "orderEventType": {
+          "type": "string",
+          "description": "Discriminator identifying the specific type of event instance (for example, OrderStatusEvent)"
+        },
+        "auditInfo": {
+          "type": "object",
+          "description": "Defines standard system audit fields available for most types",
+          "additionalProperties": true,
+          "required": [
+            "isDeleted",
+            "createdBy",
+            "updatedBy",
+            "updatedDate",
+            "createdDate"
+          ],
+          "properties": {
+            "createdDate": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Timestamp of when the entity was created"
+            },
+            "createdBy": {
+              "type": "string",
+              "description": "Identifies the system or user which created the entity"
+            },
+            "updatedDate": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Timestamp of when the entity was last updated"
+            },
+            "updatedBy": {
+              "type": "string",
+              "description": "Identifies the system or user which last updated the entity"
+            },
+            "isDeleted": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Indicates whether or not the entity has been soft-deleted"
+            }
+          }
+        },
+        "purchaseOrderNumber": {
+          "type": "string",
+          "description": "References the original purchase order being invoiced"
+        },
+        "purchaseOrderDate": {
+          "type": "string",
+          "description": "Date the purchase order was created",
+          "format": "date"
+        },
+        "purchasingOrganizationCode": {
+          "type": "string",
+          "description": "B2B code identifying the organization that submitted the purchase order"
+        },
+        "invoices": {
+          "type": "array",
+          "description": "Zero or more invoices created for the original purchase order",
+          "items": {
+            "description": "A bill for a list of goods and services",
+            "type": "object",
+            "additionalProperties": true,
+            "required": [
+              "invoiceNumber",
+              "invoiceDate",
+              "id",
+              "invoiceStatus"
+            ],
+            "properties": {
+              "id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Unique identifier for the entity, can be null on create if auto-generated"
+              },
+              "description": {
+                "type": "string",
+                "description": "Longer description of the invoice"
+              },
+              "invoiceNumber": {
+                "type": "string",
+                "description": "Auto-generated document number for the invoice"
+              },
+              "purchaseOrderNumber": {
+                "type": "string",
+                "description": "References the original purchase order the invoice was created for"
+              },
+              "purchaseOrderDate": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Date the purchase order was created"
+              },
+              "fulfillmentOrderId": {
+                "type": "string",
+                "description": "References the fulfillment order the invoice is for"
+              },
+              "salesOrderId": {
+                "type": "string",
+                "description": "References the sales order the invoice is for"
+              },
+              "billToCustomerId": {
+                "type": "string",
+                "description": "References the account the invoice is billed to"
+              },
+              "billToIndividualId": {
+                "type": "string",
+                "description": "References the individual contact that the invoice is billed to"
+              },
+              "invoiceStatus": {
+                "type": "string",
+                "description": "Current status of the invoice"
+              },
+              "invoiceDate": {
+                "type": "string",
+                "description": "Date the invoice was created",
+                "format": "date"
+              },
+              "dueDate": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Date payment for the invoice is due"
+              },
+              "balance": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Balance remaining to be paid for the invoice"
+              },
+              "totalAdjustmentAmount": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Total adjustments, not including tax, of the invoice line items"
+              },
+              "totalAdjustmentTaxAmount": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Tax on the total adjustment amount"
+              },
+              "totalAdjustmentWithTaxAmount": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Sum of totalAdjustmentAmount + totalAdjustmentTaxAmount"
+              },
+              "totalChargeAmount": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Total amount of charges, not including tax, of the invoice line items"
+              },
+              "totalChargeTaxAmount": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Tax on the total charge amount"
+              },
+              "totalChargeWithTaxAmount": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Sum of totalChargeAmount + totalChargeTaxAmount"
+              },
+              "totalAmount": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Adjusted total, not including tax, of the invoice line items"
+              },
+              "totalTaxAmount": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Sum of all tax amounts for the invoice"
+              },
+              "totalWithTaxAmount": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Sum of totalAmount + totalTaxAmount"
+              },
+              "invoiceLines": {
+                "description": "Line items for the invoice, which can be a list of identifier references or complete objects (not both)",
+                "type": "array",
+                "items": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "description": "A product or service appearing on an invoice, along with any charges for them",
+                      "type": "object",
+                      "additionalProperties": true,
+                      "required": [
+                        "id",
+                        "name",
+                        "invoiceLineType"
+                      ],
+                      "properties": {
+                        "id": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "description": "Unique identifier for the entity, can be null on create if auto-generated"
+                        },
+                        "name": {
+                          "type": "string",
+                          "description": "Short name of the invoice line item"
+                        },
+                        "description": {
+                          "type": "string",
+                          "description": "Longer description of the invoice line item"
+                        },
+                        "lineNumber": {
+                          "anyOf": [
+                            {
+                              "type": "integer"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "description": "Line number of the invoice item"
+                        },
+                        "invoiceLineType": {
+                          "type": "string",
+                          "description": "Indicates the type of invoice line, such as Charge or Rebate"
+                        },
+                        "invoiceLineStatus": {
+                          "type": "string",
+                          "description": "Current status of the invoice line item"
+                        },
+                        "fulfillmentOrderProductId": {
+                          "type": "string",
+                          "description": "References the fulfillment order product the invoice line item is for"
+                        },
+                        "salesOrderProductId": {
+                          "type": "string",
+                          "description": "References the sales order product the invoice line item is for"
+                        },
+                        "productId": {
+                          "type": "string",
+                          "description": "References the underlying product associated with the sales order product"
+                        },
+                        "productCode": {
+                          "type": "string",
+                          "description": "Code of the underlying product associated with the sales order product"
+                        },
+                        "lineStartDate": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "format": "date"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "description": "Start date for the invoice line item"
+                        },
+                        "lineEndDate": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "format": "date"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "description": "End date for the invoice line item"
+                        },
+                        "lineQuantity": {
+                          "anyOf": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "unitPrice": {
+                          "anyOf": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "description": "What the customer is paying for one unit of the product"
+                        },
+                        "grossUnitPrice": {
+                          "anyOf": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "description": "Unit price including tax"
+                        },
+                        "totalAdjustmentAmount": {
+                          "anyOf": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "description": "Total adjustments, not including tax, of the invoice line item"
+                        },
+                        "totalAdjustmentTaxAmount": {
+                          "anyOf": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "description": "Tax on the total adjustment amount"
+                        },
+                        "totalAdjustmentWithTaxAmount": {
+                          "anyOf": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "description": "Sum of totalAdjustmentAmount + totalAdjustmentTaxAmount"
+                        },
+                        "totalChargeAmount": {
+                          "anyOf": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "description": "Total amount of charges, not including tax, of the invoice line item"
+                        },
+                        "totalChargeTaxAmount": {
+                          "anyOf": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "description": "Tax on the total charge amount"
+                        },
+                        "totalChargeWithTaxAmount": {
+                          "anyOf": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "description": "Sum of totalChargeAmount + totalChargeTaxAmount"
+                        },
+                        "totalAmount": {
+                          "anyOf": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "description": "Adjusted total, not including tax, of the invoice line item"
+                        },
+                        "totalTaxAmount": {
+                          "anyOf": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "description": "Sum of all tax amounts for the invoice line item"
+                        },
+                        "totalWithTaxAmount": {
+                          "anyOf": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "description": "Sum of totalAmount + totalTaxAmount"
+                        },
+                        "taxCode": {
+                          "type": "string",
+                          "description": "Identifies the reason for the tax calculation"
+                        },
+                        "taxName": {
+                          "type": "string",
+                          "description": "Display name for the tax applied"
+                        },
+                        "taxRatePercent": {
+                          "anyOf": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "description": "Percentage rate of tax applied"
+                        },
+                        "taxEffectiveDate": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "format": "date"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "description": "Date used to calculate the effective tax rate"
+                        },
+                        "auditInfo": {
+                          "description": "Audit information for the entity"
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "externalIds": {
+                "type": "array",
+                "items": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "description": "Defines a structure for referencing an entity in external systems",
+                      "type": "object",
+                      "additionalProperties": true,
+                      "required": [
+                        "id",
+                        "externalId",
+                        "externalIdType"
+                      ],
+                      "properties": {
+                        "id": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "externalId": {
+                          "type": "string",
+                          "description": "A unique identifier assigned to an entity in another system"
+                        },
+                        "externalIdType": {
+                          "description": "Identifies the system that owns or otherwise recognizes this unique identifier",
+                          "type": "array",
+                          "items": {
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "description": "Identifies the external system that owns or otherwise recognizes a particular identifier",
+                                "type": "object",
+                                "additionalProperties": true,
+                                "required": [
+                                  "id",
+                                  "name"
+                                ],
+                                "properties": {
+                                  "id": {
+                                    "anyOf": [
+                                      {
+                                        "type": "string"
+                                      },
+                                      {
+                                        "type": "null"
+                                      }
+                                    ]
+                                  },
+                                  "name": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        "status": {
+                          "enum": [
+                            "VALID",
+                            "INVALID"
+                          ],
+                          "description": "Indicates whether this identifier is currently valid or not",
+                          "type": "string"
+                        },
+                        "statusLastChangedDate": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "format": "date-time"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "description": "Date and time of the last change in status"
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "auditInfo": {
+                "description": "Audit information for the entity"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

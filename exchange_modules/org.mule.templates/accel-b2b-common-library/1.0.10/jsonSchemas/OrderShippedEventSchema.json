@@ -1,0 +1,1181 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/OrderShippedEvent",
+  "definitions": {
+    "OrderShippedEvent": {
+      "discriminator": "orderEventType",
+      "description": "Represents one or more purchase orders marked as shipped by the fulfillment system",
+      "type": "object",
+      "discriminatorValue": "OrderShippedEvent",
+      "additionalProperties": true,
+      "required": [
+        "orderEventType",
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Unique identifier for the entity, can be null on create if auto-generated"
+        },
+        "orderEventType": {
+          "type": "string",
+          "description": "Discriminator identifying the specific type of event instance (for example, OrderStatusEvent)"
+        },
+        "auditInfo": {
+          "type": "object",
+          "description": "Defines standard system audit fields available for most types",
+          "additionalProperties": true,
+          "required": [
+            "isDeleted",
+            "createdBy",
+            "updatedBy",
+            "updatedDate",
+            "createdDate"
+          ],
+          "properties": {
+            "createdDate": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Timestamp of when the entity was created"
+            },
+            "createdBy": {
+              "type": "string",
+              "description": "Identifies the system or user which created the entity"
+            },
+            "updatedDate": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Timestamp of when the entity was last updated"
+            },
+            "updatedBy": {
+              "type": "string",
+              "description": "Identifies the system or user which last updated the entity"
+            },
+            "isDeleted": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Indicates whether or not the entity has been soft-deleted"
+            }
+          }
+        },
+        "purchasingOrganizationCode": {
+          "type": "string",
+          "description": "B2B code identifying the organization that submitted the purchase order(s)"
+        },
+        "fulfillmentOrders": {
+          "type": "array",
+          "description": "Fulfillment orders created for the original purchase order(s)",
+          "items": {
+            "description": "Represents an order to fulfill one or more line items of a sales order",
+            "type": "object",
+            "additionalProperties": true,
+            "required": [
+              "fulfillmentOrderNumber",
+              "fulfilledToName",
+              "id",
+              "fulfillmentOrderStatus"
+            ],
+            "properties": {
+              "id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Unique identifier for the entity, can be null on create if auto-generated"
+              },
+              "name": {
+                "type": "string",
+                "description": "Display name of the fulfillment order"
+              },
+              "fulfillmentOrderNumber": {
+                "type": "string",
+                "description": "Unique number for the fulfillment order"
+              },
+              "fulfillmentType": {
+                "type": "string",
+                "description": "Classification of a fulfillment order based on the delivery channel"
+              },
+              "fulfillmentOrderStatus": {
+                "type": "string",
+                "description": "The high-level state of the fulfillment order"
+              },
+              "purchaseOrderNumber": {
+                "type": "string",
+                "description": "References the original purchase order the fulfillment order is for"
+              },
+              "purchaseOrderDate": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Date the original purchase order was created"
+              },
+              "salesOrderId": {
+                "type": "string",
+                "description": "Identifier of the sales order that originated the customer request for fulfillment"
+              },
+              "customerId": {
+                "type": "string",
+                "description": "Identifier of the customer who purchased the items to be fulfilled"
+              },
+              "billToIndividualId": {
+                "type": "string",
+                "description": "Identifier of the individual contact that the fulfillment order will be billed to"
+              },
+              "invoiceId": {
+                "type": "string",
+                "description": "Identifier of the invoice for the fulfillment order"
+              },
+              "fulfilledToName": {
+                "type": "string",
+                "description": "Name of the person or company receiving the fulfillment order"
+              },
+              "fulfilledToEmailAddress": {
+                "type": "string",
+                "description": "Email address of the person receiving the fulfillment order"
+              },
+              "fulfilledToPhoneNumber": {
+                "type": "string",
+                "description": "Phone number of the person receiving the fulfillment order"
+              },
+              "fulfilledToLocation": {
+                "description": "Location the fulfilled order is to be shipped to"
+              },
+              "orderDeliveryGroupId": {
+                "type": "string",
+                "description": "Identifier of the location requested on the original Sales Order"
+              },
+              "orderDeliveryMethodId": {
+                "type": "string",
+                "description": "Identifier of the standardized method for delivering products or services"
+              },
+              "isReship": {
+                "anyOf": [
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "True if the order is a reshipment, false otherwise",
+                "default": false
+              },
+              "isSuspended": {
+                "anyOf": [
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "True if the order is suspended, false otherwise",
+                "default": false
+              },
+              "totalItemCount": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Sum of quantity from all fulfillment order line items"
+              },
+              "totalAdjustmentAmount": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Sum of total product adjustment amount from all fulfillment order line items"
+              },
+              "totalAdjustmentTaxAmount": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Tax on the total adjustment amount"
+              },
+              "totalAdjustmentWithTaxAmount": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Sum of totalAdjustmentAmount + totalAdjustmentTaxAmount"
+              },
+              "totalDeliveryAdjustmentAmount": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Total amount of the price adjustments applied to the delivery charges on the fulfillment order"
+              },
+              "totalDeliveryAdjustmentTaxAmount": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Tax on the total delivery adjustment amount"
+              },
+              "totalDeliveryAdjustmentWithTaxAmount": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Sum of totalDeliveryAdjustmentAmount + totalDeliveryAdjustmentTaxAmount"
+              },
+              "totalDeliveryAmount": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Total amount of the delivery charges on the fulfillment order"
+              },
+              "totalDeliveryTaxAmount": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Tax on the total delivery amount"
+              },
+              "totalDeliveryWithTaxAmount": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Sum of totalDeliveryAmount + totalDeliveryTaxAmount"
+              },
+              "totalProductAmount": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Total price of the products on the fulfillment order"
+              },
+              "totalProductTaxAmount": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Tax on the total product amount"
+              },
+              "totalProductWithTaxAmount": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Sum of totalProductAmount + totalProductTaxAmount"
+              },
+              "totalAmount": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Adjusted total, not including tax, of the fulfillment order line items, including products and delivery charges"
+              },
+              "totalTaxAmount": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Sum of totalProductTaxAmount + totalDeliveryTaxAmount + totalDeliveryAdjustmentTaxAmount + totalAdjustmentTaxAmount"
+              },
+              "totalWithTaxAmount": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Sum of totalAmount + totalTaxAmount"
+              },
+              "fulfillmentOrderProducts": {
+                "type": "array",
+                "description": "Line items for the fulfillment order, which can be a list of identifier references or complete objects (not both)",
+                "items": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "description": "A shippable product or service that is part of a fulfillment order",
+                      "type": "object",
+                      "additionalProperties": true,
+                      "required": [
+                        "id",
+                        "unitPrice"
+                      ],
+                      "properties": {
+                        "id": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "description": "Unique identifier for the entity, can be null on create if auto-generated"
+                        },
+                        "name": {
+                          "type": "string",
+                          "description": "Display name of the fulfillment order product"
+                        },
+                        "description": {
+                          "type": "string",
+                          "description": "Description of the fulfillment order product"
+                        },
+                        "lineNumber": {
+                          "anyOf": [
+                            {
+                              "type": "integer"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "description": "Line number of the fulfillment order product in a fulfillment order"
+                        },
+                        "fulfillmentOrderId": {
+                          "type": "string",
+                          "description": "References the fulfillment the order product belongs to"
+                        },
+                        "salesOrderProductId": {
+                          "type": "string",
+                          "description": "References the product line item from the original sales order"
+                        },
+                        "productCode": {
+                          "type": "string",
+                          "description": "References the actual product to be sold"
+                        },
+                        "requestedStartDate": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "format": "date"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "description": "Date when the seller expects the provisioning of the service or product to begin"
+                        },
+                        "requestedEndDate": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "format": "date"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "description": "Date when the seller expects the provisioning of the service or product to end"
+                        },
+                        "quantityUnitOfMeasure": {
+                          "type": "string",
+                          "description": "Unit of measure for the quantity fulfilled"
+                        },
+                        "orderedQuantity": {
+                          "anyOf": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "description": "Number of product units requested on the sales order"
+                        },
+                        "fulfilledQuantity": {
+                          "anyOf": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "description": "Sum of quantity from all fulfillment order line items"
+                        },
+                        "unitPrice": {
+                          "type": "number",
+                          "description": "Actual unit price of the fulfillment order product"
+                        },
+                        "grossUnitPrice": {
+                          "anyOf": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "description": "Gross unit price of the fulfillment order product after all taxes and adjustments"
+                        },
+                        "totalAdjustmentAmount": {
+                          "anyOf": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "description": "Total adjustment amount of the fulfillment order product"
+                        },
+                        "totalAdjustmentTaxAmount": {
+                          "anyOf": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "description": "Tax on the total adjustment amount"
+                        },
+                        "totalAdjustmentWithTaxAmount": {
+                          "anyOf": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "description": "Sum of totalAdjustmentAmount + totalAdjustmentTaxAmount"
+                        },
+                        "totalProductAmount": {
+                          "anyOf": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "description": "Fullfilled quantity * unit price"
+                        },
+                        "totalProductTaxAmount": {
+                          "anyOf": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "description": "Tax on the total product amount"
+                        },
+                        "totalProductWithTaxAmount": {
+                          "anyOf": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "description": "Sum of totalProductAmount + totalProductTaxAmount"
+                        },
+                        "totalAmount": {
+                          "anyOf": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "description": "Adjusted total, not including tax, of the fulfillment order product"
+                        },
+                        "totalTaxAmount": {
+                          "anyOf": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "description": "Sum of totalProductTaxAmount + totalAdjustmentTaxAmount"
+                        },
+                        "totalWithTaxAmount": {
+                          "anyOf": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "description": "Sum of totalAmount + totalTaxAmount"
+                        },
+                        "auditInfo": {
+                          "description": "Audit information for the entity"
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "externalIds": {
+                "type": "array",
+                "items": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "description": "Defines a structure for referencing an entity in external systems",
+                      "type": "object",
+                      "additionalProperties": true,
+                      "required": [
+                        "id",
+                        "externalId",
+                        "externalIdType"
+                      ],
+                      "properties": {
+                        "id": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "externalId": {
+                          "type": "string",
+                          "description": "A unique identifier assigned to an entity in another system"
+                        },
+                        "externalIdType": {
+                          "description": "Identifies the system that owns or otherwise recognizes this unique identifier",
+                          "type": "array",
+                          "items": {
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "description": "Identifies the external system that owns or otherwise recognizes a particular identifier",
+                                "type": "object",
+                                "additionalProperties": true,
+                                "required": [
+                                  "id",
+                                  "name"
+                                ],
+                                "properties": {
+                                  "id": {
+                                    "anyOf": [
+                                      {
+                                        "type": "string"
+                                      },
+                                      {
+                                        "type": "null"
+                                      }
+                                    ]
+                                  },
+                                  "name": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        "status": {
+                          "enum": [
+                            "VALID",
+                            "INVALID"
+                          ],
+                          "description": "Indicates whether this identifier is currently valid or not",
+                          "type": "string"
+                        },
+                        "statusLastChangedDate": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "format": "date-time"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "description": "Date and time of the last change in status"
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "auditInfo": {
+                "description": "Audit information for the entity"
+              }
+            }
+          }
+        },
+        "shipment": {
+          "type": "object",
+          "description": "Provides details of the shipment for the fulfilled orders",
+          "additionalProperties": true,
+          "required": [
+            "id",
+            "shipmentDate"
+          ],
+          "properties": {
+            "id": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Unique identifier for the entity, can be null on create if auto-generated"
+            },
+            "shipmentNumber": {
+              "type": "string",
+              "description": "Unique number for the shipment"
+            },
+            "shipmentDate": {
+              "type": "string",
+              "description": "Date the shipment was sent",
+              "format": "date"
+            },
+            "shipmentStatus": {
+              "type": "string",
+              "description": "Current stage of the shipment (for example, In Transit or Delivered)"
+            },
+            "fulfillmentOrderId": {
+              "type": "string",
+              "description": "Identifier of the fulfillment order that originated the request for shipment, if the shipment is for a single order"
+            },
+            "salesOrderId": {
+              "type": "string",
+              "description": "Identifier of the original sales order that originated the request for fulfillment, if the shipment is for a single order"
+            },
+            "shipToLocation": {
+              "description": "Location the package or packages are to be shipped to"
+            },
+            "orderDeliveryMethodId": {
+              "type": "string",
+              "description": "Identifier of the standardized method for delivering products or services"
+            },
+            "scheduledDeliveryDateTime": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "The date/time when the delivery has been scheduled to occur"
+            },
+            "estimatedDeliveryDateTime": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "The expected date/time when the shipment will arrive, which should be the scheduled date/time unless there are delays"
+            },
+            "actualDeliveryDateTime": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "The date/time when the delivery was completed"
+            },
+            "carrierCode": {
+              "type": "string",
+              "description": "Code for the carrier provider delivering the shipment"
+            },
+            "carrierTrackingNumber": {
+              "type": "string",
+              "description": "An unique identifier issued by a shipping carrier that can be used to determine the current location of a package"
+            },
+            "carrierTrackingUrl": {
+              "type": "string",
+              "description": "Web address to look up tracking information for the shipment"
+            },
+            "specialInstructionsText": {
+              "type": "string",
+              "description": "Instructions to the delivery service (for example, leave with neighbors)"
+            },
+            "totalQuantity": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Total number of product instances included in the shipment"
+            },
+            "isGift": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "True if the shipment represents a gift, false otherwise"
+            },
+            "giftMessageText": {
+              "type": "string",
+              "description": "Text message to be delivered with the shipment if it represents a gift"
+            },
+            "shipmentDocuments": {
+              "type": "array",
+              "description": "Documents associated with the shipment, which can be a list of identifier references or complete objects (not both)",
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "description": "A receipt, bill of lading or other document that is delivered with the shipment to explain the purchase or shipment contents",
+                    "type": "object",
+                    "additionalProperties": true,
+                    "required": [
+                      "id"
+                    ],
+                    "properties": {
+                      "id": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "Unique identifier for the entity, can be null on create if auto-generated"
+                      },
+                      "contentDocumentVersion": {
+                        "type": "string",
+                        "description": "References the version of the document to be included"
+                      },
+                      "shipmentPackageId": {
+                        "type": "string",
+                        "description": "References the package to which the document applies"
+                      },
+                      "auditInfo": {
+                        "description": "Audit information for the entity"
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            "shipmentPackages": {
+              "type": "array",
+              "description": "Packages included with the shipment, which can be a list of identifier references or complete objects (not both)",
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "description": "A parcel of one or more items bundled together, so that they arrive at the location as a single unit",
+                    "type": "object",
+                    "additionalProperties": true,
+                    "required": [
+                      "id"
+                    ],
+                    "properties": {
+                      "id": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "Unique identifier for the entity, can be null on create if auto-generated"
+                      },
+                      "description": {
+                        "type": "string",
+                        "description": "Description of the package"
+                      },
+                      "shipmentProductCount": {
+                        "anyOf": [
+                          {
+                            "type": "integer"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "How many individual products are included in the package"
+                      },
+                      "auditInfo": {
+                        "description": "Audit information for the entity"
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            "shipmentProducts": {
+              "type": "array",
+              "description": "Products included with the shipment, which can be a list of identifier references or complete objects (not both)",
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "description": "An item on a list of one or more that comprises a shipment",
+                    "type": "object",
+                    "additionalProperties": true,
+                    "required": [
+                      "id"
+                    ],
+                    "properties": {
+                      "id": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "Unique identifier for the entity, can be null on create if auto-generated"
+                      },
+                      "lineNumber": {
+                        "anyOf": [
+                          {
+                            "type": "integer"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "Line number of the shipment product in a shipment"
+                      },
+                      "productCode": {
+                        "type": "string",
+                        "description": "References the actual product to be shipped"
+                      },
+                      "fulfillmentOrderId": {
+                        "type": "string",
+                        "description": "Identifier of the fulfillment order that originated the request for shipment, if the shipment includes products for multiple orders"
+                      },
+                      "fulfillmentOrderProductId": {
+                        "type": "string",
+                        "description": "References the product line item from the associated fulfillment order"
+                      },
+                      "salesOrderId": {
+                        "type": "string",
+                        "description": "Identifier of the original sales order that originated the request for fulfillment, if the shipment includes products for multiple orders"
+                      },
+                      "salesOrderProductId": {
+                        "type": "string",
+                        "description": "References the product line item from the original sales order"
+                      },
+                      "shipmentPackageId": {
+                        "type": "string",
+                        "description": "References the package in which the item was packed"
+                      },
+                      "quantity": {
+                        "anyOf": [
+                          {
+                            "type": "number"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "How many instances of the product are to be shipped"
+                      },
+                      "priceAdjustments": {
+                        "type": "array",
+                        "description": "List of price adjustments for the shipment product, which can be a list of identifier references or complete objects (not both)",
+                        "items": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "description": "A change to the price of an ordered product or service that is made after fulfillment",
+                              "type": "object",
+                              "additionalProperties": true,
+                              "required": [
+                                "id",
+                                "adjustmentAmount"
+                              ],
+                              "properties": {
+                                "id": {
+                                  "anyOf": [
+                                    {
+                                      "type": "string"
+                                    },
+                                    {
+                                      "type": "null"
+                                    }
+                                  ],
+                                  "description": "Unique identifier for the entity, can be null on create if auto-generated"
+                                },
+                                "description": {
+                                  "type": "string",
+                                  "description": "Description of the shipment product price adjustment"
+                                },
+                                "adjustmentAmount": {
+                                  "type": "number",
+                                  "description": "Adjustment amount for the shipment product"
+                                },
+                                "adjustmentTaxAmount": {
+                                  "anyOf": [
+                                    {
+                                      "type": "number"
+                                    },
+                                    {
+                                      "type": "null"
+                                    }
+                                  ],
+                                  "description": "Tax on the adjustment amount"
+                                },
+                                "adjustmentAmountWithTax": {
+                                  "anyOf": [
+                                    {
+                                      "type": "number"
+                                    },
+                                    {
+                                      "type": "null"
+                                    }
+                                  ],
+                                  "description": "Sum of adjustmentAmount + adjustmentTaxAmount"
+                                },
+                                "auditInfo": {
+                                  "description": "Audit information for the entity"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      "auditInfo": {
+                        "description": "Audit information for the entity"
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            "externalIds": {
+              "type": "array",
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "description": "Defines a structure for referencing an entity in external systems",
+                    "type": "object",
+                    "additionalProperties": true,
+                    "required": [
+                      "id",
+                      "externalId",
+                      "externalIdType"
+                    ],
+                    "properties": {
+                      "id": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "externalId": {
+                        "type": "string",
+                        "description": "A unique identifier assigned to an entity in another system"
+                      },
+                      "externalIdType": {
+                        "description": "Identifies the system that owns or otherwise recognizes this unique identifier",
+                        "type": "array",
+                        "items": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "description": "Identifies the external system that owns or otherwise recognizes a particular identifier",
+                              "type": "object",
+                              "additionalProperties": true,
+                              "required": [
+                                "id",
+                                "name"
+                              ],
+                              "properties": {
+                                "id": {
+                                  "anyOf": [
+                                    {
+                                      "type": "string"
+                                    },
+                                    {
+                                      "type": "null"
+                                    }
+                                  ]
+                                },
+                                "name": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      "status": {
+                        "enum": [
+                          "VALID",
+                          "INVALID"
+                        ],
+                        "description": "Indicates whether this identifier is currently valid or not",
+                        "type": "string"
+                      },
+                      "statusLastChangedDate": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "Date and time of the last change in status"
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            "auditInfo": {
+              "description": "Audit information for the entity"
+            }
+          }
+        }
+      }
+    }
+  }
+}

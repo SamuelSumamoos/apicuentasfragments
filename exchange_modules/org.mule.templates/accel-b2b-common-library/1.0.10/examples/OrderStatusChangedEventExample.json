@@ -1,0 +1,14 @@
+{
+  "id": "af3d5c80-f237-11ec-9d38-02b65bc9fbca",
+  "orderEventType": "OrderStatusChangedEvent",
+  "orderId": "27be8a1a-fe13-4ca1-9c6b-2c8da76004f8",
+  "oldOrderStatus": "Created",
+  "newOrderStatus": "Allocated",
+  "auditInfo": {
+    "createdDate": "2024-02-15T15:03:01Z",
+    "createdBy": "Administrator",
+    "updatedDate": "2024-02-15T15:03:01Z",
+    "updatedBy": "Administrator",
+    "isDeleted": false
+  }
+}

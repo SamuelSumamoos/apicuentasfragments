@@ -1,0 +1,69 @@
+{
+  "id": "af3d5c80-f237-11ec-9d38-02b65bc9fbca",
+  "orderEventType": "OrderInvoicedEvent",
+  "purchaseOrderNumber": "ORD-02338301",
+  "purchaseOrderDate": "2024-03-02",
+  "purchasingOrganizationCode": "ORANGE",
+  "invoices": [
+    {
+      "id": "ce1aa30c-b581-41b5-9962-778161ad55a2",
+      "description": "Invoice for Orange Tree",
+      "invoiceNumber": "DOC-000000006",
+      "purchaseOrderNumber": "ORD-02338301",
+      "purchaseOrderDate": "2024-03-02",
+      "fulfillmentOrderId": "5c04fe11-aad1-4b68-81bd-dbe7e3de154f",
+      "salesOrderId": "12de8ad5-1b89-4616-99f7-ddd8b876a037",
+      "billToCustomerId": "e6971f82-e4a4-47cf-b920-e9d1e4097bbd",
+      "billToIndividualId": "ed7cd94e-f9af-4a67-b6ae-69b97dbbea80",
+      "invoiceStatus": "Unpaid",
+      "invoiceDate": "2024-03-01",
+      "dueDate": "2024-04-01",
+      "balance": 53.9,
+      "totalAdjustmentAmount": 0.0,
+      "totalAdjustmentTaxAmount": 0.0,
+      "totalAdjustmentWithTaxAmount": 0.0,
+      "totalChargeAmount": 49.0,
+      "totalChargeTaxAmount": 4.9,
+      "totalChargeWithTaxAmount": 53.9,
+      "totalAmount": 49.0,
+      "totalTaxAmount": 4.9,
+      "totalWithTaxAmount": 53.9,
+      "invoiceLines": [
+        {
+          "id": "337d5e99-287f-4f68-ac95-ed435d7c5797",
+          "name": "Standard Merchandise",
+          "lineNumber": 1,
+          "invoiceLineType": "Charge",
+          "invoiceLineStatus": "Unpaid",
+          "salesOrderProductId": "8e931313-1a1d-4284-9b81-c14c6f1c0387",
+          "fulfillmentOrderProductId": "ef2efbb9-59b8-4e0b-baf2-2cc8b3f26112",
+          "productCode": "StdMerch",
+          "lineStartDate": "2024-03-01",
+          "lineEndDate": "2024-03-01",
+          "lineQuantity": 2,
+          "unitPrice": 24.50,
+          "grossUnitPrice": 26.95,
+          "totalAdjustmentAmount": 0.0,
+          "totalAdjustmentTaxAmount": 0.0,
+          "totalAdjustmentWithTaxAmount": 0.0,
+          "totalChargeAmount": 49.0,
+          "totalChargeTaxAmount": 4.9,
+          "totalChargeWithTaxAmount": 53.9,
+          "totalAmount": 49.0,
+          "totalTaxAmount": 4.9,
+          "totalWithTaxAmount": 53.9,
+          "taxCode": "HST",
+          "taxName": "Harmonized Sales Tax",
+          "taxRatePercent": 10.0
+        }
+      ]
+    }
+  ],
+  "auditInfo": {
+    "createdDate": "2024-02-15T15:03:01Z",
+    "createdBy": "autoproc",
+    "updatedDate": "2024-02-15T15:03:01Z",
+    "updatedBy": "autoproc",
+    "isDeleted": false
+  }
+}

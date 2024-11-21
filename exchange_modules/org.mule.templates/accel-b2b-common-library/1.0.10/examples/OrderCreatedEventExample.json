@@ -1,0 +1,14 @@
+{
+  "id": "af3d5c80-f237-11ec-9d38-02b65bc9fbca",
+  "orderEventType": "OrderCreatedEvent",
+  "purchaseOrderNumber": "ORD-02338301",
+  "purchaseOrderDate": "2024-03-02",
+  "purchasingOrganizationCode": "ORANGE",
+  "auditInfo": {
+    "createdDate": "2024-02-15T15:03:01Z",
+    "createdBy": "autoproc",
+    "updatedDate": "2024-02-15T15:03:01Z",
+    "updatedBy": "autoproc",
+    "isDeleted": false
+  }
+}
