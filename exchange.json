@@ -1,7 +1,7 @@
 {
   "dependencies": [
     {
-      "version": "1.0.10",
+      "version": "1.0.9",
       "assetId": "accel-b2b-common-library",
       "groupId": "org.mule.templates",
       "provided": false
@@ -19,7 +19,7 @@
       "provided": false
     }
   ],
-  "version": "1.0.1",
+  "version": "1.0.2",
   "apiVersion": "v1",
   "descriptorVersion": "1.0.0",
   "classifier": "raml",
