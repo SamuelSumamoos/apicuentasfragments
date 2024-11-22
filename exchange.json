@@ -1,7 +1,7 @@
 {
   "dependencies": [
     {
-      "version": "1.0.9",
+      "version": "1.0.10",
       "assetId": "accel-b2b-common-library",
       "groupId": "org.mule.templates",
       "provided": false
