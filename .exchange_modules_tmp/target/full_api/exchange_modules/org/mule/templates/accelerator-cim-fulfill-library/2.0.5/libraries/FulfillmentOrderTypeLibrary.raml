@@ -1,0 +1,204 @@
+#%RAML 1.0 Library
+usage: Types representing fulfillment orders to be shipped for a sales order.
+
+uses:
+  GlobalTypes: ../exchange_modules/org.mule.templates/accelerator-cim-global-library/2.0.1/accelerator-cim-global-library.raml
+
+types:
+  FulfillmentOrder:
+    description: Represents an order to fulfill one or more line items of a sales order
+    properties:
+      id:
+        type: string | nil
+        description: Unique identifier for the entity, can be null on create if auto-generated
+      name?:
+        type: string
+        description: Display name of the fulfillment order
+      fulfillmentOrderNumber:
+        type: string
+        description: Unique number for the fulfillment order
+      fulfillmentType?:
+        type: string
+        description: Classification of a fulfillment order based on the delivery channel
+      fulfillmentOrderStatus:
+        type: string
+        description: The high-level state of the fulfillment order
+      purchaseOrderNumber?:
+        type: string
+        description: References the original purchase order the fulfillment order is for
+      purchaseOrderDate?:
+        type: date-only | nil
+        description: Date the original purchase order was created
+      salesOrderId?:
+        type: string
+        description: Identifier of the sales order that originated the customer request for fulfillment
+      customerId?:
+        type: string
+        description: Identifier of the customer who purchased the items to be fulfilled
+      billToIndividualId?:
+        type: string
+        description: Identifier of the individual contact that the fulfillment order will be billed to
+      invoiceId?:
+        type: string
+        description: Identifier of the invoice for the fulfillment order
+      fulfilledToName:
+        type: string
+        description: Name of the person or company receiving the fulfillment order
+      fulfilledToEmailAddress?:
+        type: string
+        description: Email address of the person receiving the fulfillment order
+      fulfilledToPhoneNumber?:
+        type: string
+        description: Phone number of the person receiving the fulfillment order
+      fulfilledToLocation?:
+        type: GlobalTypes.Location
+        description: Location the fulfilled order is to be shipped to
+      orderDeliveryGroupId?:
+        type: string
+        description: Identifier of the location requested on the original Sales Order
+      orderDeliveryMethodId?:
+        type: string
+        description: Identifier of the standardized method for delivering products or services
+      isReship?:
+        type: boolean | nil
+        description: True if the order is a reshipment, false otherwise
+        default: false
+      isSuspended?:
+        type: boolean | nil
+        description: True if the order is suspended, false otherwise
+        default: false
+      totalItemCount?:
+        type: number | nil
+        description: Sum of quantity from all fulfillment order line items
+      totalAdjustmentAmount?:
+        type: number | nil
+        description:  Sum of total product adjustment amount from all fulfillment order line items
+      totalAdjustmentTaxAmount?:
+        type: number | nil
+        description: Tax on the total adjustment amount
+      totalAdjustmentWithTaxAmount?:
+        type: number | nil
+        description: Sum of totalAdjustmentAmount + totalAdjustmentTaxAmount
+      totalDeliveryAdjustmentAmount?:
+        type: number | nil
+        description: Total amount of the price adjustments applied to the delivery charges on the fulfillment order
+      totalDeliveryAdjustmentTaxAmount?:
+        type: number | nil
+        description: Tax on the total delivery adjustment amount
+      totalDeliveryAdjustmentWithTaxAmount?:
+        type: number | nil
+        description: Sum of totalDeliveryAdjustmentAmount + totalDeliveryAdjustmentTaxAmount
+      totalDeliveryAmount?:
+        type: number | nil
+        description: Total amount of the delivery charges on the fulfillment order
+      totalDeliveryTaxAmount?:
+        type: number | nil
+        description: Tax on the total delivery amount
+      totalDeliveryWithTaxAmount?:
+        type: number | nil
+        description: Sum of totalDeliveryAmount + totalDeliveryTaxAmount
+      totalProductAmount?:
+        type: number | nil
+        description: Total price of the products on the fulfillment order
+      totalProductTaxAmount?:
+        type: number | nil
+        description: Tax on the total product amount
+      totalProductWithTaxAmount?:
+        type: number | nil
+        description: Sum of totalProductAmount + totalProductTaxAmount
+      totalAmount?:
+        type: number | nil
+        description: Adjusted total, not including tax, of the fulfillment order line items, including products and delivery charges
+      totalTaxAmount?:
+        type: number | nil
+        description: Sum of totalProductTaxAmount + totalDeliveryTaxAmount + totalDeliveryAdjustmentTaxAmount + totalAdjustmentTaxAmount
+      totalWithTaxAmount?:
+        type: number | nil
+        description: Sum of totalAmount + totalTaxAmount
+      fulfillmentOrderProducts?:
+        type: array
+        items: string | FulfillmentOrderProduct
+        description: Line items for the fulfillment order, which can be a list of identifier references or complete objects (not both)
+      externalIds?:
+        type: array
+        items: string | GlobalTypes.ExternalId
+        description: External identifiers associated with the entity
+      auditInfo?:
+        type: GlobalTypes.AuditInfo
+        description: Audit information for the entity
+
+  FulfillmentOrderProduct:
+    description: A shippable product or service that is part of a fulfillment order
+    properties:
+      id:
+        type: string | nil
+        description: Unique identifier for the entity, can be null on create if auto-generated
+      name?:
+        type: string
+        description: Display name of the fulfillment order product 
+      description?:
+        type: string
+        description: Description of the fulfillment order product
+      lineNumber?:
+        type: integer | nil
+        description: Line number of the fulfillment order product in a fulfillment order
+      fulfillmentOrderId?:
+        type: string
+        description: References the fulfillment the order product belongs to
+      salesOrderProductId?:
+        type: string
+        description: References the product line item from the original sales order
+      productCode?:
+        type: string
+        description: References the actual product to be sold
+      requestedStartDate?:
+        type: date-only | nil
+        description: Date when the seller expects the provisioning of the service or product to begin
+      requestedEndDate?:
+        type: date-only | nil
+        description: Date when the seller expects the provisioning of the service or product to end
+      quantityUnitOfMeasure?:
+        type: string
+        description: Unit of measure for the quantity fulfilled
+      orderedQuantity?:
+        type: number | nil
+        description: Number of product units requested on the sales order
+      fulfilledQuantity?:
+        type: number | nil
+        description: Sum of quantity from all fulfillment order line items
+      unitPrice:
+        type: number
+        description: Actual unit price of the fulfillment order product
+      grossUnitPrice?:
+        type: number | nil
+        description: Gross unit price of the fulfillment order product after all taxes and adjustments
+      totalAdjustmentAmount?:
+        type: number | nil
+        description:  Total adjustment amount of the fulfillment order product
+      totalAdjustmentTaxAmount?:
+        type: number | nil
+        description: Tax on the total adjustment amount
+      totalAdjustmentWithTaxAmount?:
+        type: number | nil
+        description: Sum of totalAdjustmentAmount + totalAdjustmentTaxAmount
+      totalProductAmount?:
+        type: number | nil
+        description: Fullfilled quantity * unit price
+      totalProductTaxAmount?:
+        type: number | nil
+        description: Tax on the total product amount
+      totalProductWithTaxAmount?:
+        type: number | nil
+        description: Sum of totalProductAmount + totalProductTaxAmount
+      totalAmount?:
+        type: number | nil
+        description: Adjusted total, not including tax, of the fulfillment order product
+      totalTaxAmount?:
+        type: number | nil
+        description: Sum of totalProductTaxAmount + totalAdjustmentTaxAmount
+      totalWithTaxAmount?:
+        type: number | nil
+        description: Sum of totalAmount + totalTaxAmount
+      auditInfo?:
+        type: GlobalTypes.AuditInfo
+        description: Audit information for the entity

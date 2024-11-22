@@ -1,0 +1,35 @@
+{
+  "id": "337d5e99-287f-4f68-ac95-ed435d7c5797",
+  "name": "Complete allocation",
+  "paymentApplicationInstance": "PaymentInvoiceApplication",
+  "paymentApplicationType": "Apply",
+  "effectiveDate": "2023-08-22",
+  "appliedDate": "2023-11-20",
+  "hasBeenUnapplied": false,
+  "unappliedDate": null,
+  "appliedAmount": 636.0,
+  "paymentBalanceAmount": 0.0,
+  "commentText": "Allocation completed",
+  "externalCreatedDate": null,
+  "invoiceId": "13e1ca49-6862-4e5d-a26b-637cdfd98d6f",
+  "invoiceNumber": "DOC-000000006",
+  "invoiceBalanceAmount": 0.0,
+  "paymentAllocations": [
+    {
+      "id": null,
+      "name": "Complete allocation",
+      "paymentAllocationInstance": "PaymentInvoiceAllocation",
+      "relatedPaymentAllocationId": "",
+      "appliedAmount": 636.0,
+      "externalCreatedDate": null,
+      "invoiceLineBalanceAmount": 0.0
+    }
+  ],
+  "auditInfo": {
+    "createdDate": "2021-04-21T01:12:28.801Z",
+    "createdBy": "Application Admin",
+    "updatedDate": "2021-04-21T01:12:28.801Z",
+    "updatedBy": "Application Admin",
+    "isDeleted": false
+  }
+}

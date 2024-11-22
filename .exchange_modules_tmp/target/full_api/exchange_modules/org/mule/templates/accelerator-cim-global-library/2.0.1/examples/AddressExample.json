@@ -1,0 +1,13 @@
+{
+  "name": "Home",
+  "addressLine1": "2122 Maple Street",
+  "addressLine2": "Unit 23",
+  "cityName": "AUSTIN",
+  "stateProvinceName": "Texas",
+  "stateProvinceCode": "TX",
+  "countryName": "United States",
+  "countryCode": "USA",
+  "postalCodeText": "45145",
+  "geoLatitude": 30.266666,
+  "geoLongitude": -97.733330
+}

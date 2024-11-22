@@ -1,0 +1,1107 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/RefundPayment",
+  "definitions": {
+    "RefundAllocation": {
+      "description": "Facilitates applying/unapplying a capture payment, or a credit memo to a refund payment",
+      "discriminator": "refundAllocationInstance",
+      "discriminatorValue": "RefundAllocation",
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "id",
+        "refundAllocationInstance",
+        "effectiveDate",
+        "appliedDate",
+        "allocatedAmount"
+      ],
+      "properties": {
+        "id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Unique identifier for the entity, can be null on create if auto-generated"
+        },
+        "name": {
+          "type": "string",
+          "description": "Short description of the refund allocation"
+        },
+        "refundAllocationInstance": {
+          "type": "string",
+          "description": "Discriminator property identifying the specific refund allocation instance type, such as RefundCreditMemoAllocation"
+        },
+        "effectiveDate": {
+          "type": "string",
+          "description": "Date when the allocation is effective on the payment and available to the customer",
+          "format": "date"
+        },
+        "appliedDate": {
+          "type": "string",
+          "description": "Date recorded in the system for the allocation of the funding source to the refund payment",
+          "format": "date"
+        },
+        "allocatedAmount": {
+          "type": "number",
+          "description": "Amount of currency that has been allocated to a refund"
+        },
+        "refundBalanceAmount": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Unallocated portion of the overall refund payment amount that exists after the allocation"
+        },
+        "hasBeenUnapplied": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "True if the allocation to a refund payment has been reversed, false otherwise"
+        },
+        "unappliedDate": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Date when the payment was unapplied to an invoice or credit memo"
+        },
+        "relatedRefundAllocation": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "$ref": "#/definitions/RefundAllocation"
+            }
+          ],
+          "description": "Relates a new refund allocation back to the original, in cases where refunds are unapplied"
+        },
+        "externalCreatedDate": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Preserves original creation date for payments imported from external systems"
+        },
+        "auditInfo": {
+          "type": "object",
+          "description": "Audit information for the entity",
+          "additionalProperties": true,
+          "required": [
+            "createdBy",
+            "isDeleted",
+            "updatedBy",
+            "updatedDate",
+            "createdDate"
+          ],
+          "properties": {
+            "createdDate": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Timestamp of when the entity was created"
+            },
+            "createdBy": {
+              "type": "string",
+              "description": "Identifies the system or user which created the entity"
+            },
+            "updatedDate": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Timestamp of when the entity was last updated"
+            },
+            "updatedBy": {
+              "type": "string",
+              "description": "Identifies the system or user which last updated the entity"
+            },
+            "isDeleted": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Indicates whether or not the entity has been soft-deleted"
+            }
+          }
+        }
+      }
+    },
+    "RefundPayment": {
+      "discriminator": "paymentInstance",
+      "description": "Represents a repayment made, typically after a payment has already been received from the customer",
+      "type": "object",
+      "discriminatorValue": "RefundPayment",
+      "additionalProperties": true,
+      "required": [
+        "paymentStatus",
+        "paymentType",
+        "id",
+        "authorizationProcessingMode",
+        "paymentNumber",
+        "paymentAmount",
+        "paymentInstance"
+      ],
+      "properties": {
+        "id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Unique identifier for the entity, can be null on create if auto-generated"
+        },
+        "name": {
+          "type": "string",
+          "description": "Short name of the payment"
+        },
+        "paymentInstance": {
+          "type": "string",
+          "description": "Discriminator property identifying the specific payment instance type, such as CapturePayment"
+        },
+        "paymentNumber": {
+          "type": "string",
+          "description": "Unique number assigned to this payment and displayed to end users"
+        },
+        "paymentType": {
+          "type": "string",
+          "description": "Identifies the type of payment"
+        },
+        "paymentStatus": {
+          "type": "string",
+          "description": "Current state of the payment"
+        },
+        "customerId": {
+          "type": "string",
+          "description": "Customer account that incurred the charges to which the payment will be applied"
+        },
+        "customerEmailAddress": {
+          "type": "string",
+          "description": "Email Address of the customer that made the payment, for authorization and fraud detection"
+        },
+        "customerPhoneNumber": {
+          "type": "string",
+          "description": "Phone number of the customer that made the payment, for authorization and fraud detection"
+        },
+        "purchaseOrderNumber": {
+          "type": "string",
+          "description": "References the original purchase order the payment applies to"
+        },
+        "salesOrderPaymentSummaryId": {
+          "type": "string",
+          "description": "Association of a payment to a sales order is via a sales order payment summary"
+        },
+        "paymentMethodId": {
+          "type": "string",
+          "description": "References the means by which a buyer compensates a seller for a purchased good or service"
+        },
+        "paymentGroup": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "description": "Provides a way to associate payments and payment gateway events when the payment is not associated with a sales order",
+              "type": "object",
+              "additionalProperties": true,
+              "required": [
+                "id",
+                "paymentGroupNumber",
+                "totalPaymentAmount",
+                "totalAuthorizationAmount",
+                "totalReversalAmount"
+              ],
+              "properties": {
+                "id": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "description": "Unique identifier for the entity, can be null on create if auto-generated"
+                },
+                "paymentGroupNumber": {
+                  "type": "string",
+                  "description": "Automatically-generated number that identifies the payment group"
+                },
+                "totalPaymentAmount": {
+                  "type": "number",
+                  "description": "Sum of all associated Payment records"
+                },
+                "totalAuthorizationAmount": {
+                  "type": "number",
+                  "description": "Sum of all associated payment authorization records"
+                },
+                "totalReversalAmount": {
+                  "type": "number",
+                  "description": "Sum of all associated payment reversal records"
+                },
+                "auditInfo": {
+                  "type": "object",
+                  "description": "Audit information for the entity",
+                  "additionalProperties": true,
+                  "required": [
+                    "createdBy",
+                    "isDeleted",
+                    "updatedBy",
+                    "updatedDate",
+                    "createdDate"
+                  ],
+                  "properties": {
+                    "createdDate": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "description": "Timestamp of when the entity was created"
+                    },
+                    "createdBy": {
+                      "type": "string",
+                      "description": "Identifies the system or user which created the entity"
+                    },
+                    "updatedDate": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "description": "Timestamp of when the entity was last updated"
+                    },
+                    "updatedBy": {
+                      "type": "string",
+                      "description": "Identifies the system or user which last updated the entity"
+                    },
+                    "isDeleted": {
+                      "anyOf": [
+                        {
+                          "type": "boolean"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "description": "Indicates whether or not the entity has been soft-deleted"
+                    }
+                  }
+                }
+              }
+            }
+          ],
+          "description": "Provides a way to associate payments and payment gateway events when the payment is not associated with a sales order"
+        },
+        "paymentTreatment": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "description": "Defines the way in which payment can be applied based on a legal entity or workflow",
+              "type": "object",
+              "additionalProperties": true,
+              "required": [
+                "id",
+                "paymentTreatmentStatus"
+              ],
+              "properties": {
+                "id": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "description": "Unique identifier for the entity, can be null on create if auto-generated"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "Short description of the payment treatment"
+                },
+                "paymentTreatmentMethod": {
+                  "type": "string",
+                  "description": "Represents a specific algorithm or method to apply"
+                },
+                "paymentTreatmentStatus": {
+                  "type": "string",
+                  "description": "Current status of the payment treatment, such as Active or Inactive"
+                },
+                "paymentApplicationLevel": {
+                  "type": "string",
+                  "description": "Determines if application is at header level or line level"
+                },
+                "paymentPolicyId": {
+                  "type": "string",
+                  "description": "References the payment policy the payment treatment is defined for, if applicable"
+                },
+                "shouldAutoInvoice": {
+                  "anyOf": [
+                    {
+                      "type": "boolean"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "description": "True if payments can be auto-applied to invoices, false otherwise"
+                },
+                "internalOrganizationLegalEntityId": {
+                  "type": "string",
+                  "description": "An organization within the company that has legal standing in the eyes of law, distinct from other organizations"
+                },
+                "auditInfo": {
+                  "type": "object",
+                  "description": "Audit information for the entity",
+                  "additionalProperties": true,
+                  "required": [
+                    "createdBy",
+                    "isDeleted",
+                    "updatedBy",
+                    "updatedDate",
+                    "createdDate"
+                  ],
+                  "properties": {
+                    "createdDate": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "description": "Timestamp of when the entity was created"
+                    },
+                    "createdBy": {
+                      "type": "string",
+                      "description": "Identifies the system or user which created the entity"
+                    },
+                    "updatedDate": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "description": "Timestamp of when the entity was last updated"
+                    },
+                    "updatedBy": {
+                      "type": "string",
+                      "description": "Identifies the system or user which last updated the entity"
+                    },
+                    "isDeleted": {
+                      "anyOf": [
+                        {
+                          "type": "boolean"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "description": "Indicates whether or not the entity has been soft-deleted"
+                    }
+                  }
+                }
+              }
+            }
+          ],
+          "description": "Determines how a payment is applied to invoices"
+        },
+        "paymentEffectiveDate": {
+          "type": "string",
+          "description": "Effective date of the payment",
+          "format": "date"
+        },
+        "paymentCancellationDate": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Effective date of the payment cancellation, if applicable"
+        },
+        "internalOrganizationId": {
+          "type": "string",
+          "description": "References an internal part of your organization to associate the payment with, such as for tracking purposes"
+        },
+        "authorizationProcessingMode": {
+          "type": "string",
+          "description": "Indicates whether payment authorization is processed internally or by an external service"
+        },
+        "paymentGateway": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "description": "Holds the payment gateway merchant details, which are used to interact external payment systems",
+              "type": "object",
+              "additionalProperties": true,
+              "required": [
+                "id",
+                "name",
+                "paymentGatewayStatus"
+              ],
+              "properties": {
+                "id": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "description": "Unique identifier for the entity, can be null on create if auto-generated"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "Short name of the payment gateway"
+                },
+                "paymentGatewayStatus": {
+                  "type": "string",
+                  "description": "Current status of the payment gateway, such as Active or Inactive"
+                },
+                "paymentGatewayProvider": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "description": "Provides details about the underlying payment gateway provider",
+                      "type": "object",
+                      "additionalProperties": true,
+                      "required": [
+                        "id",
+                        "name"
+                      ],
+                      "properties": {
+                        "id": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "description": "Unique identifier for the entity, can be null on create if auto-generated"
+                        },
+                        "name": {
+                          "type": "string",
+                          "description": "Short name for the payment gateway provider"
+                        },
+                        "namespacePrefixText": {
+                          "type": "string",
+                          "description": "Qualifier used to provide uniqueness to the payment gateway provider name"
+                        },
+                        "implementationClassName": {
+                          "type": "string",
+                          "description": "Programmatic name of the class that implements the payment gateway provider"
+                        },
+                        "developerName": {
+                          "type": "string",
+                          "description": "Name used within program code to identify the payment gateway provider"
+                        },
+                        "commentText": {
+                          "type": "string",
+                          "description": "Descriptive text about the payment gateway provider"
+                        },
+                        "auditInfo": {
+                          "type": "object",
+                          "description": "Audit information for the entity",
+                          "additionalProperties": true,
+                          "required": [
+                            "createdBy",
+                            "isDeleted",
+                            "updatedBy",
+                            "updatedDate",
+                            "createdDate"
+                          ],
+                          "properties": {
+                            "createdDate": {
+                              "anyOf": [
+                                {
+                                  "type": "string",
+                                  "format": "date-time"
+                                },
+                                {
+                                  "type": "null"
+                                }
+                              ],
+                              "description": "Timestamp of when the entity was created"
+                            },
+                            "createdBy": {
+                              "type": "string",
+                              "description": "Identifies the system or user which created the entity"
+                            },
+                            "updatedDate": {
+                              "anyOf": [
+                                {
+                                  "type": "string",
+                                  "format": "date-time"
+                                },
+                                {
+                                  "type": "null"
+                                }
+                              ],
+                              "description": "Timestamp of when the entity was last updated"
+                            },
+                            "updatedBy": {
+                              "type": "string",
+                              "description": "Identifies the system or user which last updated the entity"
+                            },
+                            "isDeleted": {
+                              "anyOf": [
+                                {
+                                  "type": "boolean"
+                                },
+                                {
+                                  "type": "null"
+                                }
+                              ],
+                              "description": "Indicates whether or not the entity has been soft-deleted"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "description": "References the actual provider for the payment gateway"
+                },
+                "systemCredentialId": {
+                  "type": "string",
+                  "description": "References the credentials used for authentication with the payment gateway"
+                },
+                "commentText": {
+                  "type": "string",
+                  "description": "Descriptive text about the payment gateway"
+                },
+                "auditInfo": {
+                  "type": "object",
+                  "description": "Audit information for the entity",
+                  "additionalProperties": true,
+                  "required": [
+                    "createdBy",
+                    "isDeleted",
+                    "updatedBy",
+                    "updatedDate",
+                    "createdDate"
+                  ],
+                  "properties": {
+                    "createdDate": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "description": "Timestamp of when the entity was created"
+                    },
+                    "createdBy": {
+                      "type": "string",
+                      "description": "Identifies the system or user which created the entity"
+                    },
+                    "updatedDate": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "description": "Timestamp of when the entity was last updated"
+                    },
+                    "updatedBy": {
+                      "type": "string",
+                      "description": "Identifies the system or user which last updated the entity"
+                    },
+                    "isDeleted": {
+                      "anyOf": [
+                        {
+                          "type": "boolean"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "description": "Indicates whether or not the entity has been soft-deleted"
+                    }
+                  }
+                }
+              }
+            }
+          ],
+          "description": "Application service that was used to authorize the payment"
+        },
+        "latestGatewayDate": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Last update received from the payment gateway"
+        },
+        "latestGatewayReferenceNumber": {
+          "type": "string",
+          "description": "Last reference number received from the payment gateway"
+        },
+        "latestGatewayResultCode": {
+          "type": "string",
+          "description": "Last result code received from the payment gateway"
+        },
+        "latestGatewayInternalReferenceNumber": {
+          "type": "string",
+          "description": "Last internal number received from the payment gateway"
+        },
+        "latestGatewayInternalResultCode": {
+          "type": "string",
+          "description": "Last internal result code received from the payment gateway"
+        },
+        "latestPaymentGatewayMessageText": {
+          "type": "string",
+          "description": "Last message received from the payment gateway"
+        },
+        "ipAddress": {
+          "type": "string",
+          "description": "Unique network address of the device that originated the payment authorization request"
+        },
+        "macAddress": {
+          "type": "string",
+          "description": "Unique hardware identification number of the device that originated the payment authorization request"
+        },
+        "paymentAmount": {
+          "type": "number",
+          "description": "Amount of the payment"
+        },
+        "balanceAmount": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Portion of the payment amount that has not yet been allocated to an invoice, credit memo or refund"
+        },
+        "totalAppliedAmount": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Amount that has been applied to invoices and credit memos"
+        },
+        "totalUnappliedAmount": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Amount applied to invoices and credit memos that was later backed out"
+        },
+        "netAppliedAmount": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Payment amount less total applied amount"
+        },
+        "commentText": {
+          "type": "string",
+          "description": "Brief description of the payment"
+        },
+        "externalCreatedDate": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Preserves original creation date for payments imported from external systems"
+        },
+        "externalIds": {
+          "type": "array",
+          "description": "External identifiers associated with the entity",
+          "items": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "object",
+                "description": "Defines a structure for referencing an entity in external systems",
+                "additionalProperties": true,
+                "required": [
+                  "externalIdType",
+                  "externalId",
+                  "id"
+                ],
+                "properties": {
+                  "id": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Unique identifier for the entity, can be null on create if auto-generated"
+                  },
+                  "externalId": {
+                    "type": "string",
+                    "description": "A unique identifier assigned to an entity in another system"
+                  },
+                  "externalIdType": {
+                    "type": "string",
+                    "description": "Identifies the system that owns or otherwise recognizes this unique identifier"
+                  },
+                  "status": {
+                    "enum": [
+                      "VALID",
+                      "INVALID"
+                    ],
+                    "description": "Indicates whether this identifier is currently valid or not",
+                    "type": "string"
+                  },
+                  "statusLastChangedDate": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Date and time of the last change in status"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "auditInfo": {
+          "type": "object",
+          "description": "Audit information for the entity",
+          "additionalProperties": true,
+          "required": [
+            "createdBy",
+            "isDeleted",
+            "updatedBy",
+            "updatedDate",
+            "createdDate"
+          ],
+          "properties": {
+            "createdDate": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Timestamp of when the entity was created"
+            },
+            "createdBy": {
+              "type": "string",
+              "description": "Identifies the system or user which created the entity"
+            },
+            "updatedDate": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Timestamp of when the entity was last updated"
+            },
+            "updatedBy": {
+              "type": "string",
+              "description": "Identifies the system or user which last updated the entity"
+            },
+            "isDeleted": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Indicates whether or not the entity has been soft-deleted"
+            }
+          }
+        },
+        "digitalEngagementId": {
+          "type": "string",
+          "description": "References an entity that contains attributes used in multiple electronic channel engagements"
+        },
+        "refundAllocations": {
+          "type": "array",
+          "description": "Allocations for the refund payment, which can be a list of identifier references or complete objects (not both)",
+          "items": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "description": "Facilitates applying/unapplying a capture payment, or a credit memo to a refund payment",
+                "discriminator": "refundAllocationInstance",
+                "discriminatorValue": "RefundAllocation",
+                "type": "object",
+                "additionalProperties": true,
+                "required": [
+                  "id",
+                  "refundAllocationInstance",
+                  "effectiveDate",
+                  "appliedDate",
+                  "allocatedAmount"
+                ],
+                "properties": {
+                  "id": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Unique identifier for the entity, can be null on create if auto-generated"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Short description of the refund allocation"
+                  },
+                  "refundAllocationInstance": {
+                    "type": "string",
+                    "description": "Discriminator property identifying the specific refund allocation instance type, such as RefundCreditMemoAllocation"
+                  },
+                  "effectiveDate": {
+                    "type": "string",
+                    "description": "Date when the allocation is effective on the payment and available to the customer",
+                    "format": "date"
+                  },
+                  "appliedDate": {
+                    "type": "string",
+                    "description": "Date recorded in the system for the allocation of the funding source to the refund payment",
+                    "format": "date"
+                  },
+                  "allocatedAmount": {
+                    "type": "number",
+                    "description": "Amount of currency that has been allocated to a refund"
+                  },
+                  "refundBalanceAmount": {
+                    "anyOf": [
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Unallocated portion of the overall refund payment amount that exists after the allocation"
+                  },
+                  "hasBeenUnapplied": {
+                    "anyOf": [
+                      {
+                        "type": "boolean"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "True if the allocation to a refund payment has been reversed, false otherwise"
+                  },
+                  "unappliedDate": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "format": "date"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Date when the payment was unapplied to an invoice or credit memo"
+                  },
+                  "relatedRefundAllocation": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "$ref": "#/definitions/RefundPayment/properties/refundAllocations/items/anyOf/1"
+                      }
+                    ],
+                    "description": "Relates a new refund allocation back to the original, in cases where refunds are unapplied"
+                  },
+                  "externalCreatedDate": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "format": "date"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Preserves original creation date for payments imported from external systems"
+                  },
+                  "auditInfo": {
+                    "type": "object",
+                    "description": "Audit information for the entity",
+                    "additionalProperties": true,
+                    "required": [
+                      "createdBy",
+                      "isDeleted",
+                      "updatedBy",
+                      "updatedDate",
+                      "createdDate"
+                    ],
+                    "properties": {
+                      "createdDate": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "Timestamp of when the entity was created"
+                      },
+                      "createdBy": {
+                        "type": "string",
+                        "description": "Identifies the system or user which created the entity"
+                      },
+                      "updatedDate": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "Timestamp of when the entity was last updated"
+                      },
+                      "updatedBy": {
+                        "type": "string",
+                        "description": "Identifies the system or user which last updated the entity"
+                      },
+                      "isDeleted": {
+                        "anyOf": [
+                          {
+                            "type": "boolean"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "Indicates whether or not the entity has been soft-deleted"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,663 @@
+#%RAML 1.0 Library
+usage: Types representing products and categorization
+
+uses:
+  GlobalTypes: ../exchange_modules/org.mule.templates/accelerator-cim-global-library/2.0.1/accelerator-cim-global-library.raml
+
+types:
+  Brand:
+    description: Defines the name, term, design, symbol, and other features that identify one good or service as being distinct from those of other sellers or internal organizations
+    properties:
+      id:
+        type: string | nil
+        description: Unique identifier for the entity, can be null on create if auto-generated
+      name:
+        type: string
+        description: Name of the brand
+      brandGrade?:
+        type: string
+        description: Identifies the value of the brand, such as Premium or Value
+      parentBrandId?:
+        type: string
+        description: References the larger brand that contains the brand
+      internalOrganizationId?:
+        type: string
+        description: References an internal organization or department within the company
+      auditInfo?:
+        type: GlobalTypes.AuditInfo
+        description: Audit information for the entity
+
+  BundleProduct:
+    description: Defines groups of products bundled together, such as a mobile phone package that includes the phone, charger, and call plan
+    type: Product
+    discriminatorValue: BundleProduct
+    properties:
+      bundleType:
+        type: string
+        description: Type of product bundle, such as Sold as One Unit or Configurable
+      areBundledProductsDecidedAtUse?:
+        type: boolean | nil
+        description: True if the content of a bundle is only decided (dynamically) at the point of bundle use, false otherwise
+      areBundledProductsSoldTogether?:
+        type: boolean | nil
+        description: True if all bundled products are sold together, false if some can be excluded
+      canBundledProductsBeSubstituted?:
+        type: boolean | nil
+        description: True if products in a bundle can be substituted for other products, false otherwise
+      doBundledProductsDecideAvailability?:
+        type: boolean | nil
+        description: True if bundle availability is based on availability of the bundled products, false if the bundle is inventoried on its own
+      quantityCount?:
+        type: number | nil
+        description: Total number of items in the bundle package
+      quantityUnitOfMeasure?:
+        type: string
+        description: Unit of measure for stating the bundle quantity 
+      tareWeight?:
+        type: number | nil
+        description: Total weight of the product bundle without the product content
+      weightUnitOfMeasure?:
+        type: string
+        description: Unit of measure for stating the weight of the bundle 
+      expectedWasteCount?:
+        type: integer | nil
+        description: How many products in the bundle are expected to be wasted 
+
+  GoodsProduct:
+    description: Products you can physically touch, such as a carton of milk or a mobile phone
+    type: Product
+    discriminatorValue: GoodsProduct
+    properties:
+      color?:
+        type: string
+        description: Primary color of the product
+      style?:
+        type: string
+        description: Indicates the particular style of the product, such as slim or regular
+      pattern?:
+        type: string
+        description: Indicates if the product exhibits a certain pattern, such as checkered or striped
+      fabric?:
+        type: string
+        description: Main fabric used in the product, such as cotton or leather
+      width?:
+        type: number | nil
+        description: Width of the product
+      height?:
+        type: number | nil
+        description: Height of the product
+      depth?:
+        type: number | nil
+        description: Depth (or length) of the product
+      diameter?:
+        type: number | nil
+        description: Diameter of the product
+      ageCategory?:
+        type: string
+        description: General age category the product is intended for, such as newborns or teenagers
+      gender?:
+        type: string
+        description: Indicates if the product is intended for a specific gender or if it is meant to be unisex
+      season?:
+        type: string
+        description: Type of season the product is intended for, such as winter or summer
+      sizeUnitOfMeasure?:
+        type: string
+        description: Unit of measure for stating the size of the product
+      physicalForm?:
+        type: string
+        description: Physical form of the product, such as Liquid or Solid
+      packageType?:
+        type: string
+        description: Overall style or format of how a product is packaged, such as boxed or bagged
+      packageProductQuantity?:
+        type: number | nil
+        description: Represents the product quantity for the package
+      netWeight?:
+        type: number | nil
+        description: Weight of the product excluding packaging
+      tareWeight?:
+        type: number | nil
+        description: Weight of the product packaging without the product content
+      grossWeight?:
+        type: number | nil
+        description: Weight of the product in its original packaging
+      drainedWeight?:
+        type: number | nil
+        description: Weight of the product (excluding packaging) after drainage
+      weightUnitOfMeasure?:
+        type: string
+        description: Unit of measure for stating the weight of the product 
+      productSecurityRequirement?:
+        type: string
+        description: Specifies any special security required for handling the product
+      environmentRequirement?:
+        type: string
+        description: Indicates whether the product has a specific environment requirement, such as refrigerated or frozen
+      requiredTemperatureLowestNumber?:
+        type: number | nil
+        description: Lowest temperature allowed for product
+      requiredTemperatureHighestNumber?:
+        type: number | nil
+        description: Highest temperature allowed for the product
+      requiredTemperatureUnitOfMeasure?:
+        type: string
+        description: Unit of measure for the temperature values
+      requiredHumidityPercentage?:
+        type: number | nil
+        description: Humidity level required for the product
+      requiredCleanupProcess?:
+        type: string
+        description: Describes the clenaup process if the product was spilled or has leaked
+      requiresUnitPriceLabel?:
+        type: boolean | nil
+        description: True if the price label must be visible for the product, false otherwise
+      shelfFacingUnitCount?:
+        type: integer | nil
+        description: Number of product units per facing (row) displayed on a shelf
+      maxHoldingDayCount?:
+        type: integer | nil
+        description: Indicates the number of days the product can be displayed before removal
+      isMadeToOrder?:
+        type: boolean | nil
+        description: True if the product only exists once it has been ordered and made
+      isPerishable?:
+        type: boolean | nil
+        description: True if the product is perishable, false otherwise
+      canProductExpand?:
+        type: boolean | nil
+        description: True if the product can expand under certain circumstances, such as when heated
+
+  Product:
+    description: Defines what is intended to be sold, such as goods, services, or made to order products
+    discriminator: productInstance
+    discriminatorValue: Product
+    properties:
+      id:
+        type: string | nil
+        description: Unique identifier for the entity, can be null on create if auto-generated
+      name:
+        type: string
+        description: Name of the product
+      description?:
+        type: string
+        description: General description of the product
+      longDescription?:
+        type: string
+        description: Longer general description of the product
+      productInstance:
+        type: string
+        description: Discriminator property identifying the specific product instance type, such as ServiceProduct
+      productCode?:
+        type: string
+        description: Default code for the product
+      productStatus:
+        type: string
+        description: Status of the product, such as Active or Inactive
+      primaryProductCategoryId?:
+        type: string
+        description: References the primary product category of the product
+      primarySalesChannelId?:
+        type: string
+        description: Primary sales channel used to sell the product
+      definingProductId?:
+        type: string
+        description: Reference to a product that is not sold but defines what is to be sold
+      businessUnitId?:
+        type: string
+        description: References the logical internal organization to which the product belongs
+      glAccountCode?:
+        type: string
+        description: Identifies how instances of the product are accounted for
+      brand?:
+        type: Brand
+        description: Brand information for the product, including grade
+      productSku:
+        type: string
+        description: Unique stock keeping unit number for the product
+      productUpc?:
+        type: string
+        description: Represents the unique 12-digit code assigned to each individual product, which is universal across systems
+      manufacturerName?:
+        type: string
+        description: Name of the manufacturer for the product
+      manufacturerPartNumber?:
+        type: string
+        description: Unique number assigned by the manufacturer to identify the product
+      modelNumber?:
+        type: string
+        description: Manufacturer identifier of the product model
+      modelYear?:
+        type: integer | nil
+        description: Marketed model year for the product
+      versionName?:
+        type: string
+        description: Name of the version associated with the product model
+      versionNumber?:
+        type: string
+        description: Actual version of the product
+      lotIdentifier?:
+        type: string
+        description: Identifier of the lot group assigned by the manufacturer
+      packagedInCountryCode?:
+        type: string
+        description: Country code where the product was packaged
+      producedInCountryCode?:
+        type: string
+        description: Country code where the product was produced
+      availabilityDate?:
+        type: date-only | nil
+        description: Date when the product is made available for sale
+      discontinuedDate?:
+        type: date-only | nil
+        description: Date when the product has been discontinued and is no longer for sale
+      validFromDate?:
+        type: date-only | nil
+        description: Date from which the product can actually be used
+      validToDate?:
+        type: date-only | nil
+        description: Date to which the product can actually be used
+      validForPeriodCount?:
+        type: integer | nil
+        description: Number of validity periods
+      validForPeriodUnitOfMeasure?:
+        type: string
+        description: Unit of measure for validity period, such as Hours, Days, Months
+      canUseQuantitySchedule?:
+        type: boolean | nil
+        description: True if the product can have a quantity schedule, false otherwise
+      quantityScheduleType?:
+        type: string
+        description: Type of quantity schedule (if the product has one), such as Divide or Repeat
+      quantityInstallmentCount?:
+        type: integer | nil
+        description: Number of installments for the quantity schedule
+      quantityInstallmentPeriod?:
+        type: string | nil
+        description: Amount of time covered by the quantity schedule
+      minimumOrderQuantityCount?:
+        type: integer | nil
+        description: Minimum quantity allowed for purchase
+      maximumOrderQuantityCount?:
+        type: integer | nil
+        description: Maximum quantity allowed for purchase
+      canUseRevenueSchedule?:
+        type: boolean | nil
+        description: True if the product can have a revenue schedule, false otherwise
+      revenueScheduleType?:
+        type: string
+        description: Type of revenue schedule (if the product has one), such as Divide or Repeat
+      revenueInstallmentCount?:
+        type: integer | nil
+        description: Number of installments for the revenue schedule
+      revenueInstallmentPeriod?:
+        type: string
+        description: Amount of time covered by the revenue schedule
+      priceChargeType?:
+        type: string
+        description: Identifies whether the product is to be sold based on weights, units, or usage
+      requiresInvididualUnitPricing?:
+        type: boolean | nil
+        description: True if product items require individual prices, false otherwise
+      suggestedRetailPrice?:
+        type: number | nil
+        description: Default price for the product (Manufacturer Suggested Retail Price)
+      requiredDepositAmount?:
+        type: number | nil
+        description: Amount that must be paid as deposit to be able to pickup or use the product
+      requiredDepositPercentage?:
+        type: number | nil
+        description: Percentage that must be paid up front as deposit to be able to pickup or use the product
+      minimumAdvertisementAmount?:
+        type: number | nil
+        description: Lowest price for the product allowed (normally by the manufacturer) to be used in an advertisement
+      minimumAdvertisementAmountStartDate?:
+        type: date-only | nil
+        description: Earliest date the lowest price can be stated in an advertisement
+      stockLedgerValuationAmount?:
+        type: number | nil
+        description: Total value of product goods as held in stock
+      standardWarrantyLengthMonth?:
+        type: integer | nil
+        description: Indicates the length of warranty included by the seller (not the manufacturer)
+      rewardProgramPointsCount?:
+        type: integer | nil
+        description: Indicates how many reward points are awarded for purchasing the item
+      disposalType?:
+        type: string
+        description: Identifies how the product is to be disposed of, such as Recycled or Returned
+      allowCustomerReturn?:
+        type: boolean | nil
+        description: True if the customer can return the product, false otherwise
+      allowPartialRefund?:
+        type: boolean | nil
+        description: True if the customer can get a partial refund when the product is returned, false otherwise
+      isAutoProvisionable?:
+        type: boolean | nil
+        description: True if the product can be automatically provisioned, false otherwise
+      isBackOrdered?:
+        type: boolean | nil
+        description: True if the product is not in stock and has been backordered, false otherwise
+      isCertified?:
+        type: boolean | nil
+        description: True if the product represents a part that is certified, false otherwise
+      isCompetitiveProduct?:
+        type: boolean | nil
+        description: True if the product is similar to, or directly competes with, another product in the marketplace, false otherwise
+      isCouponRedemptionAllowed?:
+        type: boolean | nil
+        description: True if a coupon can be redeemed for the product, false otherwise
+      isCustomerDiscountAllowed?:
+        type: boolean | nil
+        description: True if customers can be offered the product at a discounted price, false otherwise
+      isDynamicBundle?:
+        type: boolean | nil
+        description: True if actual content of the product bundle can be derived at point of use, false otherwise
+      isEpaCompliant?:
+        type: boolean | nil
+        description: True if the product is compliant with environment protection regulations, false otherwise
+      isFoodstampPaymentAllowed?:
+        type: boolean | nil
+        description: True if foodstamps can be redeemed for the product, false otherwise
+      isInstallable?:
+        type: boolean | nil
+        description: True if the product can be installed, false otherwise
+      isIntellectualPropertyProtected?:
+        type: boolean | nil
+        description: True if knowledge about the product can be considered sensitive intellectual property, false otherwise
+      isManualPriceEntryRequired?:
+        type: boolean | nil
+        description: True if price must be manually entered for the product, false otherwise
+      isMultipleCouponsAllowed?:
+        type: boolean | nil
+        description: True if multiple coupons can be redeemed for the product, false otherwise
+      isPartnerDiscountAllowed?:
+        type: boolean | nil
+        description: True if seller and supplier partners get a discount on the product, false otherwise
+      isPreOrderable?:
+        type: boolean | nil
+        description: True if the product is not yet for sale but can be pre-ordered, false otherwise
+      isQualityVerificationRequired?:
+        type: boolean | nil
+        description: True if a visual inspection of the product must be done, false otherwise
+      isQuantityEntryRequired?:
+        type: boolean | nil
+        description: True if a quantity must be entered for the product at checkout, false otherwise
+      isRainCheckAllowed?:
+        type: boolean | nil
+        description: True if product not in stock can be promised at the same price on a later date, false otherwise
+      isReturnable?:
+        type: boolean | nil
+        description: True if the product can be returned, false otherwise
+      isSellable?:
+        type: boolean | nil
+        description: True if the product is intended to be sold, false otherwise
+      isSellableIndependently?:
+        type: boolean | nil
+        description: True if the product can be sold by itself (not in a bundle), false otherwise
+      isSellableWithoutPrice?:
+        type: boolean | nil
+        description: True if the product can be sold without a price, false otherwise
+      isSerialized?:
+        type: boolean | nil
+        description: True if each instance of the product has a unique serial number, false otherwise
+      isWeightEntryRequired?:
+        type: boolean | nil
+        description: True if weight must be entered for the product, false otherwise
+      isWorkerDiscountAllowed?:
+        type: boolean | nil
+        description: True if employees and contractors get a discount on the product, false otherwise
+      productAttributes?:
+        type: array
+        items: string | ProductAttribute
+        description: A set of attributes associated with the product, which can be a list of identifier references or complete objects (not both)
+      productImages?:
+        type: array
+        items: string | ProductImage
+        description: A set of images associated with the product, which can be a list of identifier references or complete objects (not both)
+      productCollateral?:
+        type: array
+        items: string | ProductCollateral
+        description: Additional collateral associated with the product, which can be a list of identifier references or complete objects (not both)
+      relatedProducts?:
+        type: array
+        items: string | ProductRelatedProduct
+        description: Other products related to the product, which can be a list of identifier references or complete objects (not both)
+      externalIds?:
+        type: array
+        items: string | GlobalTypes.ExternalId
+        description: External identifiers associated with the entity
+      auditInfo?:
+        type: GlobalTypes.AuditInfo
+        description: Audit information for the entity
+
+  ProductAttribute:
+    description: A specific attribute of a product definition, such as shoe lace length
+    properties:
+      id:
+        type: string | nil
+        description: Unique identifier for the entity, can be null on create if auto-generated
+      name:
+        type: string
+        description: Name of the product attribute
+      productAttributeValues?:
+        type: array
+        items: string | ProductAttributeValue
+        description: List of possible values associated with the product attribute, which can be a list of identifier references or complete objects (not both)
+      auditInfo?:
+        type: GlobalTypes.AuditInfo
+        description: Audit information for the entity
+
+  ProductAttributeValue:
+    description: A predefined value for a product attribute, such as a specific shoe lace length
+    properties:
+      id:
+        type: string | nil
+        description: Unique identifier for the entity, can be null on create if auto-generated
+      name?:
+        type: string
+        description: Name of the product attribute value
+      attributeValue:
+        type: string
+        description: Actual value of the product attribute
+      customAttributeValue?:
+        type: string
+        description: If the value is not from a predefined list, a manual value can be provided here
+      defaultImageId?:
+        type: string
+        description: References the first product image for the variation
+      auditInfo?:
+        type: GlobalTypes.AuditInfo
+        description: Audit information for the entity
+
+  ProductCatalog:
+    description: A catalog used for a certain business process, such as inventory or merchandising
+    properties:
+      id:
+        type: string | nil
+        description: Unique identifier for the entity, can be null on create if auto-generated
+      name:
+        type: string
+        description: Name of the product catalog
+      activeFromDate:
+        type: date-only
+        description: Date from when the catalog is available for use
+      activeToDate?:
+        type: date-only | nil
+        description: Date to when the catalog is available for use
+      productCategories?:
+        type: array
+        items: string | ProductCategory
+        description: List of product categories for the product catelog, which can be a list of identifier references or complete objects (not both)
+      auditInfo?:
+        type: GlobalTypes.AuditInfo
+        description: Audit information for the entity
+
+  ProductCategory:
+    description: A specific category of product in a catalog, such as shoes or shirts
+    properties:
+      id:
+        type: string | nil
+        description: Unique identifier for the entity, can be null on create if auto-generated
+      name:
+        type: string
+        description: Name of the product category
+      description?:
+        type: string
+        description: Longer description of the product category
+      activeFromDate:
+        type: date-only
+        description: Date from when the category is active
+      activeToDate?:
+        type: date-only | nil
+        description: Date to when the category is active
+      productCatalogId?:
+        type: string
+        description: Product catalog this category belongs to
+      parentCategoryId?:
+        type: string
+        description: An optional reference to a parent category, such as a mobile phone being part of a phone category
+      isNavigational?:
+        type: boolean | nil
+        description: True if the category can be used to locate a product, false otherwise
+      productCategoryProducts?:
+        type: array
+        items: string | ProductCategoryProduct
+        description: List of products included in the category, which can be a list of identifier references or complete objects (not both)
+      auditInfo?:
+        type: GlobalTypes.AuditInfo
+        description: Audit information for the entity
+
+  ProductCategoryProduct:
+    description: Assignment of a product to a category, such as a specific shoe assigned to shoe and running categories
+    properties:
+      id:
+        type: string | nil
+        description: Unique identifier for the entity, can be null on create if auto-generated
+      productId:
+        type: string
+        description: References the product assigned to the category
+      activeFromDate:
+        type: date-only
+        description: Date from when the product is active in the category
+      activeToDate?:
+        type: date-only | nil
+        description: Date to when the product is active in the category
+      auditInfo?:
+        type: GlobalTypes.AuditInfo
+        description: Audit information for the entity
+
+  ProductCollateral:
+    description: Collatoral information about a product, such as a link to a brochure
+    properties:
+      id:
+        type: string | nil
+        description: Unique identifier for the entity, can be null on create if auto-generated
+      productCollateralUrl:
+        type: string
+        description: Specifies the online location of the collateral
+      auditInfo?:
+        type: GlobalTypes.AuditInfo
+        description: Audit information for the entity
+
+  ProductImage:
+    description: Represents an image associated with a product
+    properties:
+      id:
+        type: string | nil
+        description: Unique identifier for the entity, can be null on create if auto-generated
+      imageId:
+        type: string
+        description: Reference to the actual image definition
+      imageGroupId?:
+        type: string
+        description: Reference to the image group
+      imageViewType?:
+        type: string
+        description: Classification of the image view, such as Large or Small icon
+      isDefaultImage?:
+        type: boolean | nil
+        description: True if the image is the default one for the product, false otherwise
+      auditInfo?:
+        type: GlobalTypes.AuditInfo
+        description: Audit information for the entity
+
+  ProductRelatedProduct:
+    description: A grouping of products such as a product bundle
+    properties:
+      id:
+        type: string | nil
+        description: Unique identifier for the entity, can be null on create if auto-generated
+      name:
+        type: string
+        description: Auto-generated name for the relationship
+      productRelationshipType:
+        type: string | ProductRelationshipType
+        description: Descripts the type of relationship between the products
+      parentProductId?:
+        type: string
+        description: Reference to product 1 that is related to product 2
+      childProductId?:
+        type: string
+        description: Reference to product 2 that is related to product 1 
+      activeFromDate:
+        type: date-only
+        description: Date from when the product relationship is active
+      activeToDate?:
+        type: date-only | nil
+        description: Date to when the product relationship is active
+      isDefaultOption?:
+        type: boolean | nil
+        description: True if this is the default option for a product, such as a phone case being a default option for a phone
+      auditInfo?:
+        type: GlobalTypes.AuditInfo
+        description: Audit information for the entity
+
+  ProductRelationshipType:
+    description: Defines the types of relationships available, such as bundled with or substituted for
+    properties:
+      id:
+        type: string | nil
+        description: Unique identifier for the entity, can be null on create if auto-generated
+      name?:
+        type: string
+        description: Name of the product relationship type
+      parentProductRole:
+        type: string
+        description: What is the first role in the relationship, such as Consists of
+      childProductRole:
+        type: string
+        description: What is the second role in the relationship, such as Component of
+      auditInfo?:
+        type: GlobalTypes.AuditInfo
+        description: Audit information for the entity
+
+  ServiceProduct:
+    description: Products that are intangible, such as professional services and software subscriptions
+    type: Product
+    discriminatorValue: ServiceProduct
+    properties:
+      serviceType:
+        type: string
+        description: Type of service the product represents
+      serviceProviderId?:
+        type: string
+        description: References the supplier account that provides the service
+      servicePeriodCount?:
+        type: integer | nil
+        description: How long the service period is valid for
+      servicePeriodUnitOfMeasure?:
+        type: string
+        description: Unit of measure used to state the service period, such as hours or days
+      evergreenContractEstimatedMonthCount?:
+        type: integer | nil
+        description: Expected number of renewal months for contracts that are auto-renewed
+      evergreenContractEstimatedChargeAmount?:
+        type: number | nil
+        description: Expected charge per month for contracts that are auto-renewed
+      rentalCleanupFeeAmount?:
+        type: number | nil
+        description: Post-rental cleanup cost, if required
+      rentalTermViolationPenaltyAmount?:
+        type: number | nil
+        description: Penalty amount if rental terms are not honoured by the customer

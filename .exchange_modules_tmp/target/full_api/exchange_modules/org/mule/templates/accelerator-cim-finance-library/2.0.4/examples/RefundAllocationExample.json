@@ -1,0 +1,20 @@
+{
+  "id": "a308d5ec-ac54-460a-aec2-50f5e438d7de",
+  "name": "Rebate refund",
+  "refundAllocationInstance": "RefundAllocation",
+  "effectiveDate": "2021-08-07",
+  "appliedDate": "2021-07-10",
+  "allocatedAmount": 40.0,
+  "refundBalanceAmount": 0.0,
+  "hasBeenUnapplied": false,
+  "unappliedDate": null,
+  "relatedRefundAllocation": "",
+  "externalCreatedDate": "2021-06-23",
+  "auditInfo": {
+    "createdDate": "2023-04-30T17:25:11.128Z",
+    "createdBy": "Application Admin",
+    "updatedDate": "2023-04-30T17:25:11.128Z",
+    "updatedBy": "Application Admin",
+    "isDeleted": false
+  }
+}

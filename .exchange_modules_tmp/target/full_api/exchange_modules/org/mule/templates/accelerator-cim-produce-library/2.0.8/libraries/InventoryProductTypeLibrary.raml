@@ -1,0 +1,46 @@
+#%RAML 1.0 Library
+usage: Types representing product inventory and availability
+
+uses:
+  GlobalTypes: ../exchange_modules/org.mule.templates/accelerator-cim-global-library/2.0.1/accelerator-cim-global-library.raml
+
+types:
+  ProductAvailabilityProjection:
+    description: Represents the availability (quantity) of product for a location
+    properties:
+      id:
+        type: string | nil
+        description: Unique identifier for the entity, can be null on create if auto-generated
+      name?:
+        type: string
+        description: Display name of the availability projection
+      productId:
+        type: string
+        description: Identifies the product of the availability projection
+      productCode?:
+        type: string
+        description: Unique code of the product
+      productName?:
+        type: string
+        description: Display name of the product
+      productLocation?:
+        type: GlobalTypes.Location
+        description: Current location of the product inventory
+      fulfillmentLocation?:
+        type: GlobalTypes.Location
+        description: Location the inventory will actually be fulfilled from
+      productQuantity?: 
+        type: number | nil
+        description: Amount of product currently on hand
+      projectedQuantity?: 
+        type: number | nil
+        description: Amount of product expected to on hand as of the projection date
+      projectionDate?:
+        type: date-only | nil
+        description: Date the amount of product will reach the projected quantity
+      projectionStatus?:
+        type: string
+        description: Logical status of the projection (for example, Confirmed)
+      auditInfo?:
+        type: GlobalTypes.AuditInfo
+        description: Audit information for the entity

@@ -1,0 +1,280 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/FulfillmentOrderProduct",
+  "definitions": {
+    "FulfillmentOrderProduct": {
+      "description": "A shippable product or service that is part of a fulfillment order",
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "id",
+        "unitPrice"
+      ],
+      "properties": {
+        "id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Unique identifier for the entity, can be null on create if auto-generated"
+        },
+        "name": {
+          "type": "string",
+          "description": "Display name of the fulfillment order product"
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the fulfillment order product"
+        },
+        "lineNumber": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Line number of the fulfillment order product in a fulfillment order"
+        },
+        "fulfillmentOrderId": {
+          "type": "string",
+          "description": "References the fulfillment the order product belongs to"
+        },
+        "salesOrderProductId": {
+          "type": "string",
+          "description": "References the product line item from the original sales order"
+        },
+        "productCode": {
+          "type": "string",
+          "description": "References the actual product to be sold"
+        },
+        "requestedStartDate": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Date when the seller expects the provisioning of the service or product to begin"
+        },
+        "requestedEndDate": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Date when the seller expects the provisioning of the service or product to end"
+        },
+        "quantityUnitOfMeasure": {
+          "type": "string",
+          "description": "Unit of measure for the quantity fulfilled"
+        },
+        "orderedQuantity": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Number of product units requested on the sales order"
+        },
+        "fulfilledQuantity": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Sum of quantity from all fulfillment order line items"
+        },
+        "unitPrice": {
+          "type": "number",
+          "description": "Actual unit price of the fulfillment order product"
+        },
+        "grossUnitPrice": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Gross unit price of the fulfillment order product after all taxes and adjustments"
+        },
+        "totalAdjustmentAmount": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Total adjustment amount of the fulfillment order product"
+        },
+        "totalAdjustmentTaxAmount": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Tax on the total adjustment amount"
+        },
+        "totalAdjustmentWithTaxAmount": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Sum of totalAdjustmentAmount + totalAdjustmentTaxAmount"
+        },
+        "totalProductAmount": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Fullfilled quantity * unit price"
+        },
+        "totalProductTaxAmount": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Tax on the total product amount"
+        },
+        "totalProductWithTaxAmount": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Sum of totalProductAmount + totalProductTaxAmount"
+        },
+        "totalAmount": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Adjusted total, not including tax, of the fulfillment order product"
+        },
+        "totalTaxAmount": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Sum of totalProductTaxAmount + totalAdjustmentTaxAmount"
+        },
+        "totalWithTaxAmount": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Sum of totalAmount + totalTaxAmount"
+        },
+        "auditInfo": {
+          "type": "object",
+          "description": "Audit information for the entity",
+          "additionalProperties": true,
+          "required": [
+            "createdBy",
+            "isDeleted",
+            "updatedBy",
+            "updatedDate",
+            "createdDate"
+          ],
+          "properties": {
+            "createdDate": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Timestamp of when the entity was created"
+            },
+            "createdBy": {
+              "type": "string",
+              "description": "Identifies the system or user which created the entity"
+            },
+            "updatedDate": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Timestamp of when the entity was last updated"
+            },
+            "updatedBy": {
+              "type": "string",
+              "description": "Identifies the system or user which last updated the entity"
+            },
+            "isDeleted": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Indicates whether or not the entity has been soft-deleted"
+            }
+          }
+        }
+      }
+    }
+  }
+}

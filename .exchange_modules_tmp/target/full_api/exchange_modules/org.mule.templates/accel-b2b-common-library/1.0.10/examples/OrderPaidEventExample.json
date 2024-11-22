@@ -1,12 +1,12 @@
 {
   "id": "af3d5c80-f237-11ec-9d38-02b65bc9fbca",
-  "orderNoticeType": "OrderPaymentNotice",
+  "orderEventType": "OrderPaidEvent",
   "purchaseOrderNumber": "ORD-02338301",
   "purchaseOrderDate": "2024-03-02",
   "purchasingOrganizationCode": "ORANGE",
   "payments": [
     {
-      "id": 896545,
+      "id": "26dd931b-f96c-4b55-ad4e-c41aa65210dd",
       "name": "P-000000014",
       "paymentInstance": "Payment",
       "paymentNumber": "P-000000014",
@@ -49,9 +49,9 @@
     }
   ],
   "auditInfo": {
-    "createdDate": "2024-02-15T15:03:01Z",
+    "createdDate": "2024-04-30T17:25:11.128Z",
     "createdBy": "autoproc",
-    "updatedDate": "2024-02-15T15:03:01Z",
+    "updatedDate": "2024-04-30T17:25:11.128Z",
     "updatedBy": "autoproc",
     "isDeleted": false
   }

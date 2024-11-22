@@ -1,0 +1,152 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/PaymentMethodType",
+  "definitions": {
+    "PaymentMethodType": {
+      "description": "The category of payment method, such as payment card, check or digital wallet",
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Unique identifier for the entity, can be null on create if auto-generated"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the payment method type"
+        },
+        "description": {
+          "type": "string",
+          "description": "Longer description of the payment method type"
+        },
+        "mediaType": {
+          "type": "string",
+          "description": "Type of payment media, such as paper or magnetic card, for the payment method type"
+        },
+        "requiredIdentificationType": {
+          "type": "string",
+          "description": "Type of identification required for the payment method type"
+        },
+        "minimumAgeYear": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Specifies a minimum age requirement for the payment method type"
+        },
+        "maxTransactionAmount": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Maximum transaction amount accepted for the payment method type"
+        },
+        "maxTransactionUnitOfMeasure": {
+          "type": "string",
+          "description": "Unit of measure for the maximum transaction amount"
+        },
+        "maxPerPeriodAmount": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Maximum amount, for all transactions during a transaction period, accepted for the payment method type"
+        },
+        "maxPerPeriodUnitOfMeasure": {
+          "type": "string",
+          "description": "Unit of measure for the maximum per period amount"
+        },
+        "maxPerPeriodTransactionCount": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Maximum number of transactions accepted during a transaction period for the payment method type"
+        },
+        "auditInfo": {
+          "type": "object",
+          "description": "Audit information for the entity",
+          "additionalProperties": true,
+          "required": [
+            "createdBy",
+            "isDeleted",
+            "updatedBy",
+            "updatedDate",
+            "createdDate"
+          ],
+          "properties": {
+            "createdDate": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Timestamp of when the entity was created"
+            },
+            "createdBy": {
+              "type": "string",
+              "description": "Identifies the system or user which created the entity"
+            },
+            "updatedDate": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Timestamp of when the entity was last updated"
+            },
+            "updatedBy": {
+              "type": "string",
+              "description": "Identifies the system or user which last updated the entity"
+            },
+            "isDeleted": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Indicates whether or not the entity has been soft-deleted"
+            }
+          }
+        }
+      }
+    }
+  }
+}

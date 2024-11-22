@@ -1,0 +1,224 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/PaymentPolicy",
+  "definitions": {
+    "PaymentPolicy": {
+      "description": "Represents policy information for an org or an account, which can be used to automate the process of payment application to invoice based on business needs",
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "id",
+        "name",
+        "description",
+        "paymentPolicyStatus"
+      ],
+      "properties": {
+        "id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Unique identifier for the entity, can be null on create if auto-generated"
+        },
+        "name": {
+          "type": "string",
+          "description": "User friendly name for the payment policy"
+        },
+        "description": {
+          "type": "string",
+          "description": "Longer description of the payment policy"
+        },
+        "paymentPolicyStatus": {
+          "type": "string",
+          "description": "Current status of the policy, such as Active or Inactive"
+        },
+        "paymentTreatments": {
+          "type": "array",
+          "description": "Determines how to select one treatment out of many, such as Legal Entity or Workflow",
+          "items": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "description": "Defines the way in which payment can be applied based on a legal entity or workflow",
+                "type": "object",
+                "additionalProperties": true,
+                "required": [
+                  "id",
+                  "paymentTreatmentStatus"
+                ],
+                "properties": {
+                  "id": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Unique identifier for the entity, can be null on create if auto-generated"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Short description of the payment treatment"
+                  },
+                  "paymentTreatmentMethod": {
+                    "type": "string",
+                    "description": "Represents a specific algorithm or method to apply"
+                  },
+                  "paymentTreatmentStatus": {
+                    "type": "string",
+                    "description": "Current status of the payment treatment, such as Active or Inactive"
+                  },
+                  "paymentApplicationLevel": {
+                    "type": "string",
+                    "description": "Determines if application is at header level or line level"
+                  },
+                  "paymentPolicyId": {
+                    "type": "string",
+                    "description": "References the payment policy the payment treatment is defined for, if applicable"
+                  },
+                  "shouldAutoInvoice": {
+                    "anyOf": [
+                      {
+                        "type": "boolean"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "True if payments can be auto-applied to invoices, false otherwise"
+                  },
+                  "internalOrganizationLegalEntityId": {
+                    "type": "string",
+                    "description": "An organization within the company that has legal standing in the eyes of law, distinct from other organizations"
+                  },
+                  "auditInfo": {
+                    "type": "object",
+                    "description": "Audit information for the entity",
+                    "additionalProperties": true,
+                    "required": [
+                      "createdBy",
+                      "isDeleted",
+                      "updatedBy",
+                      "updatedDate",
+                      "createdDate"
+                    ],
+                    "properties": {
+                      "createdDate": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "Timestamp of when the entity was created"
+                      },
+                      "createdBy": {
+                        "type": "string",
+                        "description": "Identifies the system or user which created the entity"
+                      },
+                      "updatedDate": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "Timestamp of when the entity was last updated"
+                      },
+                      "updatedBy": {
+                        "type": "string",
+                        "description": "Identifies the system or user which last updated the entity"
+                      },
+                      "isDeleted": {
+                        "anyOf": [
+                          {
+                            "type": "boolean"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "Indicates whether or not the entity has been soft-deleted"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "auditInfo": {
+          "type": "object",
+          "description": "Audit information for the entity",
+          "additionalProperties": true,
+          "required": [
+            "createdBy",
+            "isDeleted",
+            "updatedBy",
+            "updatedDate",
+            "createdDate"
+          ],
+          "properties": {
+            "createdDate": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Timestamp of when the entity was created"
+            },
+            "createdBy": {
+              "type": "string",
+              "description": "Identifies the system or user which created the entity"
+            },
+            "updatedDate": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Timestamp of when the entity was last updated"
+            },
+            "updatedBy": {
+              "type": "string",
+              "description": "Identifies the system or user which last updated the entity"
+            },
+            "isDeleted": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Indicates whether or not the entity has been soft-deleted"
+            }
+          }
+        }
+      }
+    }
+  }
+}

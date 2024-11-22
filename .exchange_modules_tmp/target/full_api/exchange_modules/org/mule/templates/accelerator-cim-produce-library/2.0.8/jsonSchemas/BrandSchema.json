@@ -1,0 +1,101 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Brand",
+  "definitions": {
+    "Brand": {
+      "description": "Defines the name, term, design, symbol, and other features that identify one good or service as being distinct from those of other sellers or internal organizations",
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "id",
+        "name"
+      ],
+      "properties": {
+        "id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Unique identifier for the entity, can be null on create if auto-generated"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the brand"
+        },
+        "brandGrade": {
+          "type": "string",
+          "description": "Identifies the value of the brand, such as Premium or Value"
+        },
+        "parentBrandId": {
+          "type": "string",
+          "description": "References the larger brand that contains the brand"
+        },
+        "internalOrganizationId": {
+          "type": "string",
+          "description": "References an internal organization or department within the company"
+        },
+        "auditInfo": {
+          "type": "object",
+          "description": "Audit information for the entity",
+          "additionalProperties": true,
+          "required": [
+            "createdBy",
+            "isDeleted",
+            "updatedBy",
+            "updatedDate",
+            "createdDate"
+          ],
+          "properties": {
+            "createdDate": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Timestamp of when the entity was created"
+            },
+            "createdBy": {
+              "type": "string",
+              "description": "Identifies the system or user which created the entity"
+            },
+            "updatedDate": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Timestamp of when the entity was last updated"
+            },
+            "updatedBy": {
+              "type": "string",
+              "description": "Identifies the system or user which last updated the entity"
+            },
+            "isDeleted": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Indicates whether or not the entity has been soft-deleted"
+            }
+          }
+        }
+      }
+    }
+  }
+}

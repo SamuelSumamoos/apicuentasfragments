@@ -1,0 +1,176 @@
+#%RAML 1.0 Library
+usage: Types representing invoices for orders or services
+
+uses:
+  GlobalTypes: ../exchange_modules/org.mule.templates/accelerator-cim-global-library/2.0.1/accelerator-cim-global-library.raml
+
+types:
+  Invoice:
+    description: A bill for a list of goods and services
+    properties:
+      id:
+        type: string | nil
+        description: Unique identifier for the entity, can be null on create if auto-generated
+      description?:
+        type: string
+        description: Longer description of the invoice
+      invoiceNumber:
+        type: string
+        description: Auto-generated document number for the invoice
+      purchaseOrderNumber?:
+        type: string
+        description: References the original purchase order the invoice was created for
+      purchaseOrderDate?:
+        type: date-only | nil
+        description: Date the purchase order was created
+      fulfillmentOrderId?:
+        type: string
+        description: References the fulfillment order the invoice is for
+      salesOrderId?:
+        type: string
+        description: References the sales order the invoice is for
+      billToCustomerId?:
+        type: string
+        description: References the account the invoice is billed to
+      billToIndividualId?:
+        type: string
+        description: References the individual contact that the invoice is billed to
+      invoiceStatus:
+        type: string
+        description: Current status of the invoice
+      invoiceDate: 
+        type: date-only
+        description: Date the invoice was created
+      dueDate?: 
+        type: date-only | nil
+        description: Date payment for the invoice is due
+      balance?:
+        type: number | nil
+        description: Balance remaining to be paid for the invoice
+      totalAdjustmentAmount?:
+        type: number | nil
+        description: Total adjustments, not including tax, of the invoice line items
+      totalAdjustmentTaxAmount?:
+        type: number | nil
+        description: Tax on the total adjustment amount
+      totalAdjustmentWithTaxAmount?:
+        type: number | nil
+        description: Sum of totalAdjustmentAmount + totalAdjustmentTaxAmount
+      totalChargeAmount?:
+        type: number | nil
+        description: Total amount of charges, not including tax, of the invoice line items
+      totalChargeTaxAmount?:
+        type: number | nil
+        description: Tax on the total charge amount
+      totalChargeWithTaxAmount?:
+        type: number | nil
+        description: Sum of totalChargeAmount + totalChargeTaxAmount
+      totalAmount?:
+        type: number | nil
+        description: Adjusted total, not including tax, of the invoice line items
+      totalTaxAmount?:
+        type: number | nil
+        description: Sum of all tax amounts for the invoice
+      totalWithTaxAmount?:
+        type: number | nil
+        description: Sum of totalAmount + totalTaxAmount
+      invoiceLines?:
+        items: string | InvoiceLine
+        description: Line items for the invoice, which can be a list of identifier references or complete objects (not both)
+      externalIds?:
+        type: array 
+        items: string | GlobalTypes.ExternalId
+        description: External identifiers associated with the entity
+      auditInfo?:
+        type: GlobalTypes.AuditInfo
+        description: Audit information for the entity
+
+  InvoiceLine:
+    description: A product or service appearing on an invoice, along with any charges for them
+    properties:
+      id:
+        type: string | nil
+        description: Unique identifier for the entity, can be null on create if auto-generated
+      name:
+        type: string
+        description: Short name of the invoice line item
+      description?:
+        type: string
+        description: Longer description of the invoice line item
+      lineNumber?:
+        type: integer | nil
+        description: Line number of the invoice item
+      invoiceLineType:
+        type: string
+        description: Indicates the type of invoice line, such as Charge or Rebate
+      invoiceLineStatus?:
+        type: string
+        description: Current status of the invoice line item
+      fulfillmentOrderProductId?:
+        type: string
+        description: References the fulfillment order product the invoice line item is for
+      salesOrderProductId?:
+        type: string
+        description: References the sales order product the invoice line item is for
+      productId?:
+        type: string
+        description: References the underlying product associated with the sales order product        
+      productCode?:
+        type: string
+        description: Code of the underlying product associated with the sales order product        
+      lineStartDate?: 
+        type: date-only | nil
+        description: Start date for the invoice line item
+      lineEndDate?: 
+        type: date-only | nil
+        description: End date for the invoice line item
+      lineQuantity?: 
+        type: number | nil
+      unitPrice?: 
+        type: number | nil
+        description: What the customer is paying for one unit of the product
+      grossUnitPrice?: 
+        type: number | nil
+        description: Unit price including tax
+      totalAdjustmentAmount?:
+        type: number | nil
+        description: Total adjustments, not including tax, of the invoice line item
+      totalAdjustmentTaxAmount?:
+        type: number | nil
+        description: Tax on the total adjustment amount
+      totalAdjustmentWithTaxAmount?:
+        type: number | nil
+        description: Sum of totalAdjustmentAmount + totalAdjustmentTaxAmount
+      totalChargeAmount?:
+        type: number | nil
+        description: Total amount of charges, not including tax, of the invoice line item
+      totalChargeTaxAmount?:
+        type: number | nil
+        description: Tax on the total charge amount
+      totalChargeWithTaxAmount?:
+        type: number | nil
+        description: Sum of totalChargeAmount + totalChargeTaxAmount
+      totalAmount?:
+        type: number | nil
+        description: Adjusted total, not including tax, of the invoice line item
+      totalTaxAmount?:
+        type: number | nil
+        description: Sum of all tax amounts for the invoice line item
+      totalWithTaxAmount?:
+        type: number | nil
+        description: Sum of totalAmount + totalTaxAmount
+      taxCode?:
+        type: string
+        description: Identifies the reason for the tax calculation
+      taxName?:
+        type: string
+        description: Display name for the tax applied
+      taxRatePercent?:
+        type: number | nil
+        description: Percentage rate of tax applied
+      taxEffectiveDate?:
+        type: date-only | nil
+        description: Date used to calculate the effective tax rate
+      auditInfo?:
+        type: GlobalTypes.AuditInfo
+        description: Audit information for the entity

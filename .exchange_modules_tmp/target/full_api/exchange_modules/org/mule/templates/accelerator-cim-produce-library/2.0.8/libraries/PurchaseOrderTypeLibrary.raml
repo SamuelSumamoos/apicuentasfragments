@@ -1,0 +1,106 @@
+#%RAML 1.0 Library
+usage: Types representating purchase orders
+
+uses:
+  GlobalTypes: ../exchange_modules/org.mule.templates/accelerator-cim-global-library/2.0.1/accelerator-cim-global-library.raml
+
+types:
+  PurchaseOrder:
+    description: Represents a request to purchase one or more products from a supplier
+    properties:
+      id:
+        type: string | nil
+        description: Unique identifier for the entity, can be null on create if auto-generated
+      name?:
+        type: string
+        description: Display name of the purchase order
+      purchaseOrderPurpose:
+        type: string
+        description: Indicates whether this is a new order or an update or cancellation to an existing order
+      purchaseOrderType?:
+        type: string
+        description: Classification of the purchase order
+      purchaseOrderNumber?:
+        type: string
+        description: Unique number for the purchase order
+      purchaseOrderDate:
+        type: date-only
+        description: Date the purchase order was created
+      quotationId?:
+        type: string
+        description: References an associated quotation entry
+      customerId?:
+        type: string
+        description: Account the purchase order is being made on behalf of
+      supplierOrganizationCode?:
+        type: string
+        description: Code identifying the organization accepting the order
+      purchasingOrganizationCode?:
+        type: string
+        description: Code identifying the organization that submitted the purchase order
+      billToCode?:
+        type: string
+        description: Code supplied by the purchasing organization for invoicing purposes
+      buyerName?:
+        type: string
+        description: Name of the individual responsible for the purchase order
+      buyerEmailAddress?:
+        type: string
+        description: Email address of the individual responsible for the purchase order
+      orderDeliveryLocation?:
+        type: GlobalTypes.Location
+        description: Provides a default delivery location for all products in the purchase order
+      purchaseOrderProducts?:
+        type: array
+        items: string | PurchaseOrderProduct
+        description: Line items for the purchase order, which can be a list of identifier references or complete objects (not both)
+      externalIds?:
+        type: array
+        items: string | GlobalTypes.ExternalId
+        description: External identifiers associated with the entity
+      auditInfo?:
+        type: GlobalTypes.AuditInfo
+        description: Audit information for the entity
+        
+  PurchaseOrderProduct:
+    description: A shippable product or service that is part of a purchase order
+    properties:
+      id:
+        type: string | nil
+        description: Unique identifier for the entity, can be null on create if auto-generated
+      name?:
+        type: string
+        description: Display name of the purchase order product 
+      description?:
+        type: string
+        description: Description of the purchase order product
+      lineNumber?:
+        type: integer | nil
+        description: Line number of the purchase order product in a purchase order
+      productCode?:
+        type: string
+        description: Supplier code of the product to be purchased
+      productName?:
+        type: string
+        description: Name of the product, can be used if the supplier code is not known
+      orderedQuantity:
+        type: number | nil
+        description: Number of product units requested
+      quantityUnitOfMeasure?:
+        type: string
+        description: Unit of measure for the quantity requested
+      unitPrice:
+        type: number | nil
+        description: Price per unit of product
+      requestedStartDate?:
+        type: date-only | nil
+        description: Date when the seller expects the provisioning of the service or product to begin
+      requestedEndDate?:
+        type: date-only | nil
+        description: Date when the seller expects the provisioning of the service or product to end
+      productDeliveryLocation?:
+        type: GlobalTypes.Location
+        description: Identifies the location and address the product is to be shipped to
+      auditInfo?:
+        type: GlobalTypes.AuditInfo
+        description: Audit information for the entity

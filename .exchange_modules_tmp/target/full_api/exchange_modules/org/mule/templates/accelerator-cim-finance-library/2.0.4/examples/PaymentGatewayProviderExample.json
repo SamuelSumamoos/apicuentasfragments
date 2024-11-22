@@ -1,0 +1,15 @@
+{
+  "id": "ba4ce82b-e851-4e34-8f04-1562302272bd",
+  "name": "Company Inc",
+  "namespacePrefixText": "com.Fundy.gateway",
+  "implementationClassName": "FundyGatewayProvider",
+  "developerName": "Fundy",
+  "commentText": "Provided by Fundy Financial Services",
+  "auditInfo": {
+    "createdDate": "2021-04-21T01:12:28.801Z",
+    "createdBy": "Application Admin",
+    "updatedDate": "2021-04-21T01:12:28.801Z",
+    "updatedBy": "Application Admin",
+    "isDeleted": false
+  }
+}

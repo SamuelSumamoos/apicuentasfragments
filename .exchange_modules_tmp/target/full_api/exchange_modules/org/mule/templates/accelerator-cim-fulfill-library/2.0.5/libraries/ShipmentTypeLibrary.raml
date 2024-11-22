@@ -1,0 +1,175 @@
+#%RAML 1.0 Library
+usage: Types representing shipments created to fulfill an order.
+
+uses:
+  GlobalTypes: ../exchange_modules/org.mule.templates/accelerator-cim-global-library/2.0.1/accelerator-cim-global-library.raml
+
+types:
+  Shipment:
+    description: A quantity of goods sent together to a place, or the act of sending them
+    properties:
+      id:
+        type: string | nil
+        description: Unique identifier for the entity, can be null on create if auto-generated
+      shipmentNumber?:
+        type: string
+        description: Unique number for the shipment
+      shipmentDate:
+        type: date-only
+        description: Date the shipment was sent
+      shipmentStatus?:
+        type: string
+        description: Current stage of the shipment (for example, In Transit or Delivered)
+      fulfillmentOrderId?:
+        type: string
+        description: Identifier of the fulfillment order that originated the request for shipment, if the shipment is for a single order
+      salesOrderId?:
+        type: string
+        description: Identifier of the original sales order that originated the request for fulfillment, if the shipment is for a single order
+      shipToLocation?:
+        type: GlobalTypes.Location
+        description: Location the package or packages are to be shipped to
+      orderDeliveryMethodId?:
+        type: string
+        description: Identifier of the standardized method for delivering products or services
+      scheduledDeliveryDateTime?:
+        type: datetime | nil
+        description: The date/time when the delivery has been scheduled to occur
+      estimatedDeliveryDateTime?:
+        type: datetime | nil
+        description: The expected date/time when the shipment will arrive, which should be the scheduled date/time unless there are delays
+      actualDeliveryDateTime?:
+        type: datetime | nil
+        description: The date/time when the delivery was completed
+      carrierCode?:
+        type: string
+        description: Code for the carrier provider delivering the shipment
+      carrierTrackingNumber?:
+        type: string
+        description: An unique identifier issued by a shipping carrier that can be used to determine the current location of a package
+      carrierTrackingUrl?:
+        type: string
+        description: Web address to look up tracking information for the shipment
+      specialInstructionsText?:
+        type: string
+        description: Instructions to the delivery service (for example, leave with neighbors)
+      totalQuantity?:
+        type: number | nil
+        description: Total number of product instances included in the shipment
+      isGift?:
+        type: boolean | nil
+        description: True if the shipment represents a gift, false otherwise
+      giftMessageText?:
+        type: string
+        description: Text message to be delivered with the shipment if it represents a gift
+      shipmentDocuments?:
+        type: array
+        items: string | ShipmentDocument
+        description: Documents associated with the shipment, which can be a list of identifier references or complete objects (not both)
+      shipmentPackages?:
+        type: array
+        items: string | ShipmentPackage
+        description: Packages included with the shipment, which can be a list of identifier references or complete objects (not both)
+      shipmentProducts?:
+        type: array
+        items: string | ShipmentProduct
+        description: Products included with the shipment, which can be a list of identifier references or complete objects (not both)
+      externalIds?:
+        type: array 
+        items: string | GlobalTypes.ExternalId
+        description: External identifiers associated with the entity
+      auditInfo?:
+        type: GlobalTypes.AuditInfo
+        description: Audit information for the entity
+
+  ShipmentDocument:
+    description: A receipt, bill of lading or other document that is delivered with the shipment to explain the purchase or shipment contents
+    properties:
+      id:
+        type: string | nil
+        description: Unique identifier for the entity, can be null on create if auto-generated
+      contentDocumentVersion?:
+        type: string
+        description: References the version of the document to be included
+      shipmentPackageId?:
+        type: string
+        description: References the package to which the document applies
+      auditInfo?:
+        type: GlobalTypes.AuditInfo
+        description: Audit information for the entity
+
+  ShipmentPackage:
+    description: A parcel of one or more items bundled together, so that they arrive at the location as a single unit
+    properties:
+      id:
+        type: string | nil
+        description: Unique identifier for the entity, can be null on create if auto-generated
+      description?:
+        type: string
+        description: Description of the package
+      shipmentProductCount?:
+        type: integer | nil
+        description: How many individual products are included in the package
+      auditInfo?:
+        type: GlobalTypes.AuditInfo
+        description: Audit information for the entity
+
+  ShipmentProduct:
+    description: An item on a list of one or more that comprises a shipment
+    properties:
+      id:
+        type: string | nil
+        description: Unique identifier for the entity, can be null on create if auto-generated
+      lineNumber?:
+        type: integer | nil
+        description: Line number of the shipment product in a shipment
+      productCode?:
+        type: string
+        description: References the actual product to be shipped
+      fulfillmentOrderId?:
+        type: string
+        description: Identifier of the fulfillment order that originated the request for shipment, if the shipment includes products for multiple orders
+      fulfillmentOrderProductId?:
+        type: string
+        description: References the product line item from the associated fulfillment order
+      salesOrderId?:
+        type: string
+        description: Identifier of the original sales order that originated the request for fulfillment, if the shipment includes products for multiple orders
+      salesOrderProductId?:
+        type: string
+        description: References the product line item from the original sales order
+      shipmentPackageId?:
+        type: string
+        description: References the package in which the item was packed
+      quantity?:
+        type: number | nil
+        description: How many instances of the product are to be shipped
+      priceAdjustments?:
+        type: array
+        items: string | ShipmentProductPriceAdjustment
+        description: List of price adjustments for the shipment product, which can be a list of identifier references or complete objects (not both)
+      auditInfo?:
+        type: GlobalTypes.AuditInfo
+        description: Audit information for the entity
+
+  ShipmentProductPriceAdjustment:
+    description: A change to the price of an ordered product or service that is made after fulfillment
+    properties:
+      id:
+        type: string | nil
+        description: Unique identifier for the entity, can be null on create if auto-generated
+      description?:
+        type: string
+        description: Description of the shipment product price adjustment
+      adjustmentAmount:
+        type: number
+        description: Adjustment amount for the shipment product
+      adjustmentTaxAmount?:
+        type: number | nil
+        description: Tax on the adjustment amount
+      adjustmentAmountWithTax?:
+        type: number | nil
+        description: Sum of adjustmentAmount + adjustmentTaxAmount
+      auditInfo?:
+        type: GlobalTypes.AuditInfo
+        description: Audit information for the entity

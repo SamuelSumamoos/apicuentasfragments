@@ -1,0 +1,15 @@
+{
+  "id": "5fb7341e-bf4e-4a53-93fd-dc8f36213389",
+  "name": "Complete allocation",
+  "paymentAllocationInstance": "PaymentAllocation",
+  "relatedPaymentAllocationId": "",
+  "appliedAmount": 636.0,
+  "externalCreatedDate": null,
+  "auditInfo": {
+    "createdDate": "2021-04-21T01:12:28.801Z",
+    "createdBy": "Application Admin",
+    "updatedDate": "2021-04-21T01:12:28.801Z",
+    "updatedBy": "Application Admin",
+    "isDeleted": false
+  }
+}

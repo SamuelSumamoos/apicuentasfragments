@@ -1,0 +1,28 @@
+{
+  "id": "6778a7ec-00ee-11ed-b939-0242ac120002",
+  "name": "Shirt and Tie Bundle",
+  "productInstance": "BundleProduct",
+  "productStatus": "Active",
+  "productSku": "8KKHYEZ",
+  "suggestedRetailPrice": 115.0,
+  "isDynamicBundle": false,
+  "isSerialized": false,
+  "bundleType": "Sold as One",
+  "areBundledProductsDecidedAtUse": true,
+  "areBundledProductsSoldTogether": true,
+  "canBundledProductsBeSubstituted": true,
+  "doBundledProductsDecideAvailability": true,
+  "quantityCount": 2,
+  "quantityUnitOfMeasure": "EA",
+  "tareWeight": 0.4,
+  "weightUnitOfMeasure": "kg",
+  "expectedWasteCount": 0,
+  "externalIds": [],
+  "auditInfo": {
+    "createdDate": "2023-12-12T19:24:05Z",
+    "createdBy": "Application Admin",
+    "updatedDate": "2023-12-12T19:24:05Z",
+    "updatedBy": "Application Admin",
+    "isDeleted": true
+  }
+}

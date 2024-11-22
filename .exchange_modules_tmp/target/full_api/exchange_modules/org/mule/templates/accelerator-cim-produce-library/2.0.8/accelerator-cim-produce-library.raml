@@ -1,0 +1,74 @@
+#%RAML 1.0 Library
+usage: Provides CIM types defined in the Produce subject area
+
+uses:
+  InventoryProductTypes: libraries/InventoryProductTypeLibrary.raml
+  InventoryReceivedTypes: libraries/InventoryReceivedTypeLibrary.raml
+  ProductTypes: libraries/ProductTypeLibrary.raml
+  PurchaseOrderTypes: libraries/PurchaseOrderTypeLibrary.raml
+
+types:
+  # Exported InventoryProductTypes
+  ProductAvailabilityProjection:
+    type: InventoryProductTypes.ProductAvailabilityProjection
+    example: !include ./examples/ProductAvailabilityProjectionExample.json
+  
+  # Exported InventoryReceivedTypes
+  InventoryReceived:
+    type: InventoryReceivedTypes.InventoryReceived
+    example: !include ./examples/InventoryReceivedExample.json
+  InventoryReceivedProduct:
+    type: InventoryReceivedTypes.InventoryReceivedProduct
+    example: !include ./examples/InventoryReceivedProductExample.json
+
+  # Exported ProductTypes
+  Brand:
+    type: ProductTypes.Brand
+    example: !include ./examples/BrandExample.json
+  BundleProduct:
+    type: ProductTypes.BundleProduct
+    example: !include ./examples/BundleProductExample.json
+  GoodsProduct:
+    type: ProductTypes.GoodsProduct
+    example: !include ./examples/GoodsProductExample.json
+  Product:
+    type: ProductTypes.Product
+    example: !include ./examples/ProductExample.json
+  ProductAttribute:
+    type: ProductTypes.ProductAttribute
+    example: !include ./examples/ProductAttributeExample.json
+  ProductAttributeValue:
+    type: ProductTypes.ProductAttributeValue
+    example: !include ./examples/ProductAttributeValueExample.json
+  ProductCatalog:
+    type: ProductTypes.ProductCatalog
+    example: !include ./examples/ProductCatalogExample.json
+  ProductCategory:
+    type: ProductTypes.ProductCategory
+    example: !include ./examples/ProductCategoryExample.json
+  ProductCategoryProduct:
+    type: ProductTypes.ProductCategoryProduct
+    example: !include ./examples/ProductCategoryProductExample.json
+  ProductCollateral:
+    type: ProductTypes.ProductCollateral
+    example: !include ./examples/ProductCollateralExample.json
+  ProductImage:
+    type: ProductTypes.ProductImage
+    example: !include ./examples/ProductImageExample.json
+  ProductRelatedProduct:
+    type: ProductTypes.ProductRelatedProduct
+    example: !include ./examples/ProductRelatedProductExample.json
+  ProductRelationshipType:
+    type: ProductTypes.ProductRelationshipType
+    example: !include ./examples/ProductRelationshipTypeExample.json
+  ServiceProduct:
+    type: ProductTypes.ServiceProduct
+    example: !include ./examples/ServiceProductExample.json
+
+  # Exported PurchaseOrderTypes
+  PurchaseOrder:
+    type: PurchaseOrderTypes.PurchaseOrder
+    example: !include ./examples/PurchaseOrderExample.json
+  PurchaseOrderProduct:
+    type: PurchaseOrderTypes.PurchaseOrderProduct
+    example: !include ./examples/PurchaseOrderProductExample.json

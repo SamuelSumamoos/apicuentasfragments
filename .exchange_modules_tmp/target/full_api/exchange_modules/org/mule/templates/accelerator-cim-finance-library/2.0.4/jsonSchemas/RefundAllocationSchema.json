@@ -1,0 +1,169 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/RefundAllocation",
+  "definitions": {
+    "RefundAllocation": {
+      "description": "Facilitates applying/unapplying a capture payment, or a credit memo to a refund payment",
+      "discriminator": "refundAllocationInstance",
+      "discriminatorValue": "RefundAllocation",
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "id",
+        "refundAllocationInstance",
+        "effectiveDate",
+        "appliedDate",
+        "allocatedAmount"
+      ],
+      "properties": {
+        "id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Unique identifier for the entity, can be null on create if auto-generated"
+        },
+        "name": {
+          "type": "string",
+          "description": "Short description of the refund allocation"
+        },
+        "refundAllocationInstance": {
+          "type": "string",
+          "description": "Discriminator property identifying the specific refund allocation instance type, such as RefundCreditMemoAllocation"
+        },
+        "effectiveDate": {
+          "type": "string",
+          "description": "Date when the allocation is effective on the payment and available to the customer",
+          "format": "date"
+        },
+        "appliedDate": {
+          "type": "string",
+          "description": "Date recorded in the system for the allocation of the funding source to the refund payment",
+          "format": "date"
+        },
+        "allocatedAmount": {
+          "type": "number",
+          "description": "Amount of currency that has been allocated to a refund"
+        },
+        "refundBalanceAmount": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Unallocated portion of the overall refund payment amount that exists after the allocation"
+        },
+        "hasBeenUnapplied": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "True if the allocation to a refund payment has been reversed, false otherwise"
+        },
+        "unappliedDate": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Date when the payment was unapplied to an invoice or credit memo"
+        },
+        "relatedRefundAllocation": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "$ref": "#/definitions/RefundAllocation"
+            }
+          ],
+          "description": "Relates a new refund allocation back to the original, in cases where refunds are unapplied"
+        },
+        "externalCreatedDate": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Preserves original creation date for payments imported from external systems"
+        },
+        "auditInfo": {
+          "type": "object",
+          "description": "Audit information for the entity",
+          "additionalProperties": true,
+          "required": [
+            "createdBy",
+            "isDeleted",
+            "updatedBy",
+            "updatedDate",
+            "createdDate"
+          ],
+          "properties": {
+            "createdDate": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Timestamp of when the entity was created"
+            },
+            "createdBy": {
+              "type": "string",
+              "description": "Identifies the system or user which created the entity"
+            },
+            "updatedDate": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Timestamp of when the entity was last updated"
+            },
+            "updatedBy": {
+              "type": "string",
+              "description": "Identifies the system or user which last updated the entity"
+            },
+            "isDeleted": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Indicates whether or not the entity has been soft-deleted"
+            }
+          }
+        }
+      }
+    }
+  }
+}

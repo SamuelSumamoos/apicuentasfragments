@@ -1,0 +1,18 @@
+{
+  "id": "936C4E95-F911-4897-A158-9A211BFB6A25",
+  "name": "LimitedPaymentCard",
+  "description": "Payment via a magnetic card that has enforced limits",
+  "mediaType": "Magnetic",
+  "maxTransactionAmount": 500.0,
+  "maxTransactionUnitOfMeasure": "USD",
+  "maxPerPeriodAmount": 2000.0,
+  "maxPerPeriodUnitOfMeasure": "USD",
+  "maxPerPeriodTransactionCount": 10,
+  "auditInfo": {
+    "createdDate": "2021-04-21T01:12:28.801Z",
+    "createdBy": "Application Admin",
+    "updatedDate": "2021-04-21T01:12:28.801Z",
+    "updatedBy": "Application Admin",
+    "isDeleted": false
+  }
+}

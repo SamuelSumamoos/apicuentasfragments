@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/UserSession",
+  "definitions": {
+    "UserSession": {
+      "description": "Session identifier for a user interaction via some channel (for example, a web session)",
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "id",
+        "name"
+      ],
+      "properties": {
+        "id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Unique identifier for the entity, can be null on create if auto-generated"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the user session"
+        },
+        "description": {
+          "type": "string",
+          "description": "Longer description of the user session"
+        }
+      }
+    }
+  }
+}

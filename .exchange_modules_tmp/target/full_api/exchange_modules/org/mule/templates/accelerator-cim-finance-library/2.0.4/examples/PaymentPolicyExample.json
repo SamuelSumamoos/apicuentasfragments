@@ -1,0 +1,25 @@
+{
+  "id": "5eac4f38-1e3c-441c-86eb-2019bb8132d6",
+  "name": "Global Payment Policy",
+  "description": "Default policy for all payments",
+  "paymentPolicyStatus": "Active",
+  "paymentTreatments": [
+    {
+      "id": null,
+      "name": "Pay for charges first",
+      "paymentTreatmentMethod": "931378 5d-9d27-4e00-aac7-66a49c1c861e",
+      "paymentTreatmentStatus": "Active",
+      "paymentApplicationLevel": "Header",
+      "paymentPolicyId": "",
+      "shouldAutoInvoice": false,
+      "internalOrganizationLegalEntityId": ""
+    }
+  ],
+  "auditInfo": {
+    "createdDate": "2023-04-21T01:12:28.801Z",
+    "createdBy": "Application Admin",
+    "updatedDate": "2023-04-21T01:12:28.801Z",
+    "updatedBy": "Application Admin",
+    "isDeleted": false
+  }
+}

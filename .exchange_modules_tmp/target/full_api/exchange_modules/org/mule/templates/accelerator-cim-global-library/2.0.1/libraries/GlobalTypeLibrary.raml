@@ -1,0 +1,147 @@
+#%RAML 1.0 Library
+usage: Defines globally reusable types for all subject areas
+types:
+  Address:
+    description: Defines a standard address structure for use in multiple entities and subject areas
+    properties:
+      name?:
+        type: string
+        description: Optional display name for the address
+      addressLine1:
+        type: string
+        description: The first address line can be used by itself for unstructured addresses
+      addressLine2?:
+        type: string
+        description: Optional second line of the address
+      addressLine3?:
+        type: string
+        description: Optional third line of the address
+      cityName?:
+        type: string
+        description: Display name of the city for the address
+      stateProvinceName?:
+        type: string
+        description: Display name of the state or province for the address
+      stateProvinceCode?:
+        type: string
+        description: The ISO region code for the address
+      countryName?:
+        type: string
+        description: Display name of the country for the address
+      countryCode?:
+        type: string
+        description: The ISO country code for the address
+      postalCodeText?:
+        type: string
+        description: The postal code for the address
+      geoAccuracyCode?:
+        type: string
+        description: Provides more information about the latitude and longitude of the address
+      geoLatitude?:
+        type: number | nil
+        description: The latitude of the address
+      geoLongitude?:
+        type: number | nil
+        description: The longitude of the address
+
+  AuditInfo:
+    description: Defines standard system audit fields available for most types
+    properties:
+      createdDate:
+        type: datetime | nil
+        description: Timestamp of when the entity was created
+      createdBy:
+        type: string
+        description: Identifies the system or user which created the entity
+      updatedDate:
+        type: datetime | nil
+        description: Timestamp of when the entity was last updated
+      updatedBy:
+        type: string
+        description: Identifies the system or user which last updated the entity
+      isDeleted:
+        type: boolean | nil
+        description: Indicates whether or not the entity has been soft-deleted
+
+  CustomProperty:
+    description: Defines a generic name/value pair for custom property lists
+    properties:
+      propertyName:
+        type: string
+        description: Name of the property
+      propertyValue:
+        type: string
+        description: Value of the property
+
+  ExternalId:
+    description: Defines a structure for referencing an entity in external systems
+    properties:
+      id:
+        type: string | nil
+        description: Unique identifier for the entity, can be null on create if auto-generated
+      externalId: 
+        type: string
+        description: A unique identifier assigned to an entity in another system
+      externalIdType:
+        type: string
+        description: Identifies the system that owns or otherwise recognizes this unique identifier
+      status?:
+        enum: [ VALID, INVALID ]
+        description: Indicates whether this identifier is currently valid or not
+      statusLastChangedDate?:
+        type: datetime | nil
+        description: Date and time of the last change in status
+
+  Location:
+    description: General location of a building, feature or area
+    properties:
+      id:
+        type: string | nil
+        description: Unique identifier for the entity, can be null on create if auto-generated
+      name?:
+        type: string
+        description: Display name of the location
+      contactName?:
+        type: string
+        description: Name of the person to contact at this location (for receiving shipments, as an example)
+      locationCode?:
+        type: string
+        description: Alternate code associated with the location
+      locationType?:
+        type: string
+        description: Reference to the type of location (for example, Bulding, Ship, Arena)
+      locationAddress?:
+        type: Address
+        description: Free-form or structured address of the location
+      auditInfo?:
+        type: AuditInfo
+        description: Audit information for the entity
+
+  UnitOfMeasure:
+    description: Identifies a specific unit of measure (for example, Item, Package, Drum)
+    properties:
+      id:
+        type: string | nil
+        description: Unique identifier for the entity, can be null on create if auto-generated
+      name:
+        type: string
+        description: Singular name of the unit of measure
+      description?: 
+        type: string
+        description: Longer description of the unit of measure
+      pluralName?:
+        type: string
+        description: Plural name of the unit of measure
+
+  UserSession:
+    description: Session identifier for a user interaction via some channel (for example, a web session)
+    properties:
+      id:
+        type: string | nil
+        description: Unique identifier for the entity, can be null on create if auto-generated
+      name:
+        type: string
+        description: Name of the user session
+      description?: 
+        type: string
+        description: Longer description of the user session

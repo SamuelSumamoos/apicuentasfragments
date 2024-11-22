@@ -1,0 +1,75 @@
+{
+  "id": "0c58237a-c363-4fe9-8820-a54ce319cfdd",
+  "shipmentNumber": "SP-00036",
+  "shipmentDate": "2023-12-03",
+  "shipmentStatus": "DISPATCHED",
+  "fulfillmentOrderId": "c39356ae-5b5f-4855-89e2-1a275075122c",
+  "salesOrderId": "cec39e0b-1267-4320-8688-de839e342c10",
+  "shipToLocation": {
+    "id": null,
+    "name": "Salesforce West",
+    "contactName": "Ruby Friday",
+    "locationCode": "338",
+    "locationAddress": {
+      "addressLine1": "50 Fremont St",
+      "addressLine2": "Suite 1456",
+      "cityName": "San Francisco",
+      "stateProvinceCode": "CA",
+      "countryCode": "US",
+      "postalCodeText": "94105"
+    }
+  },
+  "orderDeliveryMethodId": "0a65d6f9-3b3d-4b40-b5ed-1fee7435fb48",
+  "scheduledDeliveryDateTime": "2024-02-24T16:00:00Z",
+  "estimatedDeliveryDateTime": "2024-02-24T17:00:00Z",
+  "actualDeliveryDateTime": "2024-02-24T17:12:00Z",
+  "carrierCode": "UPS",
+  "carrierTrackingNumber": "USPS2398678546",
+  "carrierTrackingUrl": "",
+  "specialInstructionsText": "None",
+  "totalQuantity": 15.0,
+  "isGift": false,
+  "giftMessageText": "",
+  "shipmentDocuments": [
+    {
+      "id": null,
+      "contentDocumentVersion": "1.0",
+      "shipmentPackageId": "b9d3552d-f95a-4658-8f44-9d9c20a858de"
+    }
+  ],
+  "shipmentPackages": [
+    {
+      "id": null,
+      "description": "Box of tennis shoes",
+      "shipmentProductCount": 10
+    }
+  ],
+  "shipmentProducts": [
+    {
+      "id": null,
+      "lineNumber": 1,
+      "productCode": "MachineParts-X50",
+      "fulfillmentOrderProductId": "3b2560f4-b84f-4c98-9783-2a1ed164ef00",
+      "salesOrderProductId": "8e931313-1a1d-4284-9b81-c14c6f1c0387",
+      "shipmentPackageId": "b9d3552d-f95a-4658-8f44-9d9c20a858de",
+      "quantity": 15.0,
+      "priceAdjustments": [
+        {
+          "id": null,
+          "description": "Repeat customer discount",
+          "adjustmentAmount": 50.0,
+          "adjustmentTaxAmount": 7.0,
+          "adjustmentAmountWithTax": 57.0
+        }
+      ]
+    }
+  ],
+  "externalIds": [],
+  "auditInfo": {
+    "createdDate": "2021-12-12T19:24:05Z",
+    "createdBy": "Application Admin",
+    "updatedDate": "2021-12-12T19:24:05Z",
+    "updatedBy": "Application Admin",
+    "isDeleted": false
+  }
+}

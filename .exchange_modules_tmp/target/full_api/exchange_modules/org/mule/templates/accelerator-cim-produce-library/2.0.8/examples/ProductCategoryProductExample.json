@@ -1,0 +1,13 @@
+{
+  "id": "6fbe94a3-a6a8-4c53-9d23-08fa54fd316b",
+  "productId": "87a8234e-bbf3-46ed-a94e-a128b959be07",
+  "activeFromDate": "2021-12-12",
+  "activeToDate": null,
+  "auditInfo": {
+    "createdDate": "2023-12-12T19:24:05Z",
+    "createdBy": "Application Admin",
+    "updatedDate": "2023-12-12T19:24:05Z",
+    "updatedBy": "Application Admin",
+    "isDeleted": true
+  }
+}

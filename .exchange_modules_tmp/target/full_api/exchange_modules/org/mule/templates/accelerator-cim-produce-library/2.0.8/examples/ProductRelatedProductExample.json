@@ -1,0 +1,17 @@
+{
+  "id": "e7e85b6b-3d6d-412f-9a94-b78a9b351513",
+  "name": "Related product",
+  "productRelationshipType": "2119b3b7-921e-48d9-94b9-f6a2e598ebdc",
+  "parentProductId": "32c72b39-14cf-41f4-84d1-bd3b3ae73133",
+  "childProductId": "af3894f9-5393-4204-a769-a583f5e629f6",
+  "activeFromDate": "2022-07-26",
+  "activeToDate": null,
+  "isDefaultOption": false,
+  "auditInfo": {
+    "createdDate": "2023-12-12T19:24:05Z",
+    "createdBy": "Application Admin",
+    "updatedDate": "2023-12-12T19:24:05Z",
+    "updatedBy": "Application Admin",
+    "isDeleted": true
+  }
+}

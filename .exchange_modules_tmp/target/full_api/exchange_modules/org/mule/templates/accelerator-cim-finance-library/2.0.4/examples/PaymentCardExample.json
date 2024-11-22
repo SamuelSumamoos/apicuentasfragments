@@ -1,0 +1,49 @@
+{
+  "id": "3c5238d1-a3bf-4001-8c9f-4da17e1f7e4e",
+  "paymentMethodInstance": "PaymentCard",
+  "paymentMethodType": {
+    "id": null,
+    "name": "CreditCard",
+    "description": "Payment via a magnetic credit card",
+    "mediaType": "Magnetic",
+    "maxTransactionAmount": 10000.0,
+    "maxTransactionUnitOfMeasure": "AUD",
+    "maxPerPeriodAmount": 0.0,
+    "maxPerPeriodUnitOfMeasure": "AUD",
+    "maxPerPeriodTransactionCount": 100
+  },
+  "paymentMethodStatus": "Active",
+  "customerId": "ceabd182-23af-4f2e-a246-66d5ce0bcc1d",
+  "name": "Mastercard",
+  "companyName": "Discover",
+  "cardHolderName": "John C Doe",
+  "maskedNumber": "4514********9562",
+  "bankIdentificationNumber": "4514",
+  "numberLastDigits": "9562",
+  "paymentCardType": "Discover",
+  "derivedCardTypeCode": "",
+  "cardToken": "7300B53E6B0F6F47",
+  "issueNumber": "101",
+  "isActive": true,
+  "hasExpired": false,
+  "expirationYear": "2028",
+  "expirationMonth": "07",
+  "billToFirstName": "John",
+  "billToLastName": "Doe",
+  "billToAddress": {
+    "addressLine1": "2122 Maple Street",
+    "cityName": "Austin",
+    "stateProvinceName": "Texas",
+    "stateProvinceCode": "TX",
+    "countryName": "United States",
+    "countryCode": "USA",
+    "postalCodeText": "45145"
+  },
+  "auditInfo": {
+    "createdDate": "2022-04-30T17:25:11.128Z",
+    "createdBy": "Application Admin",
+    "updatedDate": "2022-04-30T17:25:11.128Z",
+    "updatedBy": "Application Admin",
+    "isDeleted": false
+  }
+}

@@ -1,0 +1,65 @@
+#%RAML 1.0 Library
+uses:
+  FHIR_commons: /exchange_modules/org.mule.templates/fhir-r4-commons-library/3.0.5/fhir-r4-commons-library.raml
+types:
+
+  RelatedPerson:
+    type: FHIR_commons.DomainResource
+    description: |
+      A person that is related to a patient, but who is not a direct target of care
+      Elements defined in Ancestors: id, meta, implicitRules, language, text, contained, extension, modifierExtension
+    properties:
+      identifier?:
+        type: FHIR_commons.Identifier[]
+        description: A human identifier for this person
+      active?:
+        type: boolean 
+        description: Whether this related person's record is in active use
+      patient:
+        type: FHIR_commons.Reference
+        description: The patient this person is related to
+      relationship?:
+        type: FHIR_commons.CodeableConcept[]
+        description: The nature of the relationship
+      name?:
+        type: FHIR_commons.HumanName[]
+        description: A name associated with the person
+      telecom?:
+        type: FHIR_commons.ContactPoint[]
+        description: A contact detail for the person
+      gender?:
+        type: FHIR_commons.code
+        description: male | female | other | unknown
+      birthDate?:
+        type: FHIR_commons.date
+        description: The date on which the related person was born
+      address?:
+        type: FHIR_commons.Address[]
+        description: Address where the related person can be contacted or visited
+      photo?:
+        type: FHIR_commons.Attachment[]
+        description: Image of the person
+      period?:
+        type: FHIR_commons.Period
+        description: Period of time that this relationship is considered valid
+      communication?:
+        type: array
+        items: 
+          type: FHIR_commons.BackboneElement
+          properties:
+            language:
+              type: FHIR_commons.CodeableConcept
+              description: The language which can be used to communicate with the patient about his or her health
+            preferred?:
+              type: boolean
+              description: Language preference indicator
+
+  RelatedPersonEntry:
+    type: FHIR_commons.Entry
+    properties:
+      resource: RelatedPerson
+
+  RelatedPersonBundle:
+    type: FHIR_commons.Bundle
+    properties:
+      entry?: RelatedPersonEntry[]

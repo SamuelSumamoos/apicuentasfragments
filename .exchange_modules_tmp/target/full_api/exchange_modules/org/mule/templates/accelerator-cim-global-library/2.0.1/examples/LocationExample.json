@@ -1,0 +1,24 @@
+{
+  "id": "81a91bd2-5b12-4176-93e0-c18cb718a488",
+  "name": "Customer Address",
+  "contactName": "Samuel L. Smith",
+  "locationCode": "338",
+  "locationType": "Office",
+  "locationAddress": {
+    "id": null,
+    "addressLine1": "2122 Maple Street",
+    "addressLine2": "Unit 23",
+    "addressLine3": "",
+    "cityName": "Austin",
+    "stateProvinceCode": "TX",
+    "countryCode": "US",
+    "postalCodeText": "45145"
+  },
+  "auditInfo": {
+    "createdBy": "Application Admin",
+    "createdDate": "2023-12-12T19:24:05Z",
+    "updatedBy": "Application Admin",
+    "updatedDate": "2023-12-12T19:24:05Z",
+    "isDeleted": false
+  }
+}

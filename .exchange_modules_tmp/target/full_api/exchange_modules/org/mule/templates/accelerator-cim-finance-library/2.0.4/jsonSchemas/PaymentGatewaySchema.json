@@ -1,0 +1,209 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/PaymentGateway",
+  "definitions": {
+    "PaymentGateway": {
+      "description": "Holds the payment gateway merchant details, which are used to interact external payment systems",
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "id",
+        "name",
+        "paymentGatewayStatus"
+      ],
+      "properties": {
+        "id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Unique identifier for the entity, can be null on create if auto-generated"
+        },
+        "name": {
+          "type": "string",
+          "description": "Short name of the payment gateway"
+        },
+        "paymentGatewayStatus": {
+          "type": "string",
+          "description": "Current status of the payment gateway, such as Active or Inactive"
+        },
+        "paymentGatewayProvider": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "description": "Provides details about the underlying payment gateway provider",
+              "type": "object",
+              "additionalProperties": true,
+              "required": [
+                "id",
+                "name"
+              ],
+              "properties": {
+                "id": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "description": "Unique identifier for the entity, can be null on create if auto-generated"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "Short name for the payment gateway provider"
+                },
+                "namespacePrefixText": {
+                  "type": "string",
+                  "description": "Qualifier used to provide uniqueness to the payment gateway provider name"
+                },
+                "implementationClassName": {
+                  "type": "string",
+                  "description": "Programmatic name of the class that implements the payment gateway provider"
+                },
+                "developerName": {
+                  "type": "string",
+                  "description": "Name used within program code to identify the payment gateway provider"
+                },
+                "commentText": {
+                  "type": "string",
+                  "description": "Descriptive text about the payment gateway provider"
+                },
+                "auditInfo": {
+                  "type": "object",
+                  "description": "Audit information for the entity",
+                  "additionalProperties": true,
+                  "required": [
+                    "createdBy",
+                    "isDeleted",
+                    "updatedBy",
+                    "updatedDate",
+                    "createdDate"
+                  ],
+                  "properties": {
+                    "createdDate": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "description": "Timestamp of when the entity was created"
+                    },
+                    "createdBy": {
+                      "type": "string",
+                      "description": "Identifies the system or user which created the entity"
+                    },
+                    "updatedDate": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "description": "Timestamp of when the entity was last updated"
+                    },
+                    "updatedBy": {
+                      "type": "string",
+                      "description": "Identifies the system or user which last updated the entity"
+                    },
+                    "isDeleted": {
+                      "anyOf": [
+                        {
+                          "type": "boolean"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "description": "Indicates whether or not the entity has been soft-deleted"
+                    }
+                  }
+                }
+              }
+            }
+          ],
+          "description": "References the actual provider for the payment gateway"
+        },
+        "systemCredentialId": {
+          "type": "string",
+          "description": "References the credentials used for authentication with the payment gateway"
+        },
+        "commentText": {
+          "type": "string",
+          "description": "Descriptive text about the payment gateway"
+        },
+        "auditInfo": {
+          "type": "object",
+          "description": "Audit information for the entity",
+          "additionalProperties": true,
+          "required": [
+            "createdBy",
+            "isDeleted",
+            "updatedBy",
+            "updatedDate",
+            "createdDate"
+          ],
+          "properties": {
+            "createdDate": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Timestamp of when the entity was created"
+            },
+            "createdBy": {
+              "type": "string",
+              "description": "Identifies the system or user which created the entity"
+            },
+            "updatedDate": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Timestamp of when the entity was last updated"
+            },
+            "updatedBy": {
+              "type": "string",
+              "description": "Identifies the system or user which last updated the entity"
+            },
+            "isDeleted": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Indicates whether or not the entity has been soft-deleted"
+            }
+          }
+        }
+      }
+    }
+  }
+}

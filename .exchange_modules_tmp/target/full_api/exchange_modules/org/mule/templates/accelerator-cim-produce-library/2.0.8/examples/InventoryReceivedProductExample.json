@@ -1,0 +1,31 @@
+{
+  "id": "37d8b16a-00ee-11ed-b939-0242ac120002",
+  "description": "Flat of tennis shoes",
+  "purchaseOrderId": "c242e236-1c49-4b8a-897f-955300e1537e",
+  "purchaseOrderProductId": "ORD-02338301-1",
+  "storageLocation": {
+    "id": null,
+    "name": "Customer Address",
+    "contactName": "Samuel L. Smith",
+    "locationCode": "338",
+    "locationAddress": {
+      "addressLine1": "2122 Maple Street",
+      "addressLine2": "Unit 23",
+      "addressLine3": "",
+      "cityName": "Austin",
+      "stateProvinceCode": "TX",
+      "countryCode": "US",
+      "postalCodeText": "45145"
+    }
+  },
+  "receivedQuantity": 10.0,
+  "quantityUnitOfMeasure": "Box",
+  "isCompletelyDelivered": true,
+  "auditInfo": {
+    "createdDate": "2021-12-12T19:24:05Z",
+    "createdBy": "Application Admin",
+    "updatedDate": "2021-12-12T19:24:05Z",
+    "updatedBy": "Application Admin",
+    "isDeleted": true
+  }
+}

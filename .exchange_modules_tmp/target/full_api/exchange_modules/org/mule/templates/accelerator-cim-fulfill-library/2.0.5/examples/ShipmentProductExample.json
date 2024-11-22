@@ -1,0 +1,27 @@
+{
+  "id": "13814c11-5397-4779-ac8b-dd692af251c2",
+  "lineNumber": 1,
+  "productCode": "MachineParts-X50",
+  "fulfillmentOrderId": "",
+  "fulfillmentOrderProductId": "3b2560f4-b84f-4c98-9783-2a1ed164ef00",
+  "salesOrderId": "",
+  "salesOrderProductId": "8e931313-1a1d-4284-9b81-c14c6f1c0387",
+  "shipmentPackageId": "b9d3552d-f95a-4658-8f44-9d9c20a858de",
+  "quantity": 15.0,
+  "priceAdjustments": [
+    {
+      "id": null,
+      "description": "Repeat customer discount",
+      "adjustmentAmount": 50.0,
+      "adjustmentTaxAmount": 7.0,
+      "adjustmentAmountWithTax": 57.0
+    }
+  ],
+  "auditInfo": {
+    "createdDate": "2021-12-12T19:24:05Z",
+    "createdBy": "Application Admin",
+    "updatedDate": "2021-12-12T19:24:05Z",
+    "updatedBy": "Application Admin",
+    "isDeleted": false
+  }
+}

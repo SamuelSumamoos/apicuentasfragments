@@ -1,0 +1,12 @@
+{
+  "id": "b9d3552d-f95a-4658-8f44-9d9c20a858de",
+  "description": "Box of tennis shoes",
+  "shipmentProductCount": 10,
+  "auditInfo": {
+    "createdDate": "2021-12-12T19:24:05Z",
+    "createdBy": "Application Admin",
+    "updatedDate": "2021-12-12T19:24:05Z",
+    "updatedBy": "Application Admin",
+    "isDeleted": false
+  }
+}

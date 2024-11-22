@@ -1,0 +1,145 @@
+{
+  "id": "af3d5c80-f237-11ec-9d38-02b65bc9fbca",
+  "orderEventType": "OrderShippedEvent",
+  "purchasingOrganizationCode": "ORANGE",
+  "fulfillmentOrders": [
+    {
+      "id": "5c04fe11-aad1-4b68-81bd-dbe7e3de154f",
+      "fulfillmentOrderNumber": "FO-0102",
+      "fulfillmentOrderStatus": "Allocated",
+      "purchaseOrderNumber": "ORD-09600630",
+      "purchaseOrderDate": "2024-03-05",
+      "salesOrderId": "12de8ad5-1b89-4616-99f7-ddd8b876a037",
+      "customerId": "cd83649a-1eb6-4a75-86e4-5980b314a94b",
+      "billToIndividualId": "3ccb6f6a-234a-41c3-a486-5afc7313ff57",
+      "fulfilledToName": "Alycia Kunze",
+      "fulfilledToEmailAddress": "akunze@example.net",
+      "fulfilledToPhoneNumber": "",
+      "fulfilledToLocation": {
+        "id": null,
+        "name": "Salesforce West",
+        "contactName": "Ruby Friday",
+        "locationCode": "338",
+        "locationAddress": {
+          "addressLine1": "50 Fremont St",
+          "addressLine2": "Suite 1456",
+          "cityName": "San Francisco",
+          "stateProvinceCode": "CA",
+          "countryCode": "US",
+          "postalCodeText": "94105"
+        }
+      },
+      "orderDeliveryGroupId": "66815379-cdaf-4883-b05a-fd726426fdcf",
+      "orderDeliveryMethodId": "2bc5b273-8543-41f1-96a5-db032837c60d",
+      "isReship": false,
+      "isSuspended": false,
+      "totalItemCount": 4.0,
+      "totalAdjustmentAmount": 0.0,
+      "totalAdjustmentTaxAmount": 0.0,
+      "totalAdjustmentWithTaxAmount": 0.0,
+      "totalDeliveryAdjustmentAmount": null,
+      "totalDeliveryAdjustmentTaxAmount": null,
+      "totalDeliveryAdjustmentWithTaxAmount": null,
+      "totalDeliveryAmount": 200.0,
+      "totalDeliveryTaxAmount": 14.0,
+      "totalDeliveryWithTaxAmount": 214.0,
+      "totalProductAmount": 4800.0,
+      "totalProductTaxAmount": 480.0,
+      "totalProductWithTaxAmount": 5280.0,
+      "totalAmount": 5000.0,
+      "totalTaxAmount": 494.0,
+      "totalWithTaxAmount": 5494.0,
+      "fulfillmentOrderProducts": [
+        {
+          "id": "ef2efbb9-59b8-4e0b-baf2-2cc8b3f26112",
+          "lineNumber": 1,
+          "productCode": "Services-181",
+          "fulfillmentOrderId": "5c04fe11-aad1-4b68-81bd-dbe7e3de154f",
+          "salesOrderProductId": "8e931313-1a1d-4284-9b81-c14c6f1c0387",
+          "requestedStartDate": "2024-04-24",
+          "requestedEndDate": "2024-04-28",
+          "quantityUnitOfMeasure": "Days",
+          "orderedQuantity": 4.0,
+          "fulfilledQuantity": 4.0,
+          "unitPrice": 1200.00,
+          "grossUnitPrice": 1320.00,
+          "totalAdjustmentAmount": 0.0,
+          "totalAdjustmentTaxAmount": 0.0,
+          "totalAdjustmentWithTaxAmount": 0.0,
+          "totalProductAmount": 4800.0,
+          "totalProductTaxAmount": 480.0,
+          "totalProductWithTaxAmount": 5280.0,
+          "totalAmount": 4800.0,
+          "totalTaxAmount": 480.0,
+          "totalWithTaxAmount": 5280.0
+        }
+      ]
+    }
+  ],
+  "shipment": {
+    "id": "ba6f76db-94ab-4a55-8251-020bd32914eb",
+    "shipmentNumber": "SP-00036",
+    "shipmentDate": "2023-12-03",
+    "shipToLocation": {
+      "id": null,
+      "name": "Salesforce West",
+      "contactName": "Ruby Friday",
+      "locationCode": "338",
+      "locationAddress": {
+        "addressLine1": "50 Fremont St",
+        "addressLine2": "Suite 1456",
+        "cityName": "San Francisco",
+        "stateProvinceCode": "CA",
+        "countryCode": "US",
+        "postalCodeText": "94105"
+      }
+    },
+    "fulfillmentOrderId": "5c04fe11-aad1-4b68-81bd-dbe7e3de154f",
+    "salesOrderId": "12de8ad5-1b89-4616-99f7-ddd8b876a037",
+    "orderDeliveryMethodId": "2bc5b273-8543-41f1-96a5-db032837c60d",
+    "shipmentStatus": "DISPATCHED",
+    "scheduledDeliveryDateTime": "2024-02-24T16:00:00Z",
+    "estimatedDeliveryDateTime": "2024-02-24T17:00:00Z",
+    "actualDeliveryDateTime": "2024-02-24T17:12:00Z",
+    "carrierCode": "UPS",
+    "carrierTrackingNumber": "USPS2398678546",
+    "specialInstructionsText": "None",
+    "totalQuantity": 15.0,
+    "isGift": false,
+    "giftMessageText": "",
+    "shipmentDocuments": [
+      {
+        "id": "9b104d68-bfa2-49f6-9dd8-581756f19be8",
+        "contentDocumentVersion": "1.0",
+        "shipmentPackageId": "b9d3552d-f95a-4658-8f44-9d9c20a858de"
+      }
+    ],
+    "shipmentPackages": [
+      {
+        "id": "b9d3552d-f95a-4658-8f44-9d9c20a858de",
+        "description": "Box of tennis shoes",
+        "shipmentProductCount": 10
+      }
+    ],
+    "shipmentProducts": [
+      {
+        "id": "241d06a4-ed61-4d30-92d2-9b9a71a320e5",
+        "lineNumber": 1,
+        "productCode": "MachineParts-X50",
+        "fulfillmentOrderId": "5c04fe11-aad1-4b68-81bd-dbe7e3de154f",
+        "salesOrderProductId": "8e931313-1a1d-4284-9b81-c14c6f1c0387",
+        "shipmentPackageId": "b9d3552d-f95a-4658-8f44-9d9c20a858de",
+        "quantity": 15.0,
+        "priceAdjustments": [
+          {
+            "id": null,
+            "description": "Repeat customer discount",
+            "adjustmentAmount": 50,
+            "adjustmentTaxAmount": 7,
+            "adjustmentAmountWithTax": 57
+          }
+        ]
+      }
+    ]
+  }
+}

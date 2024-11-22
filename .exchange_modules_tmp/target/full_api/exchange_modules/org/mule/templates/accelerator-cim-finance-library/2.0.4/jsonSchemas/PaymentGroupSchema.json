@@ -1,0 +1,104 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/PaymentGroup",
+  "definitions": {
+    "PaymentGroup": {
+      "description": "Provides a way to associate payments and payment gateway events when the payment is not associated with a sales order",
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "id",
+        "paymentGroupNumber",
+        "totalPaymentAmount",
+        "totalAuthorizationAmount",
+        "totalReversalAmount"
+      ],
+      "properties": {
+        "id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Unique identifier for the entity, can be null on create if auto-generated"
+        },
+        "paymentGroupNumber": {
+          "type": "string",
+          "description": "Automatically-generated number that identifies the payment group"
+        },
+        "totalPaymentAmount": {
+          "type": "number",
+          "description": "Sum of all associated Payment records"
+        },
+        "totalAuthorizationAmount": {
+          "type": "number",
+          "description": "Sum of all associated payment authorization records"
+        },
+        "totalReversalAmount": {
+          "type": "number",
+          "description": "Sum of all associated payment reversal records"
+        },
+        "auditInfo": {
+          "type": "object",
+          "description": "Audit information for the entity",
+          "additionalProperties": true,
+          "required": [
+            "createdBy",
+            "isDeleted",
+            "updatedBy",
+            "updatedDate",
+            "createdDate"
+          ],
+          "properties": {
+            "createdDate": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Timestamp of when the entity was created"
+            },
+            "createdBy": {
+              "type": "string",
+              "description": "Identifies the system or user which created the entity"
+            },
+            "updatedDate": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Timestamp of when the entity was last updated"
+            },
+            "updatedBy": {
+              "type": "string",
+              "description": "Identifies the system or user which last updated the entity"
+            },
+            "isDeleted": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Indicates whether or not the entity has been soft-deleted"
+            }
+          }
+        }
+      }
+    }
+  }
+}

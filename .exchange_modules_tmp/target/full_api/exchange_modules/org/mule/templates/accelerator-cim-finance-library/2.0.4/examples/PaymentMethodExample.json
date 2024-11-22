@@ -1,0 +1,24 @@
+{
+  "id": "3c5238d1-a3bf-4001-8c9f-4da17e1f7e4e",
+  "paymentMethodInstance": "PaymentMethod",
+  "paymentMethodType": {
+    "id": null,
+    "name": "LimitedPaymentCard",
+    "description": "Payment via a magnetic card that has enforced limits",
+    "mediaType": "Magnetic",
+    "maxTransactionAmount": 500.0,
+    "maxTransactionUnitOfMeasure": "USD",
+    "maxPerPeriodAmount": 2000.0,
+    "maxPerPeriodUnitOfMeasure": "USD",
+    "maxPerPeriodTransactionCount": 10
+  },
+  "paymentMethodStatus": "Active",
+  "customerId": "ceabd182-23af-4f2e-a246-66d5ce0bcc1d",
+  "auditInfo": {
+    "createdDate": "2022-04-30T17:25:11.128Z",
+    "createdBy": "Application Admin",
+    "updatedDate": "2022-04-30T17:25:11.128Z",
+    "updatedBy": "Application Admin",
+    "isDeleted": false
+  }
+}

@@ -1,0 +1,1628 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/BundleProduct",
+  "definitions": {
+    "BundleProduct": {
+      "description": "Defines groups of products bundled together, such as a mobile phone package that includes the phone, charger, and call plan",
+      "type": "object",
+      "discriminatorValue": "BundleProduct",
+      "discriminator": "productInstance",
+      "additionalProperties": true,
+      "required": [
+        "name",
+        "id",
+        "bundleType",
+        "productSku",
+        "productStatus",
+        "productInstance"
+      ],
+      "properties": {
+        "bundleType": {
+          "type": "string",
+          "description": "Type of product bundle, such as Sold as One Unit or Configurable"
+        },
+        "areBundledProductsDecidedAtUse": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "True if the content of a bundle is only decided (dynamically) at the point of bundle use, false otherwise"
+        },
+        "areBundledProductsSoldTogether": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "True if all bundled products are sold together, false if some can be excluded"
+        },
+        "canBundledProductsBeSubstituted": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "True if products in a bundle can be substituted for other products, false otherwise"
+        },
+        "doBundledProductsDecideAvailability": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "True if bundle availability is based on availability of the bundled products, false if the bundle is inventoried on its own"
+        },
+        "quantityCount": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Total number of items in the bundle package"
+        },
+        "quantityUnitOfMeasure": {
+          "type": "string",
+          "description": "Unit of measure for stating the bundle quantity"
+        },
+        "tareWeight": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Total weight of the product bundle without the product content"
+        },
+        "weightUnitOfMeasure": {
+          "type": "string",
+          "description": "Unit of measure for stating the weight of the bundle"
+        },
+        "expectedWasteCount": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "How many products in the bundle are expected to be wasted"
+        },
+        "id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Unique identifier for the entity, can be null on create if auto-generated"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the product"
+        },
+        "description": {
+          "type": "string",
+          "description": "General description of the product"
+        },
+        "longDescription": {
+          "type": "string",
+          "description": "Longer general description of the product"
+        },
+        "productInstance": {
+          "type": "string",
+          "description": "Discriminator property identifying the specific product instance type, such as ServiceProduct"
+        },
+        "productCode": {
+          "type": "string",
+          "description": "Default code for the product"
+        },
+        "productStatus": {
+          "type": "string",
+          "description": "Status of the product, such as Active or Inactive"
+        },
+        "primaryProductCategoryId": {
+          "type": "string",
+          "description": "References the primary product category of the product"
+        },
+        "primarySalesChannelId": {
+          "type": "string",
+          "description": "Primary sales channel used to sell the product"
+        },
+        "definingProductId": {
+          "type": "string",
+          "description": "Reference to a product that is not sold but defines what is to be sold"
+        },
+        "businessUnitId": {
+          "type": "string",
+          "description": "References the logical internal organization to which the product belongs"
+        },
+        "glAccountCode": {
+          "type": "string",
+          "description": "Identifies how instances of the product are accounted for"
+        },
+        "brand": {
+          "type": "object",
+          "description": "Brand information for the product, including grade",
+          "additionalProperties": true,
+          "required": [
+            "name",
+            "id"
+          ],
+          "properties": {
+            "id": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Unique identifier for the entity, can be null on create if auto-generated"
+            },
+            "name": {
+              "type": "string",
+              "description": "Name of the brand"
+            },
+            "brandGrade": {
+              "type": "string",
+              "description": "Identifies the value of the brand, such as Premium or Value"
+            },
+            "parentBrandId": {
+              "type": "string",
+              "description": "References the larger brand that contains the brand"
+            },
+            "internalOrganizationId": {
+              "type": "string",
+              "description": "References an internal organization or department within the company"
+            },
+            "auditInfo": {
+              "type": "object",
+              "description": "Audit information for the entity",
+              "additionalProperties": true,
+              "required": [
+                "createdBy",
+                "isDeleted",
+                "updatedBy",
+                "updatedDate",
+                "createdDate"
+              ],
+              "properties": {
+                "createdDate": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "description": "Timestamp of when the entity was created"
+                },
+                "createdBy": {
+                  "type": "string",
+                  "description": "Identifies the system or user which created the entity"
+                },
+                "updatedDate": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "description": "Timestamp of when the entity was last updated"
+                },
+                "updatedBy": {
+                  "type": "string",
+                  "description": "Identifies the system or user which last updated the entity"
+                },
+                "isDeleted": {
+                  "anyOf": [
+                    {
+                      "type": "boolean"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "description": "Indicates whether or not the entity has been soft-deleted"
+                }
+              }
+            }
+          }
+        },
+        "productSku": {
+          "type": "string",
+          "description": "Unique stock keeping unit number for the product"
+        },
+        "productUpc": {
+          "type": "string",
+          "description": "Represents the unique 12-digit code assigned to each individual product, which is universal across systems"
+        },
+        "manufacturerName": {
+          "type": "string",
+          "description": "Name of the manufacturer for the product"
+        },
+        "manufacturerPartNumber": {
+          "type": "string",
+          "description": "Unique number assigned by the manufacturer to identify the product"
+        },
+        "modelNumber": {
+          "type": "string",
+          "description": "Manufacturer identifier of the product model"
+        },
+        "modelYear": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Marketed model year for the product"
+        },
+        "versionName": {
+          "type": "string",
+          "description": "Name of the version associated with the product model"
+        },
+        "versionNumber": {
+          "type": "string",
+          "description": "Actual version of the product"
+        },
+        "lotIdentifier": {
+          "type": "string",
+          "description": "Identifier of the lot group assigned by the manufacturer"
+        },
+        "packagedInCountryCode": {
+          "type": "string",
+          "description": "Country code where the product was packaged"
+        },
+        "producedInCountryCode": {
+          "type": "string",
+          "description": "Country code where the product was produced"
+        },
+        "availabilityDate": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Date when the product is made available for sale"
+        },
+        "discontinuedDate": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Date when the product has been discontinued and is no longer for sale"
+        },
+        "validFromDate": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Date from which the product can actually be used"
+        },
+        "validToDate": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Date to which the product can actually be used"
+        },
+        "validForPeriodCount": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Number of validity periods"
+        },
+        "validForPeriodUnitOfMeasure": {
+          "type": "string",
+          "description": "Unit of measure for validity period, such as Hours, Days, Months"
+        },
+        "canUseQuantitySchedule": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "True if the product can have a quantity schedule, false otherwise"
+        },
+        "quantityScheduleType": {
+          "type": "string",
+          "description": "Type of quantity schedule (if the product has one), such as Divide or Repeat"
+        },
+        "quantityInstallmentCount": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Number of installments for the quantity schedule"
+        },
+        "quantityInstallmentPeriod": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Amount of time covered by the quantity schedule"
+        },
+        "minimumOrderQuantityCount": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Minimum quantity allowed for purchase"
+        },
+        "maximumOrderQuantityCount": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Maximum quantity allowed for purchase"
+        },
+        "canUseRevenueSchedule": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "True if the product can have a revenue schedule, false otherwise"
+        },
+        "revenueScheduleType": {
+          "type": "string",
+          "description": "Type of revenue schedule (if the product has one), such as Divide or Repeat"
+        },
+        "revenueInstallmentCount": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Number of installments for the revenue schedule"
+        },
+        "revenueInstallmentPeriod": {
+          "type": "string",
+          "description": "Amount of time covered by the revenue schedule"
+        },
+        "priceChargeType": {
+          "type": "string",
+          "description": "Identifies whether the product is to be sold based on weights, units, or usage"
+        },
+        "requiresInvididualUnitPricing": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "True if product items require individual prices, false otherwise"
+        },
+        "suggestedRetailPrice": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Default price for the product (Manufacturer Suggested Retail Price)"
+        },
+        "requiredDepositAmount": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Amount that must be paid as deposit to be able to pickup or use the product"
+        },
+        "requiredDepositPercentage": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Percentage that must be paid up front as deposit to be able to pickup or use the product"
+        },
+        "minimumAdvertisementAmount": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Lowest price for the product allowed (normally by the manufacturer) to be used in an advertisement"
+        },
+        "minimumAdvertisementAmountStartDate": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Earliest date the lowest price can be stated in an advertisement"
+        },
+        "stockLedgerValuationAmount": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Total value of product goods as held in stock"
+        },
+        "standardWarrantyLengthMonth": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Indicates the length of warranty included by the seller (not the manufacturer)"
+        },
+        "rewardProgramPointsCount": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Indicates how many reward points are awarded for purchasing the item"
+        },
+        "disposalType": {
+          "type": "string",
+          "description": "Identifies how the product is to be disposed of, such as Recycled or Returned"
+        },
+        "allowCustomerReturn": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "True if the customer can return the product, false otherwise"
+        },
+        "allowPartialRefund": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "True if the customer can get a partial refund when the product is returned, false otherwise"
+        },
+        "isAutoProvisionable": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "True if the product can be automatically provisioned, false otherwise"
+        },
+        "isBackOrdered": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "True if the product is not in stock and has been backordered, false otherwise"
+        },
+        "isCertified": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "True if the product represents a part that is certified, false otherwise"
+        },
+        "isCompetitiveProduct": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "True if the product is similar to, or directly competes with, another product in the marketplace, false otherwise"
+        },
+        "isCouponRedemptionAllowed": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "True if a coupon can be redeemed for the product, false otherwise"
+        },
+        "isCustomerDiscountAllowed": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "True if customers can be offered the product at a discounted price, false otherwise"
+        },
+        "isDynamicBundle": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "True if actual content of the product bundle can be derived at point of use, false otherwise"
+        },
+        "isEpaCompliant": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "True if the product is compliant with environment protection regulations, false otherwise"
+        },
+        "isFoodstampPaymentAllowed": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "True if foodstamps can be redeemed for the product, false otherwise"
+        },
+        "isInstallable": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "True if the product can be installed, false otherwise"
+        },
+        "isIntellectualPropertyProtected": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "True if knowledge about the product can be considered sensitive intellectual property, false otherwise"
+        },
+        "isManualPriceEntryRequired": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "True if price must be manually entered for the product, false otherwise"
+        },
+        "isMultipleCouponsAllowed": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "True if multiple coupons can be redeemed for the product, false otherwise"
+        },
+        "isPartnerDiscountAllowed": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "True if seller and supplier partners get a discount on the product, false otherwise"
+        },
+        "isPreOrderable": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "True if the product is not yet for sale but can be pre-ordered, false otherwise"
+        },
+        "isQualityVerificationRequired": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "True if a visual inspection of the product must be done, false otherwise"
+        },
+        "isQuantityEntryRequired": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "True if a quantity must be entered for the product at checkout, false otherwise"
+        },
+        "isRainCheckAllowed": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "True if product not in stock can be promised at the same price on a later date, false otherwise"
+        },
+        "isReturnable": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "True if the product can be returned, false otherwise"
+        },
+        "isSellable": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "True if the product is intended to be sold, false otherwise"
+        },
+        "isSellableIndependently": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "True if the product can be sold by itself (not in a bundle), false otherwise"
+        },
+        "isSellableWithoutPrice": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "True if the product can be sold without a price, false otherwise"
+        },
+        "isSerialized": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "True if each instance of the product has a unique serial number, false otherwise"
+        },
+        "isWeightEntryRequired": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "True if weight must be entered for the product, false otherwise"
+        },
+        "isWorkerDiscountAllowed": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "True if employees and contractors get a discount on the product, false otherwise"
+        },
+        "productAttributes": {
+          "type": "array",
+          "description": "A set of attributes associated with the product, which can be a list of identifier references or complete objects (not both)",
+          "items": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "description": "A specific attribute of a product definition, such as shoe lace length",
+                "type": "object",
+                "additionalProperties": true,
+                "required": [
+                  "id",
+                  "name"
+                ],
+                "properties": {
+                  "id": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Unique identifier for the entity, can be null on create if auto-generated"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Name of the product attribute"
+                  },
+                  "productAttributeValues": {
+                    "type": "array",
+                    "description": "List of possible values associated with the product attribute, which can be a list of identifier references or complete objects (not both)",
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "description": "A predefined value for a product attribute, such as a specific shoe lace length",
+                          "type": "object",
+                          "additionalProperties": true,
+                          "required": [
+                            "id",
+                            "attributeValue"
+                          ],
+                          "properties": {
+                            "id": {
+                              "anyOf": [
+                                {
+                                  "type": "string"
+                                },
+                                {
+                                  "type": "null"
+                                }
+                              ],
+                              "description": "Unique identifier for the entity, can be null on create if auto-generated"
+                            },
+                            "name": {
+                              "type": "string",
+                              "description": "Name of the product attribute value"
+                            },
+                            "attributeValue": {
+                              "type": "string",
+                              "description": "Actual value of the product attribute"
+                            },
+                            "customAttributeValue": {
+                              "type": "string",
+                              "description": "If the value is not from a predefined list, a manual value can be provided here"
+                            },
+                            "defaultImageId": {
+                              "type": "string",
+                              "description": "References the first product image for the variation"
+                            },
+                            "auditInfo": {
+                              "type": "object",
+                              "description": "Audit information for the entity",
+                              "additionalProperties": true,
+                              "required": [
+                                "createdBy",
+                                "isDeleted",
+                                "updatedBy",
+                                "updatedDate",
+                                "createdDate"
+                              ],
+                              "properties": {
+                                "createdDate": {
+                                  "anyOf": [
+                                    {
+                                      "type": "string",
+                                      "format": "date-time"
+                                    },
+                                    {
+                                      "type": "null"
+                                    }
+                                  ],
+                                  "description": "Timestamp of when the entity was created"
+                                },
+                                "createdBy": {
+                                  "type": "string",
+                                  "description": "Identifies the system or user which created the entity"
+                                },
+                                "updatedDate": {
+                                  "anyOf": [
+                                    {
+                                      "type": "string",
+                                      "format": "date-time"
+                                    },
+                                    {
+                                      "type": "null"
+                                    }
+                                  ],
+                                  "description": "Timestamp of when the entity was last updated"
+                                },
+                                "updatedBy": {
+                                  "type": "string",
+                                  "description": "Identifies the system or user which last updated the entity"
+                                },
+                                "isDeleted": {
+                                  "anyOf": [
+                                    {
+                                      "type": "boolean"
+                                    },
+                                    {
+                                      "type": "null"
+                                    }
+                                  ],
+                                  "description": "Indicates whether or not the entity has been soft-deleted"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "auditInfo": {
+                    "type": "object",
+                    "description": "Audit information for the entity",
+                    "additionalProperties": true,
+                    "required": [
+                      "createdBy",
+                      "isDeleted",
+                      "updatedBy",
+                      "updatedDate",
+                      "createdDate"
+                    ],
+                    "properties": {
+                      "createdDate": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "Timestamp of when the entity was created"
+                      },
+                      "createdBy": {
+                        "type": "string",
+                        "description": "Identifies the system or user which created the entity"
+                      },
+                      "updatedDate": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "Timestamp of when the entity was last updated"
+                      },
+                      "updatedBy": {
+                        "type": "string",
+                        "description": "Identifies the system or user which last updated the entity"
+                      },
+                      "isDeleted": {
+                        "anyOf": [
+                          {
+                            "type": "boolean"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "Indicates whether or not the entity has been soft-deleted"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "productImages": {
+          "type": "array",
+          "description": "A set of images associated with the product, which can be a list of identifier references or complete objects (not both)",
+          "items": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "description": "Represents an image associated with a product",
+                "type": "object",
+                "additionalProperties": true,
+                "required": [
+                  "id",
+                  "imageId"
+                ],
+                "properties": {
+                  "id": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Unique identifier for the entity, can be null on create if auto-generated"
+                  },
+                  "imageId": {
+                    "type": "string",
+                    "description": "Reference to the actual image definition"
+                  },
+                  "imageGroupId": {
+                    "type": "string",
+                    "description": "Reference to the image group"
+                  },
+                  "imageViewType": {
+                    "type": "string",
+                    "description": "Classification of the image view, such as Large or Small icon"
+                  },
+                  "isDefaultImage": {
+                    "anyOf": [
+                      {
+                        "type": "boolean"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "True if the image is the default one for the product, false otherwise"
+                  },
+                  "auditInfo": {
+                    "type": "object",
+                    "description": "Audit information for the entity",
+                    "additionalProperties": true,
+                    "required": [
+                      "createdBy",
+                      "isDeleted",
+                      "updatedBy",
+                      "updatedDate",
+                      "createdDate"
+                    ],
+                    "properties": {
+                      "createdDate": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "Timestamp of when the entity was created"
+                      },
+                      "createdBy": {
+                        "type": "string",
+                        "description": "Identifies the system or user which created the entity"
+                      },
+                      "updatedDate": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "Timestamp of when the entity was last updated"
+                      },
+                      "updatedBy": {
+                        "type": "string",
+                        "description": "Identifies the system or user which last updated the entity"
+                      },
+                      "isDeleted": {
+                        "anyOf": [
+                          {
+                            "type": "boolean"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "Indicates whether or not the entity has been soft-deleted"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "productCollateral": {
+          "type": "array",
+          "description": "Additional collateral associated with the product, which can be a list of identifier references or complete objects (not both)",
+          "items": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "description": "Collatoral information about a product, such as a link to a brochure",
+                "type": "object",
+                "additionalProperties": true,
+                "required": [
+                  "id",
+                  "productCollateralUrl"
+                ],
+                "properties": {
+                  "id": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Unique identifier for the entity, can be null on create if auto-generated"
+                  },
+                  "productCollateralUrl": {
+                    "type": "string",
+                    "description": "Specifies the online location of the collateral"
+                  },
+                  "auditInfo": {
+                    "type": "object",
+                    "description": "Audit information for the entity",
+                    "additionalProperties": true,
+                    "required": [
+                      "createdBy",
+                      "isDeleted",
+                      "updatedBy",
+                      "updatedDate",
+                      "createdDate"
+                    ],
+                    "properties": {
+                      "createdDate": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "Timestamp of when the entity was created"
+                      },
+                      "createdBy": {
+                        "type": "string",
+                        "description": "Identifies the system or user which created the entity"
+                      },
+                      "updatedDate": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "Timestamp of when the entity was last updated"
+                      },
+                      "updatedBy": {
+                        "type": "string",
+                        "description": "Identifies the system or user which last updated the entity"
+                      },
+                      "isDeleted": {
+                        "anyOf": [
+                          {
+                            "type": "boolean"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "Indicates whether or not the entity has been soft-deleted"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "relatedProducts": {
+          "type": "array",
+          "description": "Other products related to the product, which can be a list of identifier references or complete objects (not both)",
+          "items": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "description": "A grouping of products such as a product bundle",
+                "type": "object",
+                "additionalProperties": true,
+                "required": [
+                  "id",
+                  "name",
+                  "productRelationshipType",
+                  "activeFromDate"
+                ],
+                "properties": {
+                  "id": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Unique identifier for the entity, can be null on create if auto-generated"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Auto-generated name for the relationship"
+                  },
+                  "productRelationshipType": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "description": "Defines the types of relationships available, such as bundled with or substituted for",
+                        "type": "object",
+                        "additionalProperties": true,
+                        "required": [
+                          "id",
+                          "parentProductRole",
+                          "childProductRole"
+                        ],
+                        "properties": {
+                          "id": {
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "null"
+                              }
+                            ],
+                            "description": "Unique identifier for the entity, can be null on create if auto-generated"
+                          },
+                          "name": {
+                            "type": "string",
+                            "description": "Name of the product relationship type"
+                          },
+                          "parentProductRole": {
+                            "type": "string",
+                            "description": "What is the first role in the relationship, such as Consists of"
+                          },
+                          "childProductRole": {
+                            "type": "string",
+                            "description": "What is the second role in the relationship, such as Component of"
+                          },
+                          "auditInfo": {
+                            "type": "object",
+                            "description": "Audit information for the entity",
+                            "additionalProperties": true,
+                            "required": [
+                              "createdBy",
+                              "isDeleted",
+                              "updatedBy",
+                              "updatedDate",
+                              "createdDate"
+                            ],
+                            "properties": {
+                              "createdDate": {
+                                "anyOf": [
+                                  {
+                                    "type": "string",
+                                    "format": "date-time"
+                                  },
+                                  {
+                                    "type": "null"
+                                  }
+                                ],
+                                "description": "Timestamp of when the entity was created"
+                              },
+                              "createdBy": {
+                                "type": "string",
+                                "description": "Identifies the system or user which created the entity"
+                              },
+                              "updatedDate": {
+                                "anyOf": [
+                                  {
+                                    "type": "string",
+                                    "format": "date-time"
+                                  },
+                                  {
+                                    "type": "null"
+                                  }
+                                ],
+                                "description": "Timestamp of when the entity was last updated"
+                              },
+                              "updatedBy": {
+                                "type": "string",
+                                "description": "Identifies the system or user which last updated the entity"
+                              },
+                              "isDeleted": {
+                                "anyOf": [
+                                  {
+                                    "type": "boolean"
+                                  },
+                                  {
+                                    "type": "null"
+                                  }
+                                ],
+                                "description": "Indicates whether or not the entity has been soft-deleted"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ],
+                    "description": "Descripts the type of relationship between the products"
+                  },
+                  "parentProductId": {
+                    "type": "string",
+                    "description": "Reference to product 1 that is related to product 2"
+                  },
+                  "childProductId": {
+                    "type": "string",
+                    "description": "Reference to product 2 that is related to product 1"
+                  },
+                  "activeFromDate": {
+                    "type": "string",
+                    "description": "Date from when the product relationship is active",
+                    "format": "date"
+                  },
+                  "activeToDate": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "format": "date"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Date to when the product relationship is active"
+                  },
+                  "isDefaultOption": {
+                    "anyOf": [
+                      {
+                        "type": "boolean"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "True if this is the default option for a product, such as a phone case being a default option for a phone"
+                  },
+                  "auditInfo": {
+                    "type": "object",
+                    "description": "Audit information for the entity",
+                    "additionalProperties": true,
+                    "required": [
+                      "createdBy",
+                      "isDeleted",
+                      "updatedBy",
+                      "updatedDate",
+                      "createdDate"
+                    ],
+                    "properties": {
+                      "createdDate": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "Timestamp of when the entity was created"
+                      },
+                      "createdBy": {
+                        "type": "string",
+                        "description": "Identifies the system or user which created the entity"
+                      },
+                      "updatedDate": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "Timestamp of when the entity was last updated"
+                      },
+                      "updatedBy": {
+                        "type": "string",
+                        "description": "Identifies the system or user which last updated the entity"
+                      },
+                      "isDeleted": {
+                        "anyOf": [
+                          {
+                            "type": "boolean"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "Indicates whether or not the entity has been soft-deleted"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "externalIds": {
+          "type": "array",
+          "description": "External identifiers associated with the entity",
+          "items": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "object",
+                "description": "Defines a structure for referencing an entity in external systems",
+                "additionalProperties": true,
+                "required": [
+                  "externalIdType",
+                  "externalId",
+                  "id"
+                ],
+                "properties": {
+                  "id": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Unique identifier for the entity, can be null on create if auto-generated"
+                  },
+                  "externalId": {
+                    "type": "string",
+                    "description": "A unique identifier assigned to an entity in another system"
+                  },
+                  "externalIdType": {
+                    "type": "string",
+                    "description": "Identifies the system that owns or otherwise recognizes this unique identifier"
+                  },
+                  "status": {
+                    "enum": [
+                      "VALID",
+                      "INVALID"
+                    ],
+                    "description": "Indicates whether this identifier is currently valid or not",
+                    "type": "string"
+                  },
+                  "statusLastChangedDate": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Date and time of the last change in status"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "auditInfo": {
+          "type": "object",
+          "description": "Audit information for the entity",
+          "additionalProperties": true,
+          "required": [
+            "createdBy",
+            "isDeleted",
+            "updatedBy",
+            "updatedDate",
+            "createdDate"
+          ],
+          "properties": {
+            "createdDate": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Timestamp of when the entity was created"
+            },
+            "createdBy": {
+              "type": "string",
+              "description": "Identifies the system or user which created the entity"
+            },
+            "updatedDate": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Timestamp of when the entity was last updated"
+            },
+            "updatedBy": {
+              "type": "string",
+              "description": "Identifies the system or user which last updated the entity"
+            },
+            "isDeleted": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Indicates whether or not the entity has been soft-deleted"
+            }
+          }
+        }
+      }
+    }
+  }
+}

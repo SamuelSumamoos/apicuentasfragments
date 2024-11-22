@@ -1,0 +1,876 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Shipment",
+  "definitions": {
+    "Shipment": {
+      "description": "A quantity of goods sent together to a place, or the act of sending them",
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "id",
+        "shipmentDate"
+      ],
+      "properties": {
+        "id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Unique identifier for the entity, can be null on create if auto-generated"
+        },
+        "shipmentNumber": {
+          "type": "string",
+          "description": "Unique number for the shipment"
+        },
+        "shipmentDate": {
+          "type": "string",
+          "description": "Date the shipment was sent",
+          "format": "date"
+        },
+        "shipmentStatus": {
+          "type": "string",
+          "description": "Current stage of the shipment (for example, In Transit or Delivered)"
+        },
+        "fulfillmentOrderId": {
+          "type": "string",
+          "description": "Identifier of the fulfillment order that originated the request for shipment, if the shipment is for a single order"
+        },
+        "salesOrderId": {
+          "type": "string",
+          "description": "Identifier of the original sales order that originated the request for fulfillment, if the shipment is for a single order"
+        },
+        "shipToLocation": {
+          "type": "object",
+          "description": "Location the package or packages are to be shipped to",
+          "additionalProperties": true,
+          "required": [
+            "id"
+          ],
+          "properties": {
+            "id": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Unique identifier for the entity, can be null on create if auto-generated"
+            },
+            "name": {
+              "type": "string",
+              "description": "Display name of the location"
+            },
+            "contactName": {
+              "type": "string",
+              "description": "Name of the person to contact at this location (for receiving shipments, as an example)"
+            },
+            "locationCode": {
+              "type": "string",
+              "description": "Alternate code associated with the location"
+            },
+            "locationType": {
+              "type": "string",
+              "description": "Reference to the type of location (for example, Bulding, Ship, Arena)"
+            },
+            "locationAddress": {
+              "type": "object",
+              "description": "Free-form or structured address of the location",
+              "additionalProperties": true,
+              "required": [
+                "addressLine1"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Optional display name for the address"
+                },
+                "addressLine1": {
+                  "type": "string",
+                  "description": "The first address line can be used by itself for unstructured addresses"
+                },
+                "addressLine2": {
+                  "type": "string",
+                  "description": "Optional second line of the address"
+                },
+                "addressLine3": {
+                  "type": "string",
+                  "description": "Optional third line of the address"
+                },
+                "cityName": {
+                  "type": "string",
+                  "description": "Display name of the city for the address"
+                },
+                "stateProvinceName": {
+                  "type": "string",
+                  "description": "Display name of the state or province for the address"
+                },
+                "stateProvinceCode": {
+                  "type": "string",
+                  "description": "The ISO region code for the address"
+                },
+                "countryName": {
+                  "type": "string",
+                  "description": "Display name of the country for the address"
+                },
+                "countryCode": {
+                  "type": "string",
+                  "description": "The ISO country code for the address"
+                },
+                "postalCodeText": {
+                  "type": "string",
+                  "description": "The postal code for the address"
+                },
+                "geoAccuracyCode": {
+                  "type": "string",
+                  "description": "Provides more information about the latitude and longitude of the address"
+                },
+                "geoLatitude": {
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "description": "The latitude of the address"
+                },
+                "geoLongitude": {
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "description": "The longitude of the address"
+                }
+              }
+            },
+            "auditInfo": {
+              "type": "object",
+              "description": "Audit information for the entity",
+              "additionalProperties": true,
+              "required": [
+                "isDeleted",
+                "createdBy",
+                "updatedBy",
+                "updatedDate",
+                "createdDate"
+              ],
+              "properties": {
+                "createdDate": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "description": "Timestamp of when the entity was created"
+                },
+                "createdBy": {
+                  "type": "string",
+                  "description": "Identifies the system or user which created the entity"
+                },
+                "updatedDate": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "description": "Timestamp of when the entity was last updated"
+                },
+                "updatedBy": {
+                  "type": "string",
+                  "description": "Identifies the system or user which last updated the entity"
+                },
+                "isDeleted": {
+                  "anyOf": [
+                    {
+                      "type": "boolean"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "description": "Indicates whether or not the entity has been soft-deleted"
+                }
+              }
+            }
+          }
+        },
+        "orderDeliveryMethodId": {
+          "type": "string",
+          "description": "Identifier of the standardized method for delivering products or services"
+        },
+        "scheduledDeliveryDateTime": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "The date/time when the delivery has been scheduled to occur"
+        },
+        "estimatedDeliveryDateTime": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "The expected date/time when the shipment will arrive, which should be the scheduled date/time unless there are delays"
+        },
+        "actualDeliveryDateTime": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "The date/time when the delivery was completed"
+        },
+        "carrierCode": {
+          "type": "string",
+          "description": "Code for the carrier provider delivering the shipment"
+        },
+        "carrierTrackingNumber": {
+          "type": "string",
+          "description": "An unique identifier issued by a shipping carrier that can be used to determine the current location of a package"
+        },
+        "carrierTrackingUrl": {
+          "type": "string",
+          "description": "Web address to look up tracking information for the shipment"
+        },
+        "specialInstructionsText": {
+          "type": "string",
+          "description": "Instructions to the delivery service (for example, leave with neighbors)"
+        },
+        "totalQuantity": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Total number of product instances included in the shipment"
+        },
+        "isGift": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "True if the shipment represents a gift, false otherwise"
+        },
+        "giftMessageText": {
+          "type": "string",
+          "description": "Text message to be delivered with the shipment if it represents a gift"
+        },
+        "shipmentDocuments": {
+          "type": "array",
+          "description": "Documents associated with the shipment, which can be a list of identifier references or complete objects (not both)",
+          "items": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "description": "A receipt, bill of lading or other document that is delivered with the shipment to explain the purchase or shipment contents.",
+                "type": "object",
+                "additionalProperties": true,
+                "required": [
+                  "id"
+                ],
+                "properties": {
+                  "id": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Unique identifier for the entity, can be null on create if auto-generated"
+                  },
+                  "contentDocumentVersion": {
+                    "type": "string",
+                    "description": "References the version of the document to be included"
+                  },
+                  "shipmentPackageId": {
+                    "type": "string",
+                    "description": "References the package to which the document applies"
+                  },
+                  "auditInfo": {
+                    "type": "object",
+                    "description": "Audit information for the entity",
+                    "additionalProperties": true,
+                    "required": [
+                      "createdBy",
+                      "isDeleted",
+                      "updatedBy",
+                      "updatedDate",
+                      "createdDate"
+                    ],
+                    "properties": {
+                      "createdDate": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "Timestamp of when the entity was created"
+                      },
+                      "createdBy": {
+                        "type": "string",
+                        "description": "Identifies the system or user which created the entity"
+                      },
+                      "updatedDate": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "Timestamp of when the entity was last updated"
+                      },
+                      "updatedBy": {
+                        "type": "string",
+                        "description": "Identifies the system or user which last updated the entity"
+                      },
+                      "isDeleted": {
+                        "anyOf": [
+                          {
+                            "type": "boolean"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "Indicates whether or not the entity has been soft-deleted"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "shipmentPackages": {
+          "type": "array",
+          "description": "Packages included with the shipment, which can be a list of identifier references or complete objects (not both)",
+          "items": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "description": "A parcel of one or more items bundled together, so that they arrive at the location as a single unit",
+                "type": "object",
+                "additionalProperties": true,
+                "required": [
+                  "id"
+                ],
+                "properties": {
+                  "id": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Unique identifier for the entity, can be null on create if auto-generated"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "Description of the package"
+                  },
+                  "shipmentProductCount": {
+                    "anyOf": [
+                      {
+                        "type": "integer"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "How many individual products are included in the package"
+                  },
+                  "auditInfo": {
+                    "type": "object",
+                    "description": "Audit information for the entity",
+                    "additionalProperties": true,
+                    "required": [
+                      "createdBy",
+                      "isDeleted",
+                      "updatedBy",
+                      "updatedDate",
+                      "createdDate"
+                    ],
+                    "properties": {
+                      "createdDate": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "Timestamp of when the entity was created"
+                      },
+                      "createdBy": {
+                        "type": "string",
+                        "description": "Identifies the system or user which created the entity"
+                      },
+                      "updatedDate": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "Timestamp of when the entity was last updated"
+                      },
+                      "updatedBy": {
+                        "type": "string",
+                        "description": "Identifies the system or user which last updated the entity"
+                      },
+                      "isDeleted": {
+                        "anyOf": [
+                          {
+                            "type": "boolean"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "Indicates whether or not the entity has been soft-deleted"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "shipmentProducts": {
+          "type": "array",
+          "description": "Products included with the shipment, which can be a list of identifier references or complete objects (not both)",
+          "items": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "description": "An item on a list of one or more that comprises a shipment.",
+                "type": "object",
+                "additionalProperties": true,
+                "required": [
+                  "id"
+                ],
+                "properties": {
+                  "id": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Unique identifier for the entity, can be null on create if auto-generated"
+                  },
+                  "lineNumber": {
+                    "anyOf": [
+                      {
+                        "type": "integer"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Line number of the shipment product in a shipment"
+                  },
+                  "productCode": {
+                    "type": "string",
+                    "description": "References the actual product to be shipped"
+                  },
+                  "fulfillmentOrderId": {
+                    "type": "string",
+                    "description": "Identifier of the fulfillment order that originated the request for shipment, if the shipment includes products for multiple orders"
+                  },
+                  "fulfillmentOrderProductId": {
+                    "type": "string",
+                    "description": "References the product line item from the associated fulfillment order"
+                  },
+                  "salesOrderId": {
+                    "type": "string",
+                    "description": "Identifier of the original sales order that originated the request for fulfillment, if the shipment includes products for multiple orders"
+                  },
+                  "salesOrderProductId": {
+                    "type": "string",
+                    "description": "References the product line item from the original sales order"
+                  },
+                  "shipmentPackageId": {
+                    "type": "string",
+                    "description": "References the package in which the item was packed"
+                  },
+                  "quantity": {
+                    "anyOf": [
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "How many instances of the product are to be shipped"
+                  },
+                  "priceAdjustments": {
+                    "type": "array",
+                    "description": "List of price adjustments for the shipment product, which can be a list of identifier references or complete objects (not both)",
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "description": "A change to the price of an ordered product or service that is made after fulfillment.",
+                          "type": "object",
+                          "additionalProperties": true,
+                          "required": [
+                            "id",
+                            "adjustmentAmount"
+                          ],
+                          "properties": {
+                            "id": {
+                              "anyOf": [
+                                {
+                                  "type": "string"
+                                },
+                                {
+                                  "type": "null"
+                                }
+                              ],
+                              "description": "Unique identifier for the entity, can be null on create if auto-generated"
+                            },
+                            "description": {
+                              "type": "string",
+                              "description": "Description of the shipment product price adjustment"
+                            },
+                            "adjustmentAmount": {
+                              "type": "number",
+                              "description": "Adjustment amount for the shipment product"
+                            },
+                            "adjustmentTaxAmount": {
+                              "anyOf": [
+                                {
+                                  "type": "number"
+                                },
+                                {
+                                  "type": "null"
+                                }
+                              ],
+                              "description": "Tax on the adjustment amount"
+                            },
+                            "adjustmentAmountWithTax": {
+                              "anyOf": [
+                                {
+                                  "type": "number"
+                                },
+                                {
+                                  "type": "null"
+                                }
+                              ],
+                              "description": "Sum of adjustmentAmount + adjustmentTaxAmount"
+                            },
+                            "auditInfo": {
+                              "type": "object",
+                              "description": "Audit information for the entity",
+                              "additionalProperties": true,
+                              "required": [
+                                "createdBy",
+                                "isDeleted",
+                                "updatedBy",
+                                "updatedDate",
+                                "createdDate"
+                              ],
+                              "properties": {
+                                "createdDate": {
+                                  "anyOf": [
+                                    {
+                                      "type": "string",
+                                      "format": "date-time"
+                                    },
+                                    {
+                                      "type": "null"
+                                    }
+                                  ],
+                                  "description": "Timestamp of when the entity was created"
+                                },
+                                "createdBy": {
+                                  "type": "string",
+                                  "description": "Identifies the system or user which created the entity"
+                                },
+                                "updatedDate": {
+                                  "anyOf": [
+                                    {
+                                      "type": "string",
+                                      "format": "date-time"
+                                    },
+                                    {
+                                      "type": "null"
+                                    }
+                                  ],
+                                  "description": "Timestamp of when the entity was last updated"
+                                },
+                                "updatedBy": {
+                                  "type": "string",
+                                  "description": "Identifies the system or user which last updated the entity"
+                                },
+                                "isDeleted": {
+                                  "anyOf": [
+                                    {
+                                      "type": "boolean"
+                                    },
+                                    {
+                                      "type": "null"
+                                    }
+                                  ],
+                                  "description": "Indicates whether or not the entity has been soft-deleted"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "auditInfo": {
+                    "type": "object",
+                    "description": "Audit information for the entity",
+                    "additionalProperties": true,
+                    "required": [
+                      "createdBy",
+                      "isDeleted",
+                      "updatedBy",
+                      "updatedDate",
+                      "createdDate"
+                    ],
+                    "properties": {
+                      "createdDate": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "Timestamp of when the entity was created"
+                      },
+                      "createdBy": {
+                        "type": "string",
+                        "description": "Identifies the system or user which created the entity"
+                      },
+                      "updatedDate": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "Timestamp of when the entity was last updated"
+                      },
+                      "updatedBy": {
+                        "type": "string",
+                        "description": "Identifies the system or user which last updated the entity"
+                      },
+                      "isDeleted": {
+                        "anyOf": [
+                          {
+                            "type": "boolean"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "Indicates whether or not the entity has been soft-deleted"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "externalIds": {
+          "type": "array",
+          "description": "External identifiers associated with the entity",
+          "items": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "object",
+                "description": "Defines a structure for referencing an entity in external systems",
+                "additionalProperties": true,
+                "required": [
+                  "externalIdType",
+                  "externalId",
+                  "id"
+                ],
+                "properties": {
+                  "id": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Unique identifier for the entity, can be null on create if auto-generated"
+                  },
+                  "externalId": {
+                    "type": "string",
+                    "description": "A unique identifier assigned to an entity in another system"
+                  },
+                  "externalIdType": {
+                    "type": "string",
+                    "description": "Identifies the system that owns or otherwise recognizes this unique identifier"
+                  },
+                  "status": {
+                    "enum": [
+                      "VALID",
+                      "INVALID"
+                    ],
+                    "description": "Indicates whether this identifier is currently valid or not",
+                    "type": "string"
+                  },
+                  "statusLastChangedDate": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Date and time of the last change in status"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "auditInfo": {
+          "type": "object",
+          "description": "Audit information for the entity",
+          "additionalProperties": true,
+          "required": [
+            "createdBy",
+            "isDeleted",
+            "updatedBy",
+            "updatedDate",
+            "createdDate"
+          ],
+          "properties": {
+            "createdDate": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Timestamp of when the entity was created"
+            },
+            "createdBy": {
+              "type": "string",
+              "description": "Identifies the system or user which created the entity"
+            },
+            "updatedDate": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Timestamp of when the entity was last updated"
+            },
+            "updatedBy": {
+              "type": "string",
+              "description": "Identifies the system or user which last updated the entity"
+            },
+            "isDeleted": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Indicates whether or not the entity has been soft-deleted"
+            }
+          }
+        }
+      }
+    }
+  }
+}

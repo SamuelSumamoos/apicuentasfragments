@@ -1,0 +1,28 @@
+{
+  "id": "3c5238d1-a3bf-4001-8c9f-4da17e1f7e4e",
+  "paymentMethodInstance": "CouponExample",
+  "paymentMethodType": {
+    "id": null,
+    "name": "DiscountCoupon",
+    "description": "A discount coupon used for payments",
+    "mediaType": "Electronic Voucher"
+  },
+  "paymentMethodStatus": "Active",
+  "customerId": "ceabd182-23af-4f2e-a246-66d5ce0bcc1d",
+  "couponCode": "0243eb21-cf3a-4b43-b8bd-a64537d60590",
+  "scanCode": "",
+  "expirationDate": "2028-01-01",
+  "discountAmount": 50.0,
+  "discountPercentage": 0.0,
+  "couponStatus": "Unused",
+  "isValid": true,
+  "isReturnCoupon": false,
+  "returnCouponReason": "",
+  "auditInfo": {
+    "createdDate": "2022-04-30T17:25:11.128Z",
+    "createdBy": "Application Admin",
+    "updatedDate": "2022-04-30T17:25:11.128Z",
+    "updatedBy": "Application Admin",
+    "isDeleted": false
+  }
+}

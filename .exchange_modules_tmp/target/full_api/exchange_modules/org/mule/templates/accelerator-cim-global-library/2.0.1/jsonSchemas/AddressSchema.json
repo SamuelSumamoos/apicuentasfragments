@@ -1,0 +1,82 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Address",
+  "definitions": {
+    "Address": {
+      "description": "Defines a standard address structure for use in multiple entities and subject areas",
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "addressLine1"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Optional display name for the address"
+        },
+        "addressLine1": {
+          "type": "string",
+          "description": "The first address line can be used by itself for unstructured addresses"
+        },
+        "addressLine2": {
+          "type": "string",
+          "description": "Optional second line of the address"
+        },
+        "addressLine3": {
+          "type": "string",
+          "description": "Optional third line of the address"
+        },
+        "cityName": {
+          "type": "string",
+          "description": "Display name of the city for the address"
+        },
+        "stateProvinceName": {
+          "type": "string",
+          "description": "Display name of the state or province for the address"
+        },
+        "stateProvinceCode": {
+          "type": "string",
+          "description": "The ISO region code for the address"
+        },
+        "countryName": {
+          "type": "string",
+          "description": "Display name of the country for the address"
+        },
+        "countryCode": {
+          "type": "string",
+          "description": "The ISO country code for the address"
+        },
+        "postalCodeText": {
+          "type": "string",
+          "description": "The postal code for the address"
+        },
+        "geoAccuracyCode": {
+          "type": "string",
+          "description": "Provides more information about the latitude and longitude of the address"
+        },
+        "geoLatitude": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "The latitude of the address"
+        },
+        "geoLongitude": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "The longitude of the address"
+        }
+      }
+    }
+  }
+}

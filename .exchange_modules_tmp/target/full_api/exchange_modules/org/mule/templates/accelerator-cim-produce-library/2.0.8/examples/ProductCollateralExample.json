@@ -1,0 +1,11 @@
+{
+  "id": "c36d22a6-3c97-4f05-bf8c-61c0aed0e49b",
+  "productCollateralUrl": "http://localhost:8082/catalog/tshirts/summit/mensblue.pdf",
+  "auditInfo": {
+    "createdDate": "2023-12-12T19:24:05Z",
+    "createdBy": "Application Admin",
+    "updatedDate": "2023-12-12T19:24:05Z",
+    "updatedBy": "Application Admin",
+    "isDeleted": true
+  }
+}

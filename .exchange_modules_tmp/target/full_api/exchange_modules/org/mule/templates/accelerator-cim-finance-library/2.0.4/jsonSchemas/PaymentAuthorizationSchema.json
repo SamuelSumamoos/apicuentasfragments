@@ -1,0 +1,522 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/PaymentAuthorization",
+  "definitions": {
+    "PaymentAuthorization": {
+      "description": "An approval from the issuer of a payment instrument that the customer has sufficient funds to cover the cost of the transaction",
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "id",
+        "paymentAuthorizationNumber",
+        "paymentAuthorizationStatus",
+        "paymentAuthorizationProcessingMode",
+        "authorizationAmount"
+      ],
+      "properties": {
+        "id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Unique identifier for the entity, can be null on create if auto-generated"
+        },
+        "paymentAuthorizationNumber": {
+          "type": "string",
+          "description": "Automatically-generated number that identifies the payment authorization"
+        },
+        "paymentAuthorizationStatus": {
+          "type": "string",
+          "description": "Processing stage of the payment authorization"
+        },
+        "paymentAuthorizationProcessingMode": {
+          "type": "string",
+          "description": "Describes whether the payment processing was done by the platform or by an external system"
+        },
+        "salesOrderPaymentSummaryId": {
+          "type": "string",
+          "description": "References the sales order payment summary that associates an authorization to a payment"
+        },
+        "paymentGroup": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "description": "Provides a way to associate payments and payment gateway events when the payment is not associated with a sales order",
+              "type": "object",
+              "additionalProperties": true,
+              "required": [
+                "id",
+                "paymentGroupNumber",
+                "totalPaymentAmount",
+                "totalAuthorizationAmount",
+                "totalReversalAmount"
+              ],
+              "properties": {
+                "id": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "description": "Unique identifier for the entity, can be null on create if auto-generated"
+                },
+                "paymentGroupNumber": {
+                  "type": "string",
+                  "description": "Automatically-generated number that identifies the payment group"
+                },
+                "totalPaymentAmount": {
+                  "type": "number",
+                  "description": "Sum of all associated Payment records"
+                },
+                "totalAuthorizationAmount": {
+                  "type": "number",
+                  "description": "Sum of all associated payment authorization records"
+                },
+                "totalReversalAmount": {
+                  "type": "number",
+                  "description": "Sum of all associated payment reversal records"
+                },
+                "auditInfo": {
+                  "type": "object",
+                  "description": "Audit information for the entity",
+                  "additionalProperties": true,
+                  "required": [
+                    "createdBy",
+                    "isDeleted",
+                    "updatedBy",
+                    "updatedDate",
+                    "createdDate"
+                  ],
+                  "properties": {
+                    "createdDate": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "description": "Timestamp of when the entity was created"
+                    },
+                    "createdBy": {
+                      "type": "string",
+                      "description": "Identifies the system or user which created the entity"
+                    },
+                    "updatedDate": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "description": "Timestamp of when the entity was last updated"
+                    },
+                    "updatedBy": {
+                      "type": "string",
+                      "description": "Identifies the system or user which last updated the entity"
+                    },
+                    "isDeleted": {
+                      "anyOf": [
+                        {
+                          "type": "boolean"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "description": "Indicates whether or not the entity has been soft-deleted"
+                    }
+                  }
+                }
+              }
+            }
+          ],
+          "description": "Provides a way to associate payments and payment gateway events, where the payment is not associated with a sales order"
+        },
+        "paymentMethodId": {
+          "type": "string",
+          "description": "References the means by which a buyer compensates a seller for a purchased good or service"
+        },
+        "paymentGateway": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "description": "Holds the payment gateway merchant details, which are used to interact external payment systems",
+              "type": "object",
+              "additionalProperties": true,
+              "required": [
+                "id",
+                "name",
+                "paymentGatewayStatus"
+              ],
+              "properties": {
+                "id": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "description": "Unique identifier for the entity, can be null on create if auto-generated"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "Short name of the payment gateway"
+                },
+                "paymentGatewayStatus": {
+                  "type": "string",
+                  "description": "Current status of the payment gateway, such as Active or Inactive"
+                },
+                "paymentGatewayProvider": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "description": "Provides details about the underlying payment gateway provider",
+                      "type": "object",
+                      "additionalProperties": true,
+                      "required": [
+                        "id",
+                        "name"
+                      ],
+                      "properties": {
+                        "id": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "description": "Unique identifier for the entity, can be null on create if auto-generated"
+                        },
+                        "name": {
+                          "type": "string",
+                          "description": "Short name for the payment gateway provider"
+                        },
+                        "namespacePrefixText": {
+                          "type": "string",
+                          "description": "Qualifier used to provide uniqueness to the payment gateway provider name"
+                        },
+                        "implementationClassName": {
+                          "type": "string",
+                          "description": "Programmatic name of the class that implements the payment gateway provider"
+                        },
+                        "developerName": {
+                          "type": "string",
+                          "description": "Name used within program code to identify the payment gateway provider"
+                        },
+                        "commentText": {
+                          "type": "string",
+                          "description": "Descriptive text about the payment gateway provider"
+                        },
+                        "auditInfo": {
+                          "type": "object",
+                          "description": "Audit information for the entity",
+                          "additionalProperties": true,
+                          "required": [
+                            "createdBy",
+                            "isDeleted",
+                            "updatedBy",
+                            "updatedDate",
+                            "createdDate"
+                          ],
+                          "properties": {
+                            "createdDate": {
+                              "anyOf": [
+                                {
+                                  "type": "string",
+                                  "format": "date-time"
+                                },
+                                {
+                                  "type": "null"
+                                }
+                              ],
+                              "description": "Timestamp of when the entity was created"
+                            },
+                            "createdBy": {
+                              "type": "string",
+                              "description": "Identifies the system or user which created the entity"
+                            },
+                            "updatedDate": {
+                              "anyOf": [
+                                {
+                                  "type": "string",
+                                  "format": "date-time"
+                                },
+                                {
+                                  "type": "null"
+                                }
+                              ],
+                              "description": "Timestamp of when the entity was last updated"
+                            },
+                            "updatedBy": {
+                              "type": "string",
+                              "description": "Identifies the system or user which last updated the entity"
+                            },
+                            "isDeleted": {
+                              "anyOf": [
+                                {
+                                  "type": "boolean"
+                                },
+                                {
+                                  "type": "null"
+                                }
+                              ],
+                              "description": "Indicates whether or not the entity has been soft-deleted"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "description": "References the actual provider for the payment gateway"
+                },
+                "systemCredentialId": {
+                  "type": "string",
+                  "description": "References the credentials used for authentication with the payment gateway"
+                },
+                "commentText": {
+                  "type": "string",
+                  "description": "Descriptive text about the payment gateway"
+                },
+                "auditInfo": {
+                  "type": "object",
+                  "description": "Audit information for the entity",
+                  "additionalProperties": true,
+                  "required": [
+                    "createdBy",
+                    "isDeleted",
+                    "updatedBy",
+                    "updatedDate",
+                    "createdDate"
+                  ],
+                  "properties": {
+                    "createdDate": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "description": "Timestamp of when the entity was created"
+                    },
+                    "createdBy": {
+                      "type": "string",
+                      "description": "Identifies the system or user which created the entity"
+                    },
+                    "updatedDate": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "description": "Timestamp of when the entity was last updated"
+                    },
+                    "updatedBy": {
+                      "type": "string",
+                      "description": "Identifies the system or user which last updated the entity"
+                    },
+                    "isDeleted": {
+                      "anyOf": [
+                        {
+                          "type": "boolean"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "description": "Indicates whether or not the entity has been soft-deleted"
+                    }
+                  }
+                }
+              }
+            }
+          ],
+          "description": "Holds the payment gateway merchant details, which are used to interact external payment systems"
+        },
+        "gatewayRequestDateTime": {
+          "type": "string",
+          "description": "Date and time when the payment platform sent the authorization request to the gateway",
+          "format": "date-time"
+        },
+        "paymentGatewayDateTime": {
+          "type": "string",
+          "description": "Datetime provided by the gateway after successful communication",
+          "format": "date-time"
+        },
+        "gatewayAuthorizationCode": {
+          "type": "string",
+          "description": "Authorization approval code sent back by the gateway"
+        },
+        "paymentGatewayReferenceNumber": {
+          "type": "string",
+          "description": "Unique transaction identifier generated by payment gateway"
+        },
+        "paymentGatewayResultCode": {
+          "type": "string",
+          "description": "Result code returned by the gateway"
+        },
+        "gatewayResultCodeDescription": {
+          "type": "string",
+          "description": "Description of the result code returned by the gateway"
+        },
+        "paymentGatewayInternalReferenceNumber": {
+          "type": "string",
+          "description": "Unique transaction identifier generated by the internal payment platform"
+        },
+        "paymentGatewayInternalResultCode": {
+          "type": "string",
+          "description": "Internal result code returned by the internal payment platform"
+        },
+        "gatewayReferenceDetailsText": {
+          "type": "string",
+          "description": "Data that will be used by the gateway for subsequent transactions"
+        },
+        "ipAddress": {
+          "type": "string",
+          "description": "Unique network address of the device that originated the payment authorization request"
+        },
+        "macAddress": {
+          "type": "string",
+          "description": "Unique hardware identification number of the device that originated the payment authorization request"
+        },
+        "expirationDate": {
+          "type": "string",
+          "description": "Date when the authorization will no longer be valid",
+          "format": "date"
+        },
+        "authorizationAmount": {
+          "type": "number",
+          "description": "Payment amount that is being authorized to complete a purchase"
+        },
+        "availableBalanceAmount": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Amount of currency that will be used to complete the payment once the authorization has been completed"
+        },
+        "totalPaymentCaptureAmount": {
+          "type": "number",
+          "description": "Total of all payment captures related to the authorization"
+        },
+        "totalAuthorizationReversalAmount": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Total reversed authorized amount"
+        },
+        "commentText": {
+          "type": "string",
+          "description": "Descriptive text about the payment authorization"
+        },
+        "externalCreatedDate": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Preserves original creation date for payments imported from external systems"
+        },
+        "auditInfo": {
+          "type": "object",
+          "description": "Audit information for the entity",
+          "additionalProperties": true,
+          "required": [
+            "createdBy",
+            "isDeleted",
+            "updatedBy",
+            "updatedDate",
+            "createdDate"
+          ],
+          "properties": {
+            "createdDate": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Timestamp of when the entity was created"
+            },
+            "createdBy": {
+              "type": "string",
+              "description": "Identifies the system or user which created the entity"
+            },
+            "updatedDate": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Timestamp of when the entity was last updated"
+            },
+            "updatedBy": {
+              "type": "string",
+              "description": "Identifies the system or user which last updated the entity"
+            },
+            "isDeleted": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Indicates whether or not the entity has been soft-deleted"
+            }
+          }
+        }
+      }
+    }
+  }
+}

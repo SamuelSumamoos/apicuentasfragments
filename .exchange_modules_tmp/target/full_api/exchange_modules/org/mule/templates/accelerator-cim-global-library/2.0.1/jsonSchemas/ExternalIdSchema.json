@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ExternalId",
+  "definitions": {
+    "ExternalId": {
+      "description": "Defines a structure for referencing an entity in external systems",
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "id",
+        "externalId",
+        "externalIdType"
+      ],
+      "properties": {
+        "id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Unique identifier for the entity, can be null on create if auto-generated"
+        },
+        "externalId": {
+          "type": "string",
+          "description": "A unique identifier assigned to an entity in another system"
+        },
+        "externalIdType": {
+          "type": "string",
+          "description": "Identifies the system that owns or otherwise recognizes this unique identifier"
+        },
+        "status": {
+          "enum": [
+            "VALID",
+            "INVALID"
+          ],
+          "description": "Indicates whether this identifier is currently valid or not",
+          "type": "string"
+        },
+        "statusLastChangedDate": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Date and time of the last change in status"
+        }
+      }
+    }
+  }
+}

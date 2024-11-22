@@ -1,0 +1,287 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/PaymentApplication",
+  "definitions": {
+    "PaymentApplication": {
+      "description": "The designation of part or all of a payment to satisfy a claim on the payment funds",
+      "discriminator": "paymentApplicationInstance",
+      "discriminatorValue": "PaymentApplication",
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "id",
+        "paymentApplicationInstance",
+        "effectiveDate",
+        "appliedDate",
+        "appliedAmount"
+      ],
+      "properties": {
+        "id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Unique identifier for the entity, can be null on create if auto-generated"
+        },
+        "name": {
+          "type": "string",
+          "description": "Short description of the payment application"
+        },
+        "paymentApplicationInstance": {
+          "type": "string",
+          "description": "Discriminator property identifying the specific payment application instance type, such as PaymentCreditMemoApplication"
+        },
+        "paymentApplicationType": {
+          "type": "string",
+          "description": "Identifies the payment application as either Apply or Unapply"
+        },
+        "effectiveDate": {
+          "type": "string",
+          "description": "Date when account balances will reflect the application of the payment",
+          "format": "date"
+        },
+        "appliedDate": {
+          "type": "string",
+          "description": "Effective date of the payment application to an invoice or credit memo",
+          "format": "date"
+        },
+        "hasBeenUnapplied": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "True if the application of a payment to an invoice or credit memo has been reversed, false otherwise"
+        },
+        "unappliedDate": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Date when the payment was unapplied to an invoice or credit memo"
+        },
+        "appliedAmount": {
+          "type": "number",
+          "description": "Amount of currency of the payment applied to either an invoice or credit memo"
+        },
+        "paymentBalanceAmount": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Unapplied portion of the payment amount that remains after application to an invoice or credit memo"
+        },
+        "commentText": {
+          "type": "string",
+          "description": "Brief description of the payment application"
+        },
+        "externalCreatedDate": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Preserves original creation date for payments imported from external systems"
+        },
+        "paymentAllocations": {
+          "type": "array",
+          "description": "Additional allocations for the application, which can be a list of identifier references or complete objects (not both)",
+          "items": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "description": "A payment application may be further broken down into allocations, to allocate payment funds to one or more line items within an invoice or credit memo",
+                "discriminator": "paymentAllocationInstance",
+                "discriminatorValue": "PaymentAllocation",
+                "type": "object",
+                "additionalProperties": true,
+                "required": [
+                  "id",
+                  "paymentAllocationInstance",
+                  "appliedAmount"
+                ],
+                "properties": {
+                  "id": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Unique identifier for the entity, can be null on create if auto-generated"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Short description of the payment allocation"
+                  },
+                  "paymentAllocationInstance": {
+                    "type": "string",
+                    "description": "Discriminator property identifying the specific payment allocation instance type, such as PaymentCreditMemoAllocation"
+                  },
+                  "relatedPaymentAllocationId": {
+                    "type": "string",
+                    "description": "Relates a new payment allocation back to the original, in cases where payments are unapplied"
+                  },
+                  "appliedAmount": {
+                    "type": "number",
+                    "description": "Amount of currency of the payment applied to the invoice or credit memo line item"
+                  },
+                  "externalCreatedDate": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "format": "date"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Preserves original creation date for payments imported from external systems"
+                  },
+                  "auditInfo": {
+                    "type": "object",
+                    "description": "Audit information for the entity",
+                    "additionalProperties": true,
+                    "required": [
+                      "createdBy",
+                      "isDeleted",
+                      "updatedBy",
+                      "updatedDate",
+                      "createdDate"
+                    ],
+                    "properties": {
+                      "createdDate": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "Timestamp of when the entity was created"
+                      },
+                      "createdBy": {
+                        "type": "string",
+                        "description": "Identifies the system or user which created the entity"
+                      },
+                      "updatedDate": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "Timestamp of when the entity was last updated"
+                      },
+                      "updatedBy": {
+                        "type": "string",
+                        "description": "Identifies the system or user which last updated the entity"
+                      },
+                      "isDeleted": {
+                        "anyOf": [
+                          {
+                            "type": "boolean"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "Indicates whether or not the entity has been soft-deleted"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "auditInfo": {
+          "type": "object",
+          "description": "Audit information for the entity",
+          "additionalProperties": true,
+          "required": [
+            "createdBy",
+            "isDeleted",
+            "updatedBy",
+            "updatedDate",
+            "createdDate"
+          ],
+          "properties": {
+            "createdDate": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Timestamp of when the entity was created"
+            },
+            "createdBy": {
+              "type": "string",
+              "description": "Identifies the system or user which created the entity"
+            },
+            "updatedDate": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Timestamp of when the entity was last updated"
+            },
+            "updatedBy": {
+              "type": "string",
+              "description": "Identifies the system or user which last updated the entity"
+            },
+            "isDeleted": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Indicates whether or not the entity has been soft-deleted"
+            }
+          }
+        }
+      }
+    }
+  }
+}

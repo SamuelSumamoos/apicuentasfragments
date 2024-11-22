@@ -1,0 +1,15 @@
+{
+  "id": "6faa21ba-5a97-445b-afaa-4d866f0388f5",
+  "name": "Internal gateway",
+  "paymentGatewayStatus": "Active",
+  "paymentGatewayProvider": "Fundy",
+  "systemCredentialId": "ece670c0-f099-4f4d-9538-6fd855922dc6",
+  "commentText": "Implemented via Moneris Adapter Class",
+  "auditInfo": {
+    "createdDate": "2021-04-21T01:12:28.801Z",
+    "createdBy": "Application Admin",
+    "updatedDate": "2021-04-21T01:12:28.801Z",
+    "updatedBy": "Application Admin",
+    "isDeleted": false
+  }
+}

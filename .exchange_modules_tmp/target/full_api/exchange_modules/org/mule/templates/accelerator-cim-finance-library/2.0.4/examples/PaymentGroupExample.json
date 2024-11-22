@@ -1,0 +1,14 @@
+{
+  "id": "23139983-971F-4BB1-941B-1FB7BA06BF87",
+  "paymentGroupNumber": "7570535A-6FFD-4BE0-8D88-080C02C20816",
+  "totalPaymentAmount": 923.0,
+  "totalReversalAmount": 25.0,
+  "totalAuthorizationAmount": 923.0,
+  "auditInfo": {
+    "createdDate": "2021-04-21T01:12:28.801Z",
+    "createdBy": "Application Admin",
+    "updatedDate": "2021-04-21T01:12:28.801Z",
+    "updatedBy": "Application Admin",
+    "isDeleted": false
+  }
+}

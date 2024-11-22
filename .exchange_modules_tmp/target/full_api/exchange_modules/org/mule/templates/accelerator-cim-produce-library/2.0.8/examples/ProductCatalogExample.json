@@ -1,0 +1,16 @@
+{
+  "id": "37dk0df9-11gl-33cz-p781-1242ac167762",
+  "name": "Apparel",
+  "activeFromDate": "2022-01-04",
+  "activeToDate": "2022-10-07",
+  "productCategories": [
+    "021a697e-1865-4d8c-a9ab-9f0e575a847d"
+  ],
+  "auditInfo": {
+    "createdDate": "2021-12-12T19:24:05Z",
+    "createdBy": "Application Admin",
+    "updatedDate": "2021-12-12T19:24:05Z",
+    "updatedBy": "Application Admin",
+    "isDeleted": false
+  }
+}

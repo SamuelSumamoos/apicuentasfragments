@@ -1,0 +1,40 @@
+{
+  "id": "37d8a8e6-00ee-11ed-b939-0242ac168882",
+  "description": "Adidas shipment for July",
+  "receiptNumber": "RT-0065833",
+  "inventoryReceivedDate": "2021-12-12",
+  "postingDate": "2021-12-14",
+  "inventoryReceivedProducts": [
+    {
+      "id": null,
+      "description": "Flat of tennis shoes",
+      "purchaseOrderId": "c242e236-1c49-4b8a-897f-955300e1537e",
+      "purchaseOrderProductId": "ORD-02338301-1",
+      "storageLocation": {
+        "id": "f617ddb6-2628-4401-8886-21ce1854ad6e",
+        "name": "Customer Address",
+        "contactName": "Samuel L. Smith",
+        "locationCode": "338",
+        "locationAddress": {
+          "addressLine1": "2122 Maple Street",
+          "addressLine2": "Unit 23",
+          "addressLine3": "",
+          "cityName": "Austin",
+          "stateProvinceCode": "TX",
+          "countryCode": "US",
+          "postalCodeText": "45145"
+        }
+      },
+      "receivedQuantity": 10.0,
+      "quantityUnitOfMeasure": "Box",
+      "isCompletelyDelivered": true
+    }
+  ],
+  "auditInfo": {
+    "createdDate": "2024-03-05T07:16:23Z",
+    "createdBy": "Application Admin",
+    "updatedDate": "2024-03-05T07:16:23Z",
+    "updatedBy": "Application Admin",
+    "isDeleted": false
+  }
+}

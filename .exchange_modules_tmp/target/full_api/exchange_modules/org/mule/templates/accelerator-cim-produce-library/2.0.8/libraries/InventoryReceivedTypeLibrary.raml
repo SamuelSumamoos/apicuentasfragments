@@ -1,0 +1,63 @@
+#%RAML 1.0 Library
+usage: Types representing inventory products received
+
+uses:
+  GlobalTypes: ../exchange_modules/org.mule.templates/accelerator-cim-global-library/2.0.1/accelerator-cim-global-library.raml
+
+types:
+  InventoryReceived:
+    description: Represents an incoming delivery of product inventory
+    properties:
+      id:
+        type: string | nil
+        description: Unique identifier for the entity, can be null on create if auto-generated
+      description?:
+        type: string
+        description: Description of the inventory delivery
+      receiptNumber?:
+        type: string
+        description: Inventory receipt number
+      inventoryReceivedDate?: 
+        type: date-only | nil
+        description: Date the inventory was received
+      postingDate?: 
+        type: date-only | nil
+        description: Date the inventory was posted for availability
+      inventoryReceivedProducts?:
+        type: array
+        items: string | InventoryReceivedProduct
+        description: Inventory products included in the inventory received
+      auditInfo?:
+        type: GlobalTypes.AuditInfo
+        description: Audit information for the entity
+
+  InventoryReceivedProduct:
+    description: An individual product included in the inventory delivery
+    properties:
+      id:
+        type: string | nil
+        description: Unique identifier for the entity, can be null on create if auto-generated
+      description?:
+        type: string
+        description: Description of the inventory product
+      purchaseOrderId:
+        type: string
+        description: References the purchase order the inventory was purchased for
+      purchaseOrderProductId: 
+        type: string
+        description: References the product line item from the associated purchase order
+      storageLocation?:
+        type: GlobalTypes.Location
+        description: Location where the inventory product will be stored
+      receivedQuantity:
+        type: number | nil
+        description: Amount of inventory product received
+      quantityUnitOfMeasure?:
+        type: string
+        description: Unit of measure for the quantity received
+      isCompletelyDelivered?:
+        type: boolean | nil
+        description: True if the entire expected quantity has been received, false otherwise
+      auditInfo?:
+        type: GlobalTypes.AuditInfo
+        description: Audit information for the entity

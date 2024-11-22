@@ -1,0 +1,17 @@
+{
+  "id": "3c5238d1-a3bf-4001-8c9f-4da17e1f7e4e",
+  "name": "Pay for charges first",
+  "paymentTreatmentMethod": "931378 5d-9d27-4e00-aac7-66a49c1c861e",
+  "paymentTreatmentStatus": "Active",
+  "paymentApplicationLevel": "Header",
+  "paymentPolicyId": "",
+  "shouldAutoInvoice": false,
+  "internalOrganizationLegalEntityId": "",
+  "auditInfo": {
+    "createdDate": "2023-01-17T22:17:31.57Z",
+    "createdBy": "Application Admin",
+    "updatedDate": "2023-01-17T22:17:31.57Z",
+    "updatedBy": "Application Admin",
+    "isDeleted": true
+  }
+}

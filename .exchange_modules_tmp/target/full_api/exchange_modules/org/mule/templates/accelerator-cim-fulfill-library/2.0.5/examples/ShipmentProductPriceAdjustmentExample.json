@@ -1,0 +1,14 @@
+{
+  "id": "e3cf6f34-dbce-4523-97b4-7e4014c61fa1",
+  "description": "Repeat customer discount",
+  "adjustmentAmount": 50.0,
+  "adjustmentTaxAmount": 7.0,
+  "adjustmentAmountWithTax": 57.0,
+  "auditInfo": {
+    "createdDate": "2021-12-12T19:24:05Z",
+    "createdBy": "Application Admin",
+    "updatedDate": "2021-12-12T19:24:05Z",
+    "updatedBy": "Application Admin",
+    "isDeleted": false
+  }
+}

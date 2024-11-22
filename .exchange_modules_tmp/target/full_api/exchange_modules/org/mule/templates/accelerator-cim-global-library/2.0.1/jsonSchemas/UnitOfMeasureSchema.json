@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/UnitOfMeasure",
+  "definitions": {
+    "UnitOfMeasure": {
+      "description": "Identifies a specific unit of measure (for example, Item, Package, Drum)",
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "id",
+        "name"
+      ],
+      "properties": {
+        "id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Unique identifier for the entity, can be null on create if auto-generated"
+        },
+        "name": {
+          "type": "string",
+          "description": "Singular name of the unit of measure"
+        },
+        "description": {
+          "type": "string",
+          "description": "Longer description of the unit of measure"
+        },
+        "pluralName": {
+          "type": "string",
+          "description": "Plural name of the unit of measure"
+        }
+      }
+    }
+  }
+}

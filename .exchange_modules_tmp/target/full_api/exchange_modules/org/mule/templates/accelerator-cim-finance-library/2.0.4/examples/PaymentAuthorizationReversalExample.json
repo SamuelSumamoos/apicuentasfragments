@@ -1,0 +1,28 @@
+{
+  "id": "6faa21ba-5a97-445b-afaa-4d866f0388f5",
+  "name": "",
+  "paymentAuthorizationReversalStatus": "Completed",
+  "paymentAuthorizationProcessingMode": "Internal",
+  "authorizationReversalAmount": 261.0,
+  "paymentAuthorizationId": "1de8ed0e-02ad-11ed-b939-0242ac120002",
+  "capturePaymentId": "cb45464a-dbe0-4b4c-8f7f-445dee3cbaa9",
+  "customerEmailAddress": "johnf@example.net",
+  "customerPhoneNumber": "888-555-01234",
+  "gatewayRequestDateTime": "2023-04-21T01:12:28.801Z",
+  "paymentGatewayDateTime": "2023-04-21T01:13:12.924Z",
+  "paymentGatewayReferenceNumber": "9B566A5B-8D2F-43E7-B4EF-C3C2600139D0",
+  "paymentGatewayResultCode": "200",
+  "paymentGatewayInternalReferenceNumber": "",
+  "paymentGatewayInternalResultCode": "",
+  "ipAddress": "116.161.101.202",
+  "macAddress": "68-53-41-11-D3-25",
+  "commentText": "Reversed in full",
+  "externalCreatedDate": null,
+  "auditInfo": {
+    "createdDate": "2021-04-21T01:12:28.801Z",
+    "createdBy": "Application Admin",
+    "updatedDate": "2021-04-21T01:12:28.801Z",
+    "updatedBy": "Application Admin",
+    "isDeleted": false
+  }
+}

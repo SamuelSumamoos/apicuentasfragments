@@ -1,0 +1,46 @@
+{
+  "id": "97o8jb65-18gl-64cq-p784-8642an757762",
+  "name": "PA-99333",
+  "productId": "016dd272-8726-4274-a726-e51f4a446f6d",
+  "productCode": "8KKHYEZ",
+  "productName": "Medium sized T-Shirt",
+  "productLocation": {
+    "id": null,
+    "name": "Customer Address",
+    "contactName": "Samuel L. Smith",
+    "locationCode": "338",
+    "locationAddress": {
+      "addressLine1": "2122 Maple Street",
+      "addressLine2": "Unit 23",
+      "cityName": "Austin",
+      "stateProvinceCode": "TX",
+      "countryCode": "US",
+      "postalCodeText": "45145"
+    }
+  },
+  "fulfillmentLocation": {
+    "id": null,
+    "name": "Customer Address",
+    "contactName": "Samuel L. Smith",
+    "locationCode": "338",
+    "locationAddress": {
+      "addressLine1": "2122 Maple Street",
+      "addressLine2": "Unit 23",
+      "cityName": "Austin",
+      "stateProvinceCode": "TX",
+      "countryCode": "US",
+      "postalCodeText": "45145"
+    },
+    "productQuantity": 15.0,
+    "projectedQuantity": 10.0,
+    "projectionDate": "2024-04-01",
+    "projectionStatus": "Current"
+  },
+  "auditInfo": {
+    "createdDate": "2021-12-12T19:24:05Z",
+    "createdBy": "Application Admin",
+    "updatedDate": "2021-12-12T19:24:05Z",
+    "updatedBy": "Application Admin",
+    "isDeleted": true
+  }
+}

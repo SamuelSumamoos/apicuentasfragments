@@ -1,0 +1,47 @@
+#%RAML 1.0 Library
+usage: Provides a variety of canonical types that can be reused across all B2B specifications.
+
+uses:
+  EventTypes: ./libraries/EventTypeLibrary.raml
+  NoticeTypes: ./libraries/NoticeTypeLibrary.raml
+
+types:
+  # Exported Event types
+  OrderEvent:
+    type: EventTypes.OrderEvent
+    example: !include ./examples/OrderEventExample.json
+  OrderCreatedEvent:
+    type: EventTypes.OrderCreatedEvent
+    example: !include ./examples/OrderCreatedEventExample.json
+  OrderAllocatedEvent:
+    type: EventTypes.OrderAllocatedEvent
+    example: !include ./examples/OrderAllocatedEventExample.json
+  OrderInvoicedEvent:
+    type: EventTypes.OrderInvoicedEvent
+    example: !include ./examples/OrderInvoicedEventExample.json
+  OrderPaidEvent:
+    type: EventTypes.OrderPaidEvent
+    example: !include ./examples/OrderPaidEventExample.json
+  OrderShippedEvent:
+    type: EventTypes.OrderShippedEvent
+    example: !include ./examples/OrderShippedEventExample.json
+  OrderStatusChangedEvent:
+    type: EventTypes.OrderStatusChangedEvent
+    example: !include ./examples/OrderStatusChangedEventExample.json
+
+  # Exported Notice types
+  OrderNotice:
+    type: NoticeTypes.OrderNotice
+    example: !include ./examples/OrderNoticeExample.json
+  OrderAllocationNotice:
+    type: NoticeTypes.OrderAllocationNotice
+    example: !include ./examples/OrderAllocationNoticeExample.json
+  OrderInvoiceNotice:
+    type: NoticeTypes.OrderInvoiceNotice
+    example: !include ./examples/OrderInvoiceNoticeExample.json
+  OrderPaymentNotice:
+    type: NoticeTypes.OrderPaymentNotice
+    example: !include ./examples/OrderPaymentNoticeExample.json
+  OrderShipmentNotice:
+    type: NoticeTypes.OrderShipmentNotice
+    example: !include ./examples/OrderShipmentNoticeExample.json

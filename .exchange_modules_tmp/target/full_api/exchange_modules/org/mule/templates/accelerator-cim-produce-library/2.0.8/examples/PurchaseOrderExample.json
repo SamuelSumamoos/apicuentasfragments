@@ -1,0 +1,83 @@
+{
+  "id": "c242e236-1c49-4b8a-897f-955300e1537e",
+  "name": "",
+  "purchaseOrderPurpose": "New",
+  "purchaseOrderType": "NE",
+  "purchaseOrderNumber": "ORD-02338301",
+  "purchaseOrderDate": "2019-10-18",
+  "quotationId": "QT-00029582",
+  "customerId": "b4e2c75a-ed4c-4941-b482-5e0cb2fff847",
+  "supplierOrganizationCode": "1ff5d6e8-f9ce-4860-8141-a95d1ae5ea3c",
+  "purchasingOrganizationCode": "ORANGE",
+  "billToCode": "250",
+  "buyerName": "Tim Brown",
+  "buyerEmailAddress": "tbrown@buyer.com",
+  "orderDeliveryLocation": {
+    "id": null,
+    "name": "Salesforce West",
+    "contactName": "Ruby Tuesday",
+    "locationCode": "338",
+    "locationAddress": {
+      "addressLine1": "50 Fremont St",
+      "addressLine2": "Suite 1456",
+      "cityName": "San Francisco",
+      "stateProvinceCode": "CA",
+      "countryCode": "US",
+      "postalCodeText": "94105"
+    }
+  },
+  "purchaseOrderProducts": [
+    {
+      "id": null,
+      "name": "8.5\" x 11\" Copy Paper",
+      "description": "8.5\" x 11\" Copy Paper, 20 lbs, 92 Brightness, 5000/Carton (324791)",
+      "lineNumber": 1,
+      "productCode": "324791",
+      "orderedQuantity": 10.0,
+      "quantityUnitOfMeasure": "RM",
+      "unitPrice": 14.45
+    },
+    {
+      "id": null,
+      "name": "Hype Tank Highlighters",
+      "description": "Hype Tank Highlighters, Chisel, Yellow, Dozen (29203)",
+      "lineNumber": 2,
+      "productCode": "2072174",
+      "orderedQuantity": 80.0,
+      "quantityUnitOfMeasure": "PH",
+      "unitPrice": 1.95
+    },
+    {
+      "id": null,
+      "name": "Notepads",
+      "description": "Notepads, 8.5\" x 11.75\", Wide Ruled, White, 50 Sheets/Pad, 12 Pads/Pack (51295/2",
+      "lineNumber": 3,
+      "productCode": "163865",
+      "orderedQuantity": 65.0,
+      "quantityUnitOfMeasure": "PH",
+      "unitPrice": 5.08,
+      "productDeliveryLocation": {
+        "id": null,
+        "name": "Salesforce Tower",
+        "contactName": "Tom Sawyer",
+        "locationCode": "587",
+        "locationAddress": {
+          "addressLine1": "415 Mission St",
+          "addressLine2": "Floor 3",
+          "cityName": "San Francisco",
+          "stateProvinceCode": "CA",
+          "countryCode": "US",
+          "postalCodeText": "94105"
+        }
+      }
+    }
+  ],
+  "externalIds": [],
+  "auditInfo": {
+    "createdBy": "Application Admin",
+    "createdDate": "2023-12-12T19:24:05Z",
+    "updatedBy": "Application Admin",
+    "updatedDate": "2023-12-12T19:24:05Z",
+    "isDeleted": false
+  }
+}

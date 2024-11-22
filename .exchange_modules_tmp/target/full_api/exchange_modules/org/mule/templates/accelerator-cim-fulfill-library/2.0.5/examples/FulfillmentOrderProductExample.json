@@ -1,0 +1,32 @@
+{
+  "id": "ef2efbb9-59b8-4e0b-baf2-2cc8b3f26112",
+  "name": "",
+  "description": "",
+  "lineNumber": 1,
+  "fulfillmentOrderId": "5c04fe11-aad1-4b68-81bd-dbe7e3de154f",
+  "salesOrderProductId": "8e931313-1a1d-4284-9b81-c14c6f1c0387",
+  "productCode": "Services-181",
+  "requestedStartDate": "2024-04-24",
+  "requestedEndDate": "2024-04-28",
+  "quantityUnitOfMeasure": "Days",
+  "orderedQuantity": 4.0,
+  "fulfilledQuantity": 4.0,
+  "unitPrice": 1200.0,
+  "grossUnitPrice": 1320.0,
+  "totalAdjustmentAmount": 0.0,
+  "totalAdjustmentTaxAmount": 0.0,
+  "totalAdjustmentWithTaxAmount": 0.0,
+  "totalProductAmount": 4800.0,
+  "totalProductTaxAmount": 480.0,
+  "totalProductWithTaxAmount": 5280.0,
+  "totalAmount": 4800.0,
+  "totalTaxAmount": 480.0,
+  "totalWithTaxAmount": 5280.0,
+  "auditInfo": {
+    "createdDate": "2024-03-05T07:16:23Z",
+    "createdBy": "Application Admin",
+    "updatedDate": "2024-03-05T07:16:23Z",
+    "updatedBy": "Application Admin",
+    "isDeleted": false
+  }
+}
