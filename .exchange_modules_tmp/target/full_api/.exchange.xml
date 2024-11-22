@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>49639555-335c-43bf-9697-856c374176c4</groupId>
   <artifactId>apicuentasfragments</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
   <name>apicuentasfragments</name>
   <dependencies>
     <dependency>
